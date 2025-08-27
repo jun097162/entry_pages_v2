@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>フロー3：通勤手当申請</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        h1 {
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            color: #0056b3;
+            font-size: 1.8em;
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>フロー3：通勤手当申請</h1>
+        
+        <form action="#" method="post" id="onboardingFormPage3">
+            <!-- 通勤手当 -->
+            <fieldset class="form-section">
+                <legend><h2>通勤手当</h2></legend>
+                <div class="form-group">
+                    <label>通勤手段</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="commute_method" value="public_transport" checked> 公共交通</label>
+                        <label><input type="radio" name="commute_method" value="car"> マイカー</label>
+                        <label><input type="radio" name="commute_method" value="motorcycle"> バイク</label>
+                        <label><input type="radio" name="commute_method" value="moped"> 原付</label>
+                        <label><input type="radio" name="commute_method" value="bicycle"> 自転車</label>
+                        <label><input type="radio" name="commute_method" value="walk"> 徒歩</label>
+                    </div>
+                </div>
+                
+                <div class="form-group" id="commute_route_map_display_area" style="display:none; margin-top:20px;">
+                    <label>通勤経路確認</label>
+                    <iframe id="google_maps_route_iframe" width="100%" height="400" style="border:1px solid #ccc; border-radius:4px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <button type="button" id="reflect_route_info_btn" class="action-button-style" style="margin-top:10px; display:none; background-color: #28a745;">表示された経路情報をフォームに反映</button>
+                    <p class="description">上記は現住所と事業所「東京都千代田区大手町1－1－3」間の経路の目安です。<br>実際の所要時間や運賃と異なる場合がありますので、必要に応じて各入力欄で調整してください。</p>
+                </div>
+
+                <!-- Public transport -->
+                <div id="commute_public_transport_section" class="commute-method-specific-section">
+                    <h3>公共交通</h3>
+                    <div class="inline-fields">
+                        <div class="form-group">
+                            <label for="public_commute_method_detail">通勤手段詳細</label>
+                            <select id="public_commute_method_detail" name="public_commute_method_detail">
+                                <option value="">--選択してください--</option>
+                                <option value="train">電車</option>
+                                <option value="bus">バス</option>
+                                <option value="train_bus">電車・バス</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="public_start_date">利用開始日</label>
+                            <input type="date" id="public_start_date" name="public_start_date">
+                        </div>
+                    </div>
+                    <div class="inline-fields">
+                         <div class="form-group">
+                            <label for="public_distance">通勤距離(片道)/km</label>
+                            <input type="number" id="public_distance" name="public_distance" step="0.1" placeholder="例: 10.5">
+                        </div>
+                        <div class="form-group">
+                            <label for="public_duration">所要時間(片道)</label>
+                            <input type="text" id="public_duration" name="public_duration" placeholder="例: 60分">
+                        </div>
+                    </div>
+                    
+                    <h4>利用交通機関詳細</h4>
+                    <div class="inline-fields">
+                        <div class="form-group">
+                            <label for="transport_company_1">利用機関 会社・路線名1</label>
+                            <input type="text" id="transport_company_1" name="transport_company_1" placeholder="例: JR山手線">
+                        </div>
+                        <div class="form-group">
+                            <label for="transport_section_1">利用区間1</label>
+                            <input type="text" id="transport_section_1" name="transport_section_1" placeholder="例: 新宿駅 - 東京駅">
+                        </div>
+                    </div>
+                    <div class="inline-fields">
+                        <div class="form-group">
+                            <label for="transport_company_2">利用機関 会社・路線名2</label>
+                            <input type="text" id="transport_company_2" name="transport_company_2" placeholder="例: 東京メトロ丸ノ内線">
+                        </div>
+                        <div class="form-group">
+                            <label for="transport_section_2">利用区間2</label>
+                            <input type="text" id="transport_section_2" name="transport_section_2" placeholder="例: 東京駅 - 大手町駅">
+                        </div>
+                    </div>
+                     <div class="inline-fields">
+                        <div class="form-group">
+                            <label for="transport_company_3">利用機関 会社・路線名3</label>
+                            <input type="text" id="transport_company_3" name="transport_company_3">
+                        </div>
+                        <div class="form-group">
+                            <label for="transport_section_3">利用区間3</label>
+                            <input type="text" id="transport_section_3" name="transport_section_3">
+                        </div>
+                    </div>
+                     <div class="inline-fields">
+                        <div class="form-group">
+                            <label for="transport_company_4">利用機関 会社・路線名4</label>
+                            <input type="text" id="transport_company_4" name="transport_company_4">
+                        </div>
+                        <div class="form-group">
+                            <label for="transport_section_4">利用区間4</label>
+                            <input type="text" id="transport_section_4" name="transport_section_4">
+                        </div>
+                    </div>
+
+                    <div class="inline-fields">
+                        <div class="form-group">
+                            <label for="round_trip_fare">一日往復運賃</label>
+                            <input type="number" id="round_trip_fare" name="round_trip_fare" placeholder="例: 740">
+                        </div>
+                        <div class="form-group">
+                            <label for="monthly_pass_fare">1ヶ月定期代</label>
+                            <input type="number" id="monthly_pass_fare" name="monthly_pass_fare" placeholder="例: 14650">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Other commute methods... -->
+                <div id="commute_bicycle_section" class="commute-method-specific-section" style="display:none;">
+                    <h3>自転車</h3>
+                    <div class="inline-fields">
+                        <div class="form-group">
+                            <label for="bicycle_commute_method_detail">通勤手段詳細</label>
+                            <select id="bicycle_commute_method_detail" name="bicycle_commute_method_detail">
+                                <option value="">--選択してください--</option>
+                                <option value="bicycle_only">自転車のみ</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="bicycle_start_date">利用開始日</label>
+                            <input type="date" id="bicycle_start_date" name="bicycle_start_date">
+                        </div>
+                    </div>
+                    <div class="inline-fields">
+                        <div class="form-group">
+                            <label for="bicycle_distance">通勤距離(片道)/km</label>
+                            <input type="number" id="bicycle_distance" name="bicycle_distance" step="0.1" placeholder="例: 5.0">
+                        </div>
+                        <div class="form-group">
+                            <label for="bicycle_duration">所要時間(片道)</label>
+                            <input type="text" id="bicycle_duration" name="bicycle_duration" placeholder="例: 30分">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="commute_car_section" class="commute-method-specific-section" style="display:none;">
+                    <h3>マイカー</h3>
+                    <div class="form-group">
+                        <label for="car_route_map">通勤経路図 (ファイル添付)</label>
+                        <input type="file" id="car_route_map" name="car_route_map">
+                        <p class="description file-status">選択されていません (Google Maps表示も参考にしてください)</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="car_license_image">運転免許証画像</label>
+                        <input type="file" id="car_license_image" name="car_license_image" accept="image/*">
+                        <p class="description file-status">選択されていません</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="car_insurance_image">任意保険証画像</label>
+                        <input type="file" id="car_insurance_image" name="car_insurance_image" accept="image/*">
+                        <p class="description file-status">選択されていません</p>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="action-button-style modal-trigger-button" data-modal-target="#pledgeModal">誓約書を確認する</button>
+                    </div>
+                </div>
+
+                <div id="commute_motorcycle_section" class="commute-method-specific-section" style="display:none;">
+                    <h3>バイク</h3>
+                    <div class="form-group">
+                        <label for="motorcycle_route_map">通勤経路図 (ファイル添付)</label>
+                        <input type="file" id="motorcycle_route_map" name="motorcycle_route_map">
+                        <p class="description file-status">選択されていません (Google Maps表示も参考にしてください)</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="motorcycle_license_image">運転免許証画像</label>
+                        <input type="file" id="motorcycle_license_image" name="motorcycle_license_image" accept="image/*">
+                        <p class="description file-status">選択されていません</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="motorcycle_insurance_image">任意保険証画像</label>
+                        <input type="file" id="motorcycle_insurance_image" name="motorcycle_insurance_image" accept="image/*">
+                        <p class="description file-status">選択されていません</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="motorcycle_compulsory_insurance_image">自賠責証明書画像</label>
+                        <input type="file" id="motorcycle_compulsory_insurance_image" name="motorcycle_compulsory_insurance_image" accept="image/*">
+                        <p class="description file-status">選択されていません</p>
+                    </div>
+                     <div class="form-group">
+                        <button type="button" class="action-button-style modal-trigger-button" data-modal-target="#pledgeModal">誓約書を確認する</button>
+                    </div>
+                </div>
+
+                <div id="commute_moped_section" class="commute-method-specific-section" style="display:none;">
+                    <h3>原付</h3>
+                     <div class="form-group">
+                        <label for="moped_route_map">通勤経路図 (ファイル添付)</label>
+                        <input type="file" id="moped_route_map" name="moped_route_map">
+                        <p class="description file-status">選択されていません (Google Maps表示も参考にしてください)</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="moped_license_image">運転免許証画像</label>
+                        <input type="file" id="moped_license_image" name="moped_license_image" accept="image/*">
+                        <p class="description file-status">選択されていません</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="moped_insurance_image">任意保険証画像 (任意)</label>
+                        <input type="file" id="moped_insurance_image" name="moped_insurance_image" accept="image/*">
+                        <p class="description file-status">選択されていません</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="moped_compulsory_insurance_image">自賠責証明書画像</label>
+                        <input type="file" id="moped_compulsory_insurance_image" name="moped_compulsory_insurance_image" accept="image/*">
+                        <p class="description file-status">選択されていません</p>
+                    </div>
+                     <div class="form-group">
+                        <button type="button" class="action-button-style modal-trigger-button" data-modal-target="#pledgeModal">誓約書を確認する</button>
+                    </div>
+                </div>
+            </fieldset>
+
+            <div class="navigation-buttons">
+                <a href="フロー2_社保加入申請.html" class="action-button-style prev-btn">戻る（フロー2_社保加入申請）</a>
+                <a href="フロー4_従業員情報.html" class="action-button-style next-btn">次へ（フロー4_従業員情報）</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Modal -->
+    <div id="pledgeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>誓約書</h3>
+                <span class="close-button">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>私は、道路交通法、そのほか自動車関係法令並びに会社のマイカー関係規程を遵守し、常に安全運転に努め、決して会社にご迷惑をおかけしないことを誓約いたします。通勤に使用する車両は会社で規定する任意保険に加入し、申請に必要な書類を添付しております。</p>
+                <hr>
+                <p><strong>運転免許証画像を登録してください。</strong></p>
+                <div class="image-preview-container">
+                    <div class="form-group">
+                        <input type="file" id="pledge_license_image_upload" name="pledge_license_image_upload" accept="image/*">
+                        <p class="description file-status" id="pledge_license_file_status">選択されていません</p>
+                    </div>
+                    <div class="image-preview-box" id="pledge_license_preview_box">
+                        <span id="pledge_license_preview_text">登録画像プレビュー</span>
+                        <img src="#" alt="プレビュー" id="pledge_license_preview_img" style="display:none;">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="pledgeModalRegisterButton" class="action-button-style">登録</button>
+                 <button type="button" class="action-button-style close-modal-button" style="background-color:#6c757d; margin-left:10px;">閉じる</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- START: Modal Logic ---
+            const allModals = document.querySelectorAll('.modal');
+            function openModal(modalElement) { modalElement.style.display = 'flex'; }
+            function closeModal(modalElement) { modalElement.style.display = 'none'; }
+            
+            document.querySelectorAll('.modal-trigger-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const modalId = this.dataset.modalTarget;
+                    const modalElement = document.querySelector(modalId);
+                    if (modalElement) openModal(modalElement);
+                });
+            });
+
+            document.querySelectorAll('.modal .close-button, .modal .close-modal-button').forEach(button => {
+                button.addEventListener('click', function() { closeModal(this.closest('.modal')); });
+            });
+
+            window.addEventListener('click', function(event) {
+                allModals.forEach(modal => { if (event.target === modal) { closeModal(modal); } });
+            });
+
+            const pledgeLicenseUpload = document.getElementById('pledge_license_image_upload');
+            const pledgeLicensePreviewImg = document.getElementById('pledge_license_preview_img');
+            const pledgeLicensePreviewText = document.getElementById('pledge_license_preview_text');
+            if (pledgeLicenseUpload) {
+                pledgeLicenseUpload.addEventListener('change', function(event) {
+                    const file = event.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            pledgeLicensePreviewImg.src = e.target.result;
+                            pledgeLicensePreviewImg.style.display = 'block';
+                            pledgeLicensePreviewText.style.display = 'none';
+                        }
+                        reader.readAsDataURL(file);
+                    } else { 
+                        if(pledgeLicensePreviewImg) { pledgeLicensePreviewImg.style.display = 'none'; pledgeLicensePreviewImg.src = '#'; }
+                        if(pledgeLicensePreviewText) pledgeLicensePreviewText.style.display = 'block';
+                    }
+                });
+            }
+            const pledgeModalRegisterButton = document.getElementById('pledgeModalRegisterButton');
+            if (pledgeModalRegisterButton) {
+                pledgeModalRegisterButton.addEventListener('click', function() {
+                    const fileInput = document.getElementById('pledge_license_image_upload');
+                    if (fileInput.files.length > 0) {
+                        alert('運転免許証画像を登録しました（ダミー）');
+                        closeModal(document.getElementById('pledgeModal'));
+                    } else { alert('運転免許証画像を選択してください。'); }
+                });
+            }
+            // --- END: Modal Logic ---
+
+            // --- START: General File Input Status Logic ---
+            document.querySelectorAll('input[type="file"]').forEach(input => {
+                const formGroup = input.closest('.form-group');
+                if (!formGroup) return;
+                const statusElement = formGroup.querySelector('.file-status');
+                if (!statusElement) return;
+
+                statusElement.dataset.initialText = statusElement.textContent;
+                
+                input.addEventListener('change', function() { 
+                    if (this.files && this.files.length > 0) {
+                        statusElement.textContent = this.files[0].name;
+                    } else {
+                        statusElement.textContent = statusElement.dataset.initialText;
+                    }
+                });
+            });
+            // --- END: General File Input Status Logic ---
+
+
+            // --- START: Commute Allowance Section Logic ---
+            const commuteMethodRadios = document.querySelectorAll('input[name="commute_method"]');
+            const commuteSections = {
+                public_transport: document.getElementById('commute_public_transport_section'),
+                bicycle: document.getElementById('commute_bicycle_section'),
+                car: document.getElementById('commute_car_section'),
+                motorcycle: document.getElementById('commute_motorcycle_section'),
+                moped: document.getElementById('commute_moped_section'),
+                walk: null 
+            };
+            const commuteRouteMapDisplayArea = document.getElementById('commute_route_map_display_area');
+            const googleMapsIframe = document.getElementById('google_maps_route_iframe');
+            const reflectRouteInfoBtn = document.getElementById('reflect_route_info_btn');
+            const officeAddress = "東京都千代田区大手町1－1－3"; 
+
+            function getFullCurrentAddressForCommute() { 
+                // ページ1から保存された住所をlocalStorageから読み込む
+                const prefecture = localStorage.getItem('prefecture') || '';
+                const city = localStorage.getItem('city') || '';
+                const line1 = localStorage.getItem('address_line1') || '';
+                
+                if (prefecture && city && line1) {
+                    return `${prefecture}${city}${line1}`;
+                }
+                console.warn("住所情報がlocalStorageに見つかりません。");
+                return null;
+            }
+            function updateGoogleMapsRoute() {
+                const currentAddress = getFullCurrentAddressForCommute(); 
+                const selectedCommuteMethodRadio = document.querySelector('input[name="commute_method"]:checked');
+                if (!selectedCommuteMethodRadio) return;
+                const selectedCommuteMethod = selectedCommuteMethodRadio.value;
+
+                let dirflg = '';
+                switch (selectedCommuteMethod) {
+                    case 'public_transport': dirflg = 'r'; break;
+                    case 'bicycle': dirflg = 'b'; break;
+                    case 'car': case 'motorcycle': case 'moped': dirflg = 'c'; break;
+                    case 'walk': dirflg = 'w'; break;
+                    default: dirflg = '';
+                }
+
+                if (currentAddress && dirflg) {
+                    const encodedCurrentAddress = encodeURIComponent(currentAddress);
+                    const encodedOfficeAddress = encodeURIComponent(officeAddress);
+                    googleMapsIframe.src = `https://maps.google.co.jp/maps?output=embed&saddr=${encodedCurrentAddress}&daddr=${encodedOfficeAddress}&dirflg=${dirflg}`;
+                    commuteRouteMapDisplayArea.style.display = 'block';
+                    reflectRouteInfoBtn.style.display = (selectedCommuteMethod === 'public_transport' || selectedCommuteMethod === 'bicycle') ? 'inline-block' : 'none';
+                } else {
+                    googleMapsIframe.src = 'about:blank'; 
+                    commuteRouteMapDisplayArea.style.display = 'none'; 
+                    reflectRouteInfoBtn.style.display = 'none';
+                    if (!currentAddress) {
+                        // ページロード時の初回警告は避けるため、ユーザーが操作した後に警告するなどの工夫も可能
+                        // console.log("経路検索の前に、ステップ1で現住所を登録してください。");
+                    }
+                }
+            }
+            function updateCommuteSectionsDisplayAndMap() { 
+                const selectedCommuteMethodRadio = document.querySelector('input[name="commute_method"]:checked');
+                if (!selectedCommuteMethodRadio) return;
+                const selectedValue = selectedCommuteMethodRadio.value;
+                // すべての通勤手段セクションをループ
+                for (const key in commuteSections) {
+                    if (commuteSections[key]) {
+                        // 選択されたものだけ表示、他は非表示
+                        commuteSections[key].style.display = (key === selectedValue) ? 'block' : 'none';
+                    }
+                }
+                // Googleマップの表示を更新
+                updateGoogleMapsRoute();
+            }
+            // 各ラジオボタンにイベントリスナーを追加
+            commuteMethodRadios.forEach(radio => { 
+                radio.addEventListener('change', updateCommuteSectionsDisplayAndMap); 
+            });
+            
+            if(reflectRouteInfoBtn) {
+                reflectRouteInfoBtn.addEventListener('click', function() {
+                    const selectedCommuteMethodRadio = document.querySelector('input[name="commute_method"]:checked');
+                    if (!selectedCommuteMethodRadio) return;
+                    const selectedCommuteMethod = selectedCommuteMethodRadio.value;
+
+                    for(let i = 1; i <= 4; i++) {
+                        const companyInput = document.getElementById(`transport_company_${i}`);
+                        const sectionInput = document.getElementById(`transport_section_${i}`);
+                        if(companyInput) companyInput.value = '';
+                        if(sectionInput) sectionInput.value = '';
+                    }
+                    
+                    const currentAddress = getFullCurrentAddressForCommute() || "default";
+                    let addressHash = 0;
+                    for (let i = 0; i < currentAddress.length; i++) {
+                        addressHash = (addressHash << 5) - addressHash + currentAddress.charCodeAt(i);
+                        addressHash |= 0;
+                    }
+
+                    if (selectedCommuteMethod === 'public_transport') {
+                        document.getElementById('public_distance').value = (10 + (Math.abs(addressHash) % 10)).toFixed(1);
+                        document.getElementById('public_duration').value = (50 + (Math.abs(addressHash) % 20)) + '分';    
+                        document.getElementById('round_trip_fare').value = 740 + (Math.abs(addressHash) % 5) * 20;
+                        document.getElementById('monthly_pass_fare').value = 14650 + (Math.abs(addressHash) % 10) * 100;
+                        document.getElementById('transport_company_1').value = (Math.abs(addressHash) % 3 === 0) ? 'JR総武線' : (Math.abs(addressHash) % 3 === 1) ? '京王線' : '東急東横線';
+                        document.getElementById('transport_section_1').value = '自宅最寄駅(仮) - 乗換駅X(仮)';
+                        document.getElementById('transport_company_2').value = (Math.abs(addressHash) % 2 === 0) ? '東京メトロ銀座線' : '都営三田線';
+                        document.getElementById('transport_section_2').value = '乗換駅X(仮) - 大手町駅(仮)';
+                        console.log("公共交通の経路情報をフォームに反映しました。");
+                    } else if (selectedCommuteMethod === 'bicycle') {
+                        document.getElementById('bicycle_distance').value = (5 + (Math.abs(addressHash) % 5)).toFixed(1);
+                        document.getElementById('bicycle_duration').value = (25 + (Math.abs(addressHash) % 15)) + '分';
+                        console.log("自転車の経路情報をフォームに反映しました。");
+                    }
+                });
+            }
+            
+            // ページ読み込み時に初期状態を設定
+            updateCommuteSectionsDisplayAndMap(); 
+            // --- END: Commute Allowance Section Logic ---
+        });
+    </script>
+</body>
+</html>

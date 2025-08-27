@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>フロー2：社保加入申請</title>
+    <link rel="stylesheet" href="style.css"> 
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f4f7f9;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            color: #0056b3;
+            font-size: 1.8em;
+            margin-bottom: 1.5rem;
+        }
+        fieldset.form-section {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        fieldset.form-section legend {
+            font-weight: bold;
+            font-size: 1.2em;
+            padding: 0 10px;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        .radio-group label, .checkbox-group label {
+            display: block; /* 縦並びに変更 */
+            margin-bottom: 0.5rem; /* 適度な間隔 */
+            font-weight: normal;
+        }
+        input[type="text"], input[type="tel"], input[type="number"], select, input[type="date"] {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            width: 100%;
+        }
+        input[readonly] {
+            background-color: #e9ecef;
+            pointer-events: none;
+        }
+        .note {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+            border-top: 1px solid #e0e0e0;
+            padding-top: 1.5rem;
+        }
+        .action-button-style {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            text-decoration: none;
+            text-align: center;
+        }
+        .prev-btn {
+            background-color: #6c757d;
+            color: white;
+        }
+        .next-btn {
+            background-color: #007bff;
+            color: white;
+        }
+        .contract-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            align-items: end;
+        }
+        .contract-info-grid label {
+            font-size: 0.9em;
+            margin-bottom: 0.2rem;
+        }
+        .input-with-unit {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .input-with-unit input {
+            flex: 1;
+        }
+        .info-box {
+            background-color: #e9f7ff;
+            border-left: 5px solid #007bff;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .warning-box {
+            background-color: #fff8e1;
+            border-left: 5px solid #ffc107;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        .dependent-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        .dependent-table th, .dependent-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            vertical-align: top;
+        }
+        .dependent-table th {
+            background-color: #f2f2f2;
+            font-size: 0.9em;
+            width: 150px;
+        }
+        .dependent-block-header {
+            background-color: #e9ecef;
+            text-align: center;
+            font-weight: bold;
+        }
+        .add-button, .delete-dependent-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 15px;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            vertical-align: top;
+        }
+        .add-button {
+            background-color: #28a745;
+        }
+        .delete-dependent-btn {
+            background-color: #dc3545;
+            font-size: 0.9em;
+            padding: 6px 12px;
+        }
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+            display: none;
+            margin-top: 4px;
+        }
+        .dependent-form-container {
+            margin-bottom: 1rem;
+        }
+        .dependent-table .button-cell {
+            text-align: right;
+            border: none;
+            padding: 5px 0 0 0;
+        }
+        .button-cell > button {
+            margin-left: 8px;
+        }
+        .file-upload-container {
+            display: flex;
+            gap: 1rem;
+        }
+        .file-drop-area {
+            flex: 1;
+            border: 2px dashed #d9d9d9;
+            border-radius: 4px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            color: #555;
+        }
+        .file-drop-area span {
+            color: #007bff;
+            text-decoration: underline;
+        }
+        .file-upload-notes {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>フロー2：社保加入申請</h1>
+
+    <form action="フロー3_通勤手当申請.html" method="get">
+        <fieldset class="form-section">
+            <legend>1. LEOCでの働き方を教えてください。（税表区分）</legend>
+            <div class="form-group radio-group">
+                <p class="note">次のいずれかを選択してください。(選択必須)</p>
+                <label><input type="radio" name="tax_category" value="kou" required> 甲：LEOCのみで勤務する方 or 他社と掛け持ちする方でLEOCの給与を主として勤務する場合。</label>
+                <label><input type="radio" name="tax_category" value="otsu"> 乙：他社と掛け持ちする方で他社からの収入が給与の主となる場合</label>
+                <div id="otsu-options" style="display:none; margin-left: 20px;" class="radio-group">
+                    <p class="note">※「乙」を選択した場合にご回答ください。</p>
+                    <label><input type="radio" name="otsu_insurance_status" value="health_insurance"> 他社で社会保険に加入している。</label>
+                    <label><input type="radio" name="otsu_insurance_status" value="employment_insurance"> 他社で雇用保険に加入している。</label>
+                    <label><input type="radio" name="otsu_insurance_status" value="not_joined"> 他社で保険には加入していない。</label>
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset class="form-section">
+            <legend>2. 社会保険・雇用保険について教えてください。</legend>
+            <div class="info-box contract-info-grid">
+                 <div>
+                    <label for="hire-date">入社日</label>
+                    <input type="text" id="hire-date" value="10月09日" readonly>
+                </div>
+                <div>
+                    <label for="contract-hours">契約時間 (1日あたり)</label>
+                    <div class="input-with-unit">
+                        <input type="number" id="contract-hours" value="0" step="0.1"> <span>H</span>
+                    </div>
+                </div>
+                 <div>
+                    <label for="contract-days">契約日数 (1ヶ月あたり)</label>
+                    <div class="input-with-unit">
+                        <input type="number" id="contract-days" value="0"> <span>日</span>
+                    </div>
+                </div>
+                <div>
+                    <label for="weekly-hours">週労働時間</label>
+                     <div class="input-with-unit">
+                        <input type="text" id="weekly-hours" value="0.0" readonly> <span>H</span>
+                    </div>
+                </div>
+                <div>
+                    <label for="expected-salary">給与見込み額 (ダミー時給951円)</label>
+                    <div class="input-with-unit">
+                        <input type="text" id="expected-salary" value="0" readonly> <span>円</span>
+                    </div>
+                </div>
+            </div>
+            <p id="insurance-join-message">社会保険・雇用保険に加入となります。<span class="note">(選択必須)</span></p>
+            <div class="radio-group" style="display: flex; gap: 1rem;">
+                <label><input type="radio" name="insurance_consent" value="agree" required checked> 同意します</label>
+                <label><input type="radio" name="insurance_consent" value="disagree"> 同意しません</label>
+            </div>
+            <div id="disagree-message" class="warning-box" style="display:none;">
+                社会保険に加入しない場合は契約内容の変更が必要です。面接担当者へ連絡し、契約内容をご相談ください。
+            </div>
+        </fieldset>
+
+        <div id="main-content-after-agreement">
+            <div class="info-box">
+                <p><strong>保険証は廃止となりました、マイナンバーカードを保険証としてご使用ください。</strong></p>
+                <p>マイナポータルや、セブン銀行、医療機関の受付にあるカードリーダーで保険証の利用申込が必要となります。</p>
+            </div>
+            <fieldset class="form-section">
+                <legend>各種番号</legend>
+                <div class="form-group">
+                    <label for="pension_number">基礎年金番号を入力してください。</label>
+                    <input type="text" id="pension_number" name="pension_number" placeholder="1234-567890">
+                    <div id="pension-number-error" class="error-message"></div>
+                </div>
+                <div class="form-group">
+                    <label for="employment_insurance_number">雇用保険被保険者番号を入力してください。</label>
+                    <input type="text" id="employment_insurance_number" name="employment_insurance_number" placeholder="1234-567890-1">
+                    <div id="employment-insurance-number-error" class="error-message"></div>
+                </div>
+            </fieldset>
+            <fieldset class="form-section">
+                <legend>手続き書類</legend>
+                <div class="form-group">
+                    <label>社会保険資格取得証明書は必要ですか？</label>
+                    <div class="radio-group" style="display: flex; gap: 1rem;">
+                        <label><input type="radio" name="shikaku_todoke" value="yes"> はい</label>
+                        <label><input type="radio" name="shikaku_todoke" value="no"> いいえ</label>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset class="form-section">
+                <legend>扶養親族の確認</legend>
+                <div class="form-group">
+                    <label>扶養親族はいますか？ (選択必須)</label>
+                    <div class="radio-group" style="display: flex; gap: 1rem;">
+                        <label><input type="radio" name="has_dependents" value="yes" required> はい</label>
+                        <label><input type="radio" name="has_dependents" value="no"> いいえ</label>
+                    </div>
+                </div>
+
+                <div id="dependents-section" style="display:none;">
+                    <div class="info-box">
+                        <strong>扶養条件</strong><br>
+                        1. 三親等内の親族で、主として被保険者（本人）の収入によって暮らしている<br>
+                        2. 被保険者と同居の場合：年間収入130万円未満かつ被保険者の年収の2分の1未満である※<br>
+                        3. 被保険者と別居の場合：年間収入130万円未満かつ被保険者からの援助による収入額未満※<br>
+                        ※扶養親族が60歳以上または障がい者の場合、上記「130万円未満」は180万円未満になります。
+                    </div>
+
+                    <div id="dependents-list">
+                        </div>
+                    <div id="dependent-buttons-container">
+                        </div>
+                </div>
+            </fieldset>
+        </div>
+
+        <div class="navigation-buttons">
+            <a href="フロー1_基礎情報.html" class="action-button-style prev-btn">戻る（フロー1_基礎情報）</a>
+            <a href="フロー3_通勤手当申請.html" class="action-button-style next-btn">次へ（フロー3_通勤手当申請）</a>
+        </div>
+    </form>
+</div>
+
+<script>
+// 税表区分・社会保険加入区分確認_v5.html のJavaScriptをそのまま利用
+document.addEventListener('DOMContentLoaded', function() {
+    // --- DOM要素の取得 ---
+    const taxCategoryRadios = document.querySelectorAll('input[name="tax_category"]');
+    const otsuOptions = document.getElementById('otsu-options');
+    const insuranceConsentRadios = document.querySelectorAll('input[name="insurance_consent"]');
+    const disagreeMessage = document.getElementById('disagree-message');
+    const mainContent = document.getElementById('main-content-after-agreement');
+    const hasDependentsRadios = document.querySelectorAll('input[name="has_dependents"]');
+    const dependentsSection = document.getElementById('dependents-section');
+    const contractHoursInput = document.getElementById('contract-hours');
+    const contractDaysInput = document.getElementById('contract-days');
+    const weeklyHoursOutput = document.getElementById('weekly-hours');
+    const expectedSalaryOutput = document.getElementById('expected-salary');
+    const insuranceJoinMessage = document.getElementById('insurance-join-message');
+    const pensionNumberInput = document.getElementById('pension_number');
+    const employmentInsuranceNumberInput = document.getElementById('employment_insurance_number');
+    const pensionNumberError = document.getElementById('pension-number-error');
+    const employmentInsuranceNumberError = document.getElementById('employment-insurance-number-error');
+    const dependentsList = document.getElementById('dependents-list');
+    const dependentButtonsContainer = document.getElementById('dependent-buttons-container');
+
+    // --- 定数 ---
+    const HOURLY_WAGE = 951;
+
+    // --- 表示切り替え機能 ---
+    taxCategoryRadios.forEach(radio => {
+        radio.addEventListener('change', e => {
+            otsuOptions.style.display = e.target.value === 'otsu' ? 'block' : 'none';
+        });
+    });
+
+    insuranceConsentRadios.forEach(radio => {
+        radio.addEventListener('change', e => {
+            const isAgree = e.target.value === 'agree';
+            mainContent.style.display = isAgree ? 'block' : 'none';
+            disagreeMessage.style.display = isAgree ? 'none' : 'block';
+        });
+    });
+
+    hasDependentsRadios.forEach(radio => {
+        radio.addEventListener('change', e => {
+            dependentsSection.style.display = e.target.value === 'yes' ? 'block' : 'none';
+             if (e.target.value === 'yes' && dependentsList.children.length === 0) {
+                addDependent();
+            }
+        });
+    });
+
+    // --- 計算機能 ---
+    function calculate() {
+        const hours = parseFloat(contractHoursInput.value) || 0;
+        const days = parseFloat(contractDaysInput.value) || 0;
+        const weeklyHours = (hours * days * 12) / (365 / 7);
+        weeklyHoursOutput.value = weeklyHours.toFixed(1);
+
+        const salary = HOURLY_WAGE * hours * days;
+        expectedSalaryOutput.value = salary.toLocaleString();
+
+        if (weeklyHours >= 20 && salary >= 88000) {
+            insuranceJoinMessage.innerHTML = '社会保険に加入となります。<span class="note">(選択必須)</span>';
+        } else if (weeklyHours >= 20) {
+            insuranceJoinMessage.innerHTML = '雇用保険に加入となります。<span class="note">(選択必須)</span>';
+        } else {
+            insuranceJoinMessage.innerHTML = '社会保険・雇用保険の加入対象外です。<span class="note">(選択必須)</span>';
+        }
+    }
+    contractHoursInput.addEventListener('input', calculate);
+    contractDaysInput.addEventListener('input', calculate);
+    calculate(); // 初期計算
+
+    // --- 自動整形機能 ---
+    function formatInput(input, formatFunc) {
+        input.addEventListener('input', formatFunc);
+    }
+    formatInput(pensionNumberInput, e => {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.length > 10) value = value.slice(0, 10);
+        if (value.length > 4) value = value.slice(0, 4) + '-' + value.slice(4);
+        e.target.value = value;
+    });
+    formatInput(employmentInsuranceNumberInput, e => {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.length > 11) value = value.slice(0, 11);
+        if (value.length > 10) value = value.slice(0, 4) + '-' + value.slice(4, 10) + '-' + value.slice(10);
+        else if (value.length > 4) value = value.slice(0, 4) + '-' + value.slice(4);
+        e.target.value = value;
+    });
+
+    // --- バリデーション機能 ---
+    function showAlert(alertElement, message, show) {
+        alertElement.textContent = show ? message : '';
+        alertElement.style.display = show ? 'block' : 'none';
+    }
+    pensionNumberInput.addEventListener('blur', e => showAlert(pensionNumberError, '10桁の数字で入力してください。', e.target.value.replace(/\D/g, '').length > 0 && e.target.value.replace(/\D/g, '').length !== 10));
+    employmentInsuranceNumberInput.addEventListener('blur', e => showAlert(employmentInsuranceNumberError, '11桁の数字で入力してください。', e.target.value.replace(/\D/g, '').length > 0 && e.target.value.replace(/\D/g, '').length !== 11));
+
+    // --- 扶養親族関連の処理 ---
+
+    // 生年月日の自動整形
+    dependentsList.addEventListener('input', e => {
+        if (!e.target.name || !e.target.name.startsWith('dep_dob')) return;
+        let value = e.target.value.replace(/\D/g, '');
+        const year = value.slice(0, 4), month = value.slice(4, 6), day = value.slice(6, 8);
+        let formatted = year;
+        if (month) formatted += '/' + month;
+        if (day) formatted += '/' + day;
+        e.target.value = formatted;
+    });
+
+    // 扶養親族入力欄のバリデーション (blurイベントは親要素で補足)
+    dependentsList.addEventListener('blur', e => {
+        const input = e.target, name = input.name || '', value = input.value;
+        const alertElement = input.closest('td')?.querySelector('.error-message');
+        if (!alertElement) return;
+
+        if (name.startsWith('dep_dob')) {
+            showAlert(alertElement, '', false); // Reset
+            if (!value) return;
+            const regex = /^\d{4}\/\d{2}\/\d{2}$/;
+            if (!regex.test(value)) return showAlert(alertElement, '日付は "YYYY/MM/DD" の形式で入力してください。', true);
+            const [year, month, day] = value.split('/').map(Number);
+            const date = new Date(year, month - 1, day);
+            if (date.getFullYear() !== year || date.getMonth() !== month - 1 || date.getDate() !== day) return showAlert(alertElement, '有効な日付を入力してください。', true);
+            
+            const today = new Date();
+            let age = today.getFullYear() - date.getFullYear();
+            const m = today.getMonth() - date.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < date.getDate())) age--;
+            if (age >= 75) showAlert(alertElement, '年齢が75歳以上です。手続きについて確認が必要です。', true);
+
+        } else if (name.startsWith('dep_income')) {
+            const income = parseFloat(value) || 0;
+            if (income >= 1300000) showAlert(alertElement, '年収130万円以上は扶養に入れません。', true);
+            else if (income >= 1030000) showAlert(alertElement, '年収103万円以上は「直近3カ月分の給与明細」が必要です。', true);
+            else showAlert(alertElement, '', false);
+        } else if (name.startsWith('dep_pension_income')) {
+            showAlert(alertElement, '「年金通知書コピー」の提出が必要です。', value && parseFloat(value) > 0);
+        } else if (name.startsWith('dep_residence')) {
+            showAlert(alertElement, '「別居の場合は、仕送り明細書」が必要です。', value === 'different');
+        }
+    }, true);
+
+    // ボタンの動的管理
+    function updateDependentButtons() {
+        dependentButtonsContainer.innerHTML = ''; // コンテナをクリア
+        const forms = dependentsList.querySelectorAll('.dependent-form-container');
+        
+        forms.forEach((form, index) => {
+            let buttonCell = form.querySelector('.button-cell');
+            if (!buttonCell) {
+                const tbody = form.querySelector('tbody');
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td colspan="2" class="button-cell"></td>`;
+                tbody.appendChild(tr);
+                buttonCell = tr.querySelector('.button-cell');
+            }
+            buttonCell.innerHTML = '<button type="button" class="delete-dependent-btn">この扶養親族を削除</button>';
+        });
+
+        const addButton = document.createElement('button');
+        addButton.type = 'button';
+        addButton.className = 'add-button';
+        addButton.textContent = '＋扶養親族を追加する';
+        addButton.addEventListener('click', addDependent);
+
+        if (forms.length > 0) {
+            forms[forms.length - 1].querySelector('.button-cell').appendChild(addButton);
+        } else {
+            dependentButtonsContainer.appendChild(addButton);
+        }
+    }
+    
+    // 扶養親族の番号を再採番
+    function renumberDependents() {
+        dependentsList.querySelectorAll('.dependent-form-container').forEach((form, index) => {
+            const newIndex = index + 1;
+            form.querySelector('.dependent-block-header').textContent = `扶養親族 ${newIndex}`;
+            form.querySelectorAll('input, select').forEach(input => {
+                if (input.name) input.name = input.name.replace(/_\d+$/, `_${newIndex}`);
+            });
+        });
+    }
+
+    // 扶養親族フォームのHTMLを生成
+    function createDependentForm(index) {
+        const container = document.createElement('div');
+        container.className = 'dependent-form-container';
+        container.innerHTML = `
+            <table class="dependent-table">
+                <tbody>
+                    <tr><td colspan="2" class="dependent-block-header">扶養親族 ${index}</td></tr>
+                    <tr><th>氏名</th><td><input type="text" name="dep_name_${index}"><div class="error-message"></div></td></tr>
+                    <tr><th>フリガナ</th><td><input type="text" name="dep_furigana_${index}"><div class="error-message"></div></td></tr>
+                    <tr><th>生年月日</th><td><input type="text" name="dep_dob_${index}" placeholder="YYYY/MM/DD" maxlength="10"><div class="error-message"></div></td></tr>
+                    <tr><th>続柄</th><td><input type="text" name="dep_relationship_${index}"><div class="error-message"></div></td></tr>
+                    <tr><th>基礎年金番号</th><td><input type="text" name="dep_pension_number_${index}"><div class="error-message"></div></td></tr>
+                    <tr><th>職種</th><td><select name="dep_job_${index}"><option value=""></option><option value="part-time">パート</option><option value="student">学生</option><option value="unemployed">無職</option></select><div class="error-message"></div></td></tr>
+                    <tr><th>年収</th><td><input type="number" name="dep_income_${index}" placeholder="例: 900000"><div class="error-message"></div></td></tr>
+                    <tr><th>年金（年間）</th><td><input type="number" name="dep_pension_income_${index}"><div class="error-message"></div></td></tr>
+                    <tr><th>住まい</th><td><select name="dep_residence_${index}"><option value=""></option><option value="same">同居</option><option value="different">別居</option></select><div class="error-message"></div></td></tr>
+                    <tr>
+                        <th>年金通知書など必要書類</th>
+                        <td>
+                            <div class="file-upload-notes">形式： [JPG, PNG, PDF, HEIC], ファイルサイズ：2MBまで</div>
+                            <div class="file-upload-container">
+                                <div class="file-drop-area" onclick="this.querySelector('input').click();">
+                                    ファイルを選択またはドロップ<br><span>ファイルを選択</span>
+                                    <input type="file" name="dep_document_1_${index}" style="display: none;" accept=".jpg,.jpeg,.png,.pdf,.heic">
+                                </div>
+                                <div class="file-drop-area" onclick="this.querySelector('input').click();">
+                                    ファイルを選択またはドロップ<br><span>ファイルを選択</span>
+                                    <input type="file" name="dep_document_2_${index}" style="display: none;" accept=".jpg,.jpeg,.png,.pdf,.heic">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr><td colspan="2" class="button-cell"></td></tr>
+                </tbody>
+            </table>`;
+        return container;
+    }
+
+    // 扶養親族を追加
+    function addDependent() {
+        const newIndex = dependentsList.children.length + 1;
+        dependentsList.appendChild(createDependentForm(newIndex));
+        renumberDependents();
+        updateDependentButtons();
+    }
+    
+    // 扶養親族を削除（イベント委任）
+    dependentsList.addEventListener('click', e => {
+        if (e.target.classList.contains('delete-dependent-btn')) {
+            e.target.closest('.dependent-form-container').remove();
+            renumberDependents();
+            updateDependentButtons();
+        }
+    });
+
+});
+</script>
+
+</body>
+</html>
