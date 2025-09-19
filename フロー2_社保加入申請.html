@@ -865,50 +865,17 @@
                 updateTaxDependentButtons();
                 updateAllTaxDependentDropdowns();
 
-                // --- ここから：初期表示で家族を自動選択して住まい情報を反映 ---
-                try {
-                    const familyData = JSON.parse(localStorage.getItem('family_data')) || [];
-
-                    // すでに他行で選択済みの family index を取得
-                    const selectedIndexes = Array.from(
-                        taxDependentsList.querySelectorAll('select[name^="tax_dep_family_select_"]')
-                    )
-                    .filter(sel => sel !== formEl.querySelector(`select[name="tax_dep_family_select_${newIndex}"]`))
-                    .map(sel => sel.value)
-                    .filter(v => v && v !== 'manual');
-
-                    // 未使用の候補を抽出（residence を持つものを優先）
-                    const candidates = familyData
-                        .map((f, i) => ({ f, i }))
-                        .filter(({ i }) => selectedIndexes.indexOf(String(i)) === -1);
-
-                    let chosen = null;
-                    if (candidates.length === 1) {
-                        // 候補が1つならそれを採用
-                        chosen = candidates[0];
-                    } else {
-                        // 複数ある場合は、flow1で住まい(residence)が明示されているものを優先
-                        chosen = candidates.find(({ f }) => f && (f.residence === 'same' || f.residence === 'different')) || null;
-                    }
-
-                    // 選べるものがあれば自動選択 → 既存 change ハンドラで氏名/フリガナ/生年月日/続柄/住まいを反映
-                    if (chosen) {
-                        const select = formEl.querySelector(`select[name="tax_dep_family_select_${newIndex}"]`);
-                        if (select) {
-                            select.value = String(chosen.i);
-                            // 既存の 'change' ハンドラで：
-                            // - 氏名/フリガナ/生年月日/続柄の読み込み
-                            // - 住まい（同居/別居）の反映と住所行の開閉
-                            // - 同期処理（健保扶養フォームへの反映）を実行
-                            select.dispatchEvent(new Event('change', { bubbles: true }));
-                        }
-                    }
-                } catch (e) {
-                    // family_data が壊れていても致命傷にしない
-                    console.warn('auto-select in addTaxDependent failed', e);
+                // --- 修正ポイント ---
+                // デフォルトは必ず「選択してください」にしておく
+                const select = formEl.querySelector(`select[name="tax_dep_family_select_${newIndex}"]`);
+                if (select) {
+                    select.value = "";  // ← 強制的に未選択にする
                 }
-                // --- ここまで：自動選択＆反映 ---
+
+                // これによりフロー1からの residence 情報は
+                // ユーザーがプルダウンで家族を選んだタイミングで change ハンドラ経由で反映される
             }
+
 
 
             // ★ 初期化の最後で一度実行（addTaxDependent() の後）
