@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -232,13 +233,13 @@ h1 {
 
                 <div class="form-group">
                     <label for="commute_start_year">利用開始年月 (必須)</label>
-                    <div class="inline-fields" style="max-width: 400px;">
-                        <select id="commute_start_year" name="commute_start_year"></select>
-                        <label for="commute_start_month" class="visually-hidden">月</label>
-                        <select id="commute_start_month" name="commute_start_month"></select>
+                    <div class="inline-fields" style="max-width: 300px; align-items: center;">
+                        <select id="commute_start_year" name="commute_start_year" style="flex: 2;"></select>
+                        <span style="padding: 0 4px;">年</span>
+                        <select id="commute_start_month" name="commute_start_month" style="flex: 1;"></select>
+                        <span style="padding: 0 4px;">月</span>
                     </div>
-                    </div>
-
+                </div>
                 <div class="form-group">
                     <label>通勤手段</label>
                     <div class="radio-group">
@@ -286,13 +287,29 @@ h1 {
                 <div id="commute_public_transport_section" class="commute-method-specific-section">
                     <h3>公共交通</h3>
                     
+                    <div class="form-group">
+                        <label style="font-size: 1.1em; font-weight: bold;">シルバーパスや障がい者割引はお持ちですか？</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="discount_pass" value="none" checked> いいえ（割引なし）</label>
+                            <label><input type="radio" name="discount_pass" value="あり"> はい（割引あり）</label>
+                        </div>
+                        <p class="description">「はい」を選択した方は、割引適用後の金額を手動で入力後、経路を検索してください。</p>
+                    </div>
+
+                    <div id="manual_fare_section" style="display:none;">
+                        <div class="inline-fields">
+                            <div class="form-group">
+                                <label for="manual_round_trip_fare">【割引後】一日往復運賃</label>
+                                <input type="number" id="manual_round_trip_fare" name="manual_round_trip_fare" placeholder="割引後の日額を入力">
+                            </div>
+                            <div class="form-group">
+                                <label for="manual_monthly_pass_fare">【割引後】1ヶ月定期代</label>
+                                <input type="number" id="manual_monthly_pass_fare" name="manual_monthly_pass_fare" placeholder="割引後の定期代を入力">
+                            </div>
+                        </div>
+                    </div>
                     <div id="ekispert_search_section">
                         <h4>経路検索</h4>
-                        <div class="form-group">
-                            <label>住所からの最寄り駅・バス停候補</label>
-                            <div id="nearest_station_suggestions" class="description">住所を入力・選択し「最寄り駅を検索」ボタンを押してください。</div>
-                            <button type="button" id="find_nearest_station_btn" class="action-button-style" style="margin-top: 5px;">最寄り駅を検索</button>
-                        </div>
                         <div class="inline-fields">
                             <div class="form-group">
                                 <label for="ekispert_departure">出発地</label>
@@ -310,55 +327,56 @@ h1 {
 
                     <h4 style="margin-top: 20px;">利用交通機関詳細</h4>
                     <div class="inline-fields">
-                        <div class="form-group">
-                            <label for="transport_company_1">利用機関 会社・路線名1</label>
-                            <input type="text" id="transport_company_1" name="transport_company_1" placeholder="経路検索後に自動入力" readonly>
+                            <div class="form-group">
+                                <label for="transport_company_1">利用機関 会社・路線名1</label>
+                                <input type="text" id="transport_company_1" name="transport_company_1" placeholder="経路検索後に自動入力" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="transport_section_1">利用区間1</label>
+                                <input type="text" id="transport_section_1" name="transport_section_1" placeholder="経路検索後に自動入力" readonly>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="transport_section_1">利用区間1</label>
-                            <input type="text" id="transport_section_1" name="transport_section_1" placeholder="経路検索後に自動入力" readonly>
+                        <div class="inline-fields">
+                            <div class="form-group">
+                                <label for="transport_company_2">利用機関 会社・路線名2</label>
+                                <input type="text" id="transport_company_2" name="transport_company_2" placeholder="経路検索後に自動入力" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="transport_section_2">利用区間2</label>
+                                <input type="text" id="transport_section_2" name="transport_section_2" placeholder="経路検索後に自動入力" readonly>
+                            </div>
                         </div>
-                    </div>
-                    <div class="inline-fields">
-                        <div class="form-group">
-                            <label for="transport_company_2">利用機関 会社・路線名2</label>
-                            <input type="text" id="transport_company_2" name="transport_company_2" placeholder="経路検索後に自動入力" readonly>
+                        <div class="inline-fields">
+                            <div class="form-group">
+                                <label for="transport_company_3">利用機関 会社・路線名3</label>
+                                <input type="text" id="transport_company_3" name="transport_company_3" placeholder="経路検索後に自動入力" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="transport_section_3">利用区間3</label>
+                                <input type="text" id="transport_section_3" name="transport_section_3" placeholder="経路検索後に自動入力" readonly>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="transport_section_2">利用区間2</label>
-                            <input type="text" id="transport_section_2" name="transport_section_2" placeholder="経路検索後に自動入力" readonly>
+                        <div class="inline-fields" style="margin-top: 20px;">
+                            <div class="form-group">
+                                <label for="public_distance">合計距離(片道)/km</label>
+                                <input type="text" id="public_distance" name="public_distance" placeholder="自動計算" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="public_duration">所要時間(片道)</label>
+                                <input type="text" id="public_duration" name="public_duration" placeholder="自動計算" readonly>
+                            </div>
                         </div>
-                    </div>
-                     <div class="inline-fields">
-                        <div class="form-group">
-                            <label for="transport_company_3">利用機関 会社・路線名3</label>
-                            <input type="text" id="transport_company_3" name="transport_company_3" placeholder="経路検索後に自動入力" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="transport_section_3">利用区間3</label>
-                            <input type="text" id="transport_section_3" name="transport_section_3" placeholder="経路検索後に自動入力" readonly>
-                        </div>
-                    </div>
-
-                    <div class="inline-fields" style="margin-top: 20px;">
-                         <div class="form-group">
-                            <label for="public_distance">合計距離(片道)/km</label>
-                            <input type="text" id="public_distance" name="public_distance" placeholder="自動計算" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="public_duration">所要時間(片道)</label>
-                            <input type="text" id="public_duration" name="public_duration" placeholder="自動計算" readonly>
-                        </div>
-                    </div>
-
-                    <div class="inline-fields">
-                        <div class="form-group">
-                            <label for="round_trip_fare">一日往復運賃</label>
-                            <input type="number" id="round_trip_fare" name="round_trip_fare" placeholder="自動計算" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="monthly_pass_fare">1ヶ月定期代</label>
-                            <input type="number" id="monthly_pass_fare" name="monthly_pass_fare" placeholder="自動計算" readonly>
+                       
+                    <div id="auto_fare_section">
+                        <div class="inline-fields">
+                            <div class="form-group">
+                                <label for="round_trip_fare">一日往復運賃</label>
+                                <input type="number" id="round_trip_fare" name="round_trip_fare" placeholder="自動計算" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="monthly_pass_fare">1ヶ月定期代</label>
+                                <input type="number" id="monthly_pass_fare" name="monthly_pass_fare" placeholder="自動計算" readonly>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -611,6 +629,30 @@ h1 {
             commuteMethodRadios.forEach(radio => {
                 radio.addEventListener('change', updateCommuteSectionsDisplay);
             });
+
+           // --- 割引の有無に応じて「運賃入力欄のみ」を切り替える処理 ---
+            const discountRadios = document.querySelectorAll('input[name="discount_pass"]');
+            const autoFareSection = document.getElementById('auto_fare_section');
+            const manualFareSection = document.getElementById('manual_fare_section');
+
+            function updatePublicTransportView() {
+                const selectedDiscount = document.querySelector('input[name="discount_pass"]:checked').value;
+
+                if (selectedDiscount === 'あり') {
+                    // 「あり」の場合：自動計算欄を非表示にし、手動入力欄を表示
+                    autoFareSection.style.display = 'none';
+                    manualFareSection.style.display = 'block';
+                } else {
+                    // 「なし」の場合：自動計算欄を表示し、手動入力欄を非表示
+                    autoFareSection.style.display = 'block';
+                    manualFareSection.style.display = 'none';
+                }
+            }
+
+            discountRadios.forEach(radio => {
+                radio.addEventListener('change', updatePublicTransportView);
+            });
+            // ▲▲▲【ここまで追加】▲▲▲
 
 
             // --- 駅すぱあとAPI連携 ---
