@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>フロー2：社保加入申請</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css"> 
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -14,16 +13,14 @@
             line-height: 1.6;
             padding: 20px;
         }
-
         .container {
             max-width: 800px;
             margin: 0 auto;
             background-color: #fff;
             padding: 2rem;
             border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-
         h1 {
             border-bottom: 2px solid #007bff;
             padding-bottom: 10px;
@@ -31,65 +28,47 @@
             font-size: 1.8em;
             margin-bottom: 1.5rem;
         }
-
         fieldset.form-section {
             border: 1px solid #ddd;
             border-radius: 5px;
             padding: 1.5rem;
             margin-bottom: 2rem;
         }
-
         fieldset.form-section legend {
             font-weight: bold;
             font-size: 1.2em;
             padding: 0 10px;
             color: #333;
         }
-
         .form-group {
             margin-bottom: 1rem;
         }
-
         label {
             display: block;
             margin-bottom: 0.5rem;
             font-weight: bold;
         }
-
-        .radio-group label,
-        .checkbox-group label {
-            display: block;
-            /* 縦並びに変更 */
-            margin-bottom: 0.5rem;
-            /* 適度な間隔 */
+        .radio-group label, .checkbox-group label {
+            display: block; /* 縦並びに変更 */
+            margin-bottom: 0.5rem; /* 適度な間隔 */
             font-weight: normal;
         }
-
-        input[type="text"],
-        input[type="tel"],
-        input[type="number"],
-        select,
-        input[type="date"] {
+        input[type="text"], input[type="tel"], input[type="number"], select, input[type="date"] {
             padding: 8px;
             border: 1px solid #ccc;
             border-radius: 4px;
             box-sizing: border-box;
             width: 100%;
         }
-
         input[readonly] {
             background-color: #e9ecef;
             pointer-events: none;
         }
-
-        .note,
-        .description,
-        .file-status {
+        .note, .description, .file-status {
             font-size: 0.9em;
             color: #666;
             margin-top: 5px;
         }
-
         .navigation-buttons {
             display: flex;
             justify-content: space-between;
@@ -97,7 +76,6 @@
             border-top: 1px solid #e0e0e0;
             padding-top: 1.5rem;
         }
-
         .action-button-style {
             padding: 10px 20px;
             border: none;
@@ -107,81 +85,66 @@
             text-decoration: none;
             text-align: center;
         }
-
         .prev-btn {
             background-color: #6c757d;
             color: white;
         }
-
         .next-btn {
             background-color: #007bff;
             color: white;
         }
-
         .contract-info-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1rem;
             align-items: end;
         }
-
         .contract-info-grid label {
             font-size: 0.9em;
             margin-bottom: 0.2rem;
         }
-
         .input-with-unit {
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
-
         .input-with-unit input {
             flex: 1;
         }
-
         .info-box {
             background-color: #e9f7ff;
             border-left: 5px solid #007bff;
             padding: 1rem;
             margin-bottom: 1.5rem;
         }
-
         .warning-box {
             background-color: #fff8e1;
             border-left: 5px solid #ffc107;
             padding: 1rem;
             margin-top: 1rem;
         }
-
         .dependent-table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 1rem;
         }
-
-        .dependent-table th,
-        .dependent-table td {
+        .dependent-table th, .dependent-table td {
             border: 1px solid #ddd;
             padding: 8px;
             text-align: left;
             vertical-align: top;
         }
-
         .dependent-table th {
             background-color: #f2f2f2;
             font-size: 0.9em;
             width: 150px;
         }
-
         .dependent-block-header {
             background-color: #e9ecef;
             text-align: center;
             font-weight: bold;
         }
-
-        .add-button,
-        .delete-dependent-btn {
+        .add-button, .delete-dependent-btn {
             display: inline-block;
             margin-top: 10px;
             padding: 8px 15px;
@@ -191,38 +154,31 @@
             cursor: pointer;
             vertical-align: top;
         }
-
         .add-button {
             background-color: #28a745;
         }
-
         .delete-dependent-btn {
             background-color: #dc3545;
             font-size: 0.9em;
             padding: 6px 12px;
         }
-
         .error-message {
             color: red;
             font-size: 0.9em;
             display: none;
             margin-top: 4px;
         }
-
         .dependent-form-container {
             margin-bottom: 1rem;
         }
-
         .dependent-table .button-cell {
             text-align: right;
             border: none;
             padding: 5px 0 0 0;
         }
-
-        .button-cell>button {
+        .button-cell > button {
             margin-left: 8px;
         }
-
         .file-drop-area {
             flex: 1;
             border: 2px dashed #d9d9d9;
@@ -232,25 +188,22 @@
             cursor: pointer;
             color: #555;
         }
-
         .file-drop-area span {
             color: #007bff;
             text-decoration: underline;
         }
-
         .file-upload-notes {
             font-size: 0.9em;
             color: #666;
             margin-bottom: 8px;
         }
-
+        
         .document-group {
             border: 1px solid #ccc;
             border-radius: 5px;
             padding: 1rem;
             margin-top: 1rem;
         }
-
         .document-group-title {
             font-weight: bold;
             font-size: 1.1em;
@@ -258,17 +211,15 @@
             padding-bottom: 0.5rem;
             border-bottom: 1px solid #eee;
         }
-
         .document-upload-section {
             margin-top: 10px;
         }
-
         .document-upload-section label {
             font-weight: normal;
             font-size: 0.95em;
             margin-bottom: 0.3rem;
         }
-
+        
         #documents_grid_container {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -285,11 +236,9 @@
             min-width: 200px;
             position: relative;
         }
-
         .document-box p {
             margin: 5px 0;
         }
-
         .upload-button-placeholder {
             display: inline-block;
             padding: 8px 12px;
@@ -301,11 +250,9 @@
             border: none;
             text-align: center;
         }
-
         .upload-button-placeholder:hover {
             background-color: #0056b3;
         }
-
         .file-upload-status-container {
             margin-top: 5px;
             display: flex;
@@ -313,7 +260,6 @@
             justify-content: center;
             gap: 5px;
         }
-
         .delete-file-btn {
             background-color: #dc3545;
             color: white;
@@ -324,398 +270,402 @@
             cursor: pointer;
             line-height: 1;
         }
-
         .delete-file-btn:hover {
             background-color: #c82333;
         }
+
     </style>
 </head>
-
 <body>
 
-    <div class="container">
-        <h1>フロー2：社保加入申請</h1>
+<div class="container">
+    <h1>フロー2：社保加入申請</h1>
 
-        <form action="フロー3_通勤手当申請.html" method="get">
-            <fieldset class="form-section">
-                <legend>1. LEOCでの働き方を教えてください。（税表区分）</legend>
-                <div class="form-group radio-group">
-                    <p class="note">次のいずれかを選択してください。(選択必須)</p>
-                    <label><input type="radio" name="tax_category" value="kou" required> 甲：LEOCのみで勤務する方 or
-                        他社と掛け持ちする方でLEOCの給与を主として勤務する場合。</label>
-                    <label><input type="radio" name="tax_category" value="otsu"> 乙：他社と掛け持ちする方で他社からの収入が給与の主となる場合</label>
-                    <div id="otsu-options" style="display:none; margin-left: 20px;" class="radio-group">
-                        <p class="note">※「乙」を選択した場合にご回答ください。</p>
-                        <label><input type="radio" name="otsu_insurance_status" value="not_joined">
-                            他社で社会保険と雇用保険に加入していない</label>
-                        <label><input type="radio" name="otsu_insurance_status" value="health_and_employment_insurance">
-                            他社で社会保険と雇用保険に加入している</label>
-                    </div>
-                    <div id="self-info-section" style="margin-top: 2rem;">
-                        <label>ご自身について教えてください</label>
-                        <div style="border: 1px solid #eee; padding: 1rem; border-radius: 4px;">
-                            <div class="form-group" style="display: flex; align-items: center; gap: 1rem;">
-                                <span style="width: 120px; font-weight: normal;">障がい者情報</span>
-                                <div class="radio-group" style="display: flex; flex-wrap: wrap; gap: 1rem; margin: 0;">
-                                    <label><input type="radio" name="disability_status" value="normal"> 普通</label>
-                                    <label><input type="radio" name="disability_status" value="special"> 特別</label>
-                                    <label><input type="radio" name="disability_status" value="none" checked>
-                                        該当しない</label>
-                                </div>
-                            </div>
-                            <div id="disability-upload-section"
-                                style="display: none; margin-left: 130px; margin-bottom: 1rem;">
-                                <p class="note">※普通と特別の場合は障がい者手帳のコピーを添付してください。</p>
-                                <div class="file-drop-area" style="padding: 10px; font-size: 0.9em;"
-                                    onclick="this.querySelector('input').click();">
-                                    ファイルをドロップまたは<span>参照</span>
-                                    <input type="file" name="disability_document" style="display: none;"
-                                        accept=".jpg,.jpeg,.png,.pdf,.heic">
-                                </div>
-                            </div>
-
-                            <div class="form-group" style="display: flex; align-items: center; gap: 1rem;">
-                                <span style="width: 120px; font-weight: normal;">寡婦</span>
-                                <div class="radio-group" style="display: flex; flex-wrap: wrap; gap: 1rem; margin: 0;">
-                                    <label><input type="radio" name="widow_status" value="yes"> 該当する</label>
-                                    <label><input type="radio" name="widow_status" value="no" checked> 該当しない</label>
-                                </div>
-                            </div>
-                            <p class="note" style="margin-left: 130px; margin-top: -0.5rem;">
-                                ※寡婦：夫と死別した後婚姻をしていない人又は夫の生死が明らかでない一定の人で</br>合計所得金額が500万円以下</p>
-
-                            <div class="form-group" style="display: flex; align-items: center; gap: 1rem;">
-                                <span style="width: 120px; font-weight: normal;">ひとり親</span>
-                                <div class="radio-group" style="display: flex; flex-wrap: wrap; gap: 1rem; margin: 0;">
-                                    <label><input type="radio" name="single_parent_status" value="yes"> 該当する</label>
-                                    <label><input type="radio" name="single_parent_status" value="no" checked>
-                                        該当しない</label>
-                                </div>
-                            </div>
-                            <p class="note" style="margin-left: 130px; margin-top: -0.5rem;">
-                                ※ひとり親：配偶者のいない女性または男性が、20歳未満の子どもを扶養している</p>
-
-                            <div class="form-group"
-                                style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0;">
-                                <span style="width: 120px; font-weight: normal;">勤労</span>
-                                <div class="radio-group" style="display: flex; flex-wrap: wrap; gap: 1rem; margin: 0;">
-                                    <label><input type="radio" name="working_student_status" value="yes"> 該当する</label>
-                                    <label><input type="radio" name="working_student_status" value="no" checked>
-                                        該当しない</label>
-                                </div>
+    <form action="フロー3_通勤手当申請.html" method="get">
+        <fieldset class="form-section">
+            <legend>1. LEOCでの働き方を教えてください。（税表区分）</legend>
+            <div class="form-group radio-group">
+                <p class="note">次のいずれかを選択してください。(選択必須)</p>
+                <label><input type="radio" name="tax_category" value="kou" required> 甲：LEOCのみで勤務する方 or 他社と掛け持ちする方でLEOCの給与を主として勤務する場合。</label>
+                <label><input type="radio" name="tax_category" value="otsu"> 乙：他社と掛け持ちする方で他社からの収入が給与の主となる場合</label>
+                <div id="otsu-options" style="display:none; margin-left: 20px;" class="radio-group">
+                    <p class="note">※「乙」を選択した場合にご回答ください。</p>
+                    <label><input type="radio" name="otsu_insurance_status" value="not_joined"> 他社で社会保険と雇用保険に加入していない</label>
+                    <label><input type="radio" name="otsu_insurance_status" value="health_and_employment_insurance"> 他社で社会保険と雇用保険に加入している</label>
+                </div>
+                <div id="self-info-section" style="margin-top: 2rem;">
+                    <label>ご自身について教えてください</label>
+                    <div style="border: 1px solid #eee; padding: 1rem; border-radius: 4px;">
+                        <div class="form-group" style="display: flex; align-items: center; gap: 1rem;">
+                            <span style="width: 120px; font-weight: normal;">障がい者情報</span>
+                            <div class="radio-group" style="display: flex; flex-wrap: wrap; gap: 1rem; margin: 0;">
+                                <label><input type="radio" name="disability_status" value="normal"> 普通</label>
+                                <label><input type="radio" name="disability_status" value="special"> 特別</label>
+                                <label><input type="radio" name="disability_status" value="none" checked> 該当しない</label>
                             </div>
                         </div>
-                    </div>
+                        <div id="disability-upload-section" style="display: none; margin-left: 130px; margin-bottom: 1rem;">
+                            <p class="note">※普通と特別の場合は障がい者手帳のコピーを添付してください。</p>
+                            <div class="file-drop-area" style="padding: 10px; font-size: 0.9em;" onclick="this.querySelector('input').click();">
+                                ファイルをドロップまたは<span>参照</span>
+                                <input type="file" name="disability_document" style="display: none;" accept=".jpg,.jpeg,.png,.pdf,.heic">
+                            </div>
+                        </div>
 
-                    <div id="tax-dependents-section" style="margin-top: 2rem;">
-                        <div class="form-group">
-                            <label><strong>税扶養親族はいますか？ (選択必須)</strong></label>
-                            <div class="radio-group" style="display: flex; gap: 1rem;">
-                                <label><input type="radio" name="has_tax_dependents" value="yes" required> はい</label>
-                                <label><input type="radio" name="has_tax_dependents" value="no"> いいえ</label>
-                            </div>
-                            <div class="info-box" style="display: none;">
-                                <strong>税扶養条件</strong>
-                                <ol style="margin:0.5em 0 0 1.2em;">
-                                    <li>対象者：<strong>生計を一にする親族（配偶者を除く）</strong>
-                                        <br><span class="note">※ 同居または別居でも仕送り等で生活が一体と認められる場合を含む</span>
-                                    </li>
-                                    <li>年齢要件：
-                                        <ul style="margin:0.4em 0 0 1.2em;">
-                                            <li>控除対象扶養親族：<strong>16歳以上</strong></li>
-                                            <li>特定扶養親族：<strong>19歳以上23歳未満</strong>（控除額大）</li>
-                                            <li>老人扶養親族：<strong>70歳以上</strong>（同居の有無で控除額が変動）</li>
-                                        </ul>
-                                    </li>
-                                    <li>所得要件：扶養親族の<strong>合計所得48万円以下</strong>
-                                        <br><span class="note">給与収入のみの場合は<strong>年収103万円以下</strong>が目安</span>
-                                    </li>
-                                    <li>重複不可：同一の親族を複数人が同時に扶養することはできません</li>
-                                    <li>手続き：年末調整時の<strong>「扶養控除等申告書」への記入</strong>が必要です</li>
-                                </ol>
-                                <ul style="margin:0.8em 0 0 1.2em; list-style:'※ ';">
-                                    <li><strong>社会保険の扶養条件とは別判定</strong>です（税の103万円基準と健保の130万円基準は別）。</li>
-                                    <li>勤労学生控除などの適用有無により判定が変わる場合があります。</li>
-                                    <li>住民税の控除額は所得税と異なる数値になります。</li>
-                                </ul>
+                        <div class="form-group" style="display: flex; align-items: center; gap: 1rem;">
+                             <span style="width: 120px; font-weight: normal;">寡婦</span>
+                            <div class="radio-group" style="display: flex; flex-wrap: wrap; gap: 1rem; margin: 0;">
+                                <label><input type="radio" name="widow_status" value="yes"> 該当する</label>
+                                <label><input type="radio" name="widow_status" value="no" checked> 該当しない</label>
                             </div>
                         </div>
-                        <div id="tax-dependents-wrapper" style="display: none;">
-                            <div id="tax-dependents-list">
-                            </div>
-                        </div>
-                    </div>
-            </fieldset>
+                        <p class="note" style="margin-left: 130px; margin-top: -0.5rem;">※寡婦：夫と死別した後婚姻をしていない人又は夫の生死が明らかでない一定の人で</br>合計所得金額が500万円以下</p>
 
-            <fieldset class="form-section">
-                <legend>2. 社会保険・雇用保険について教えてください。</legend>
-                <div class="info-box contract-info-grid">
-                    <div>
-                        <label for="hire-date">入社日</label>
-                        <input type="text" id="hire-date" value="10月09日" readonly>
-                    </div>
-                    <div>
-                        <label for="contract-hours">契約時間 (1日あたり)</label>
-                        <div class="input-with-unit">
-                            <input type="number" id="contract-hours" value="0" step="0.1"> <span>H</span>
+                        <div class="form-group" style="display: flex; align-items: center; gap: 1rem;">
+                            <span style="width: 120px; font-weight: normal;">ひとり親</span>
+                             <div class="radio-group" style="display: flex; flex-wrap: wrap; gap: 1rem; margin: 0;">
+                                <label><input type="radio" name="single_parent_status" value="yes"> 該当する</label>
+                                <label><input type="radio" name="single_parent_status" value="no" checked> 該当しない</label>
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <label for="contract-days">契約日数 (1ヶ月あたり)</label>
-                        <div class="input-with-unit">
-                            <input type="number" id="contract-days" value="0"> <span>日</span>
-                        </div>
-                    </div>
-                    <div>
-                        <label for="weekly-hours">週労働時間</label>
-                        <div class="input-with-unit">
-                            <input type="text" id="weekly-hours" value="0.0" readonly> <span>H</span>
-                        </div>
-                    </div>
-                    <div>
-                        <label for="expected-salary">給与見込み額 (ダミー時給951円)</label>
-                        <div class="input-with-unit">
-                            <input type="text" id="expected-salary" value="0" readonly> <span>円</span>
+                         <p class="note" style="margin-left: 130px; margin-top: -0.5rem;">※ひとり親：配偶者のいない女性または男性が、20歳未満の子どもを扶養している</p>
+                        
+                        <div class="form-group" style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0;">
+                            <span style="width: 120px; font-weight: normal;">勤労</span>
+                            <div class="radio-group" style="display: flex; flex-wrap: wrap; gap: 1rem; margin: 0;">
+                                <label><input type="radio" name="working_student_status" value="yes"> 該当する</label>
+                                <label><input type="radio" name="working_student_status" value="no" checked> 該当しない</label>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div id="next-btn-placeholder" style="text-align: right; display: none;"></div>
+
+                <div id="tax-dependents-section" style="margin-top: 2rem;">
+                    <div class="form-group">
+                        <label><strong>税扶養親族はいますか？ (選択必須)</strong></label>
+                        <div class="radio-group" style="display: flex; gap: 1rem;">
+                            <label><input type="radio" name="has_tax_dependents" value="yes" required> はい</label>
+                            <label><input type="radio" name="has_tax_dependents" value="no"> いいえ</label>
+                        </div>
+                        <div class="info-box" style="display: none;">
+                            <strong>税扶養条件</strong>
+                            <ol style="margin:0.5em 0 0 1.2em;">
+                                <li>対象者：<strong>生計を一にする親族（配偶者を除く）</strong>
+                                    <br><span class="note">※ 同居または別居でも仕送り等で生活が一体と認められる場合を含む</span>
+                                </li>
+                                <li>年齢要件：
+                                    <ul style="margin:0.4em 0 0 1.2em;">
+                                        <li>控除対象扶養親族：<strong>16歳以上</strong></li>
+                                        <li>特定扶養親族：<strong>19歳以上23歳未満</strong>（控除額大）</li>
+                                        <li>老人扶養親族：<strong>70歳以上</strong>（同居の有無で控除額が変動）</li>
+                                    </ul>
+                                </li>
+                                <li>所得要件：扶養親族の<strong>合計所得48万円以下</strong>
+                                    <br><span class="note">給与収入のみの場合は<strong>年収103万円以下</strong>が目安</span>
+                                </li>
+                                <li>重複不可：同一の親族を複数人が同時に扶養することはできません</li>
+                                <li>手続き：年末調整時の<strong>「扶養控除等申告書」への記入</strong>が必要です</li>
+                            </ol>
+                            <ul style="margin:0.8em 0 0 1.2em; list-style:'※ ';">
+                                <li><strong>社会保険の扶養条件とは別判定</strong>です（税の103万円基準と健保の130万円基準は別）。</li>
+                                <li>勤労学生控除などの適用有無により判定が変わる場合があります。</li>
+                                <li>住民税の控除額は所得税と異なる数値になります。</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="tax-dependents-wrapper" style="display: none;">
+                        <div id="tax-dependents-list">
+                        </div>
+                    </div>
+                </div>
+        </fieldset>
+
+        <fieldset class="form-section">
+            <legend>2. 社会保険・雇用保険について教えてください。</legend>
+            <div class="info-box contract-info-grid">
+                 <div>
+                    <label for="hire-date">入社日</label>
+                    <input type="text" id="hire-date" value="10月09日" readonly>
+                </div>
+                <div>
+                    <label for="contract-hours">契約時間 (1日あたり)</label>
+                    <div class="input-with-unit">
+                        <input type="number" id="contract-hours" value="0" step="0.1"> <span>H</span>
+                    </div>
+                </div>
+                 <div>
+                    <label for="contract-days">契約日数 (1ヶ月あたり)</label>
+                    <div class="input-with-unit">
+                        <input type="number" id="contract-days" value="0"> <span>日</span>
+                    </div>
+                </div>
+                <div>
+                    <label for="weekly-hours">週労働時間</label>
+                     <div class="input-with-unit">
+                        <input type="text" id="weekly-hours" value="0.0" readonly> <span>H</span>
+                    </div>
+                </div>
+                <div>
+                    <label for="expected-salary">給与見込み額 (ダミー時給951円)</label>
+                    <div class="input-with-unit">
+                        <input type="text" id="expected-salary" value="0" readonly> <span>円</span>
+                    </div>
+                </div>
+            </div>
+            <div id="next-btn-placeholder" style="text-align: right; display: none;"></div>
+        </fieldset>
+
+        <div id="main-content-after-agreement">
+            <div id="mynumber-info" class="info-box">
+                <p><strong>保険証は廃止となりました、マイナンバーカードを保険証としてご使用ください。</strong></p>
+                <p>マイナポータルや、セブン銀行、医療機関の受付にあるカードリーダーで保険証の利用申込が必要となります。</p>
+            </div>
+            <fieldset id="numbers-section" class="form-section">
+                <legend>各種番号</legend>
+                 <div id="pension-number-group" class="form-group">
+                    <label for="pension_number">基礎年金番号を入力してください。</label>
+                    <input type="text" id="pension_number" name="pension_number" placeholder="1234-567890">
+                    <div class="document-box" data-doc-id="pension_book" style="margin-top: 15px;">
+                        <input type="file" id="pension_book_file" name="pension_book_file" style="display:none;" accept="image/*,.pdf">
+                        <p><strong>年金手帳</strong></p>
+                        <p class="description">20歳以上の方 社会保険加入者</p>
+                        <label for="pension_book_file" class="upload-button-placeholder">画像アップロード</label>
+                         <div class="file-upload-status-container">
+                            <span class="file-status" id="pension_book_file_status">選択されていません</span>
+                            <button type="button" class="delete-file-btn" data-target-id="pension_book_file" style="display:none;">削除</button>
+                        </div>
+                    </div>
+                    <div id="pension-number-error" class="error-message"></div>
+                </div>
+                <div id="employment-insurance-number-group" class="form-group">
+                    <label for="employment_insurance_number">雇用保険被保険者番号を入力してください。</label>
+                    <input type="text" id="employment_insurance_number" name="employment_insurance_number" placeholder="1234-567890-1">
+                    <div class="document-box" data-doc-id="employment_insurance_cert" style="margin-top: 15px;">
+                        <input type="file" id="employment_insurance_cert_file" name="employment_insurance_cert_file" style="display:none;" accept="image/*,.pdf">
+                        <p><strong>雇用保険被保険者証</strong></p>
+                        <p class="description">過去に加入していた方のみ</p>
+                        <label for="employment_insurance_cert_file" class="upload-button-placeholder">画像アップロード</label>
+                        <div class="file-upload-status-container">
+                            <span class="file-status" id="employment_insurance_cert_file_status">選択されていません</span>
+                            <button type="button" class="delete-file-btn" data-target-id="employment_insurance_cert_file" style="display:none;">削除</button>
+                        </div>
+                    </div>
+                    <div id="employment-insurance-number-error" class="error-message"></div>
+                </div>
+            </fieldset>
+            <fieldset id="documents-section" class="form-section">
+                <legend>手続き書類</legend>
+                <div class="form-group">
+                    <label>社会保険資格取得証明書は必要ですか？</label>
+                    <div class="radio-group" style="display: flex; gap: 1rem;">
+                        <label><input type="radio" name="shikaku_todoke" value="yes"> はい</label>
+                        <label><input type="radio" name="shikaku_todoke" value="no"> いいえ</label>
+                    </div>
+                </div>
             </fieldset>
 
-            <div id="main-content-after-agreement">
-                <div id="mynumber-info" class="info-box">
-                    <p><strong>保険証は廃止となりました、マイナンバーカードを保険証としてご使用ください。</strong></p>
-                    <p>マイナポータルや、セブン銀行、医療機関の受付にあるカードリーダーで保険証の利用申込が必要となります。</p>
+            <fieldset id="dependents-fieldset" class="form-section" style="display: none;">
+                <legend>健康保険扶養親族の確認</legend>
+                <div class="form-group">
+                    <label>扶養親族はいますか？ (選択必須)</label>
+                    <div class="radio-group" style="display: flex; gap: 1rem;">
+                        <label><input type="radio" name="has_dependents" value="yes" required> はい</label>
+                        <label><input type="radio" name="has_dependents" value="no"> いいえ</label>
+                    </div>
                 </div>
-                <fieldset id="numbers-section" class="form-section">
-                    <legend>各種番号</legend>
-                    <div id="pension-number-group" class="form-group">
-                        <label for="pension_number">基礎年金番号を入力してください。</label>
-                        <input type="text" id="pension_number" name="pension_number" placeholder="1234-567890">
-                        <div class="document-box" data-doc-id="pension_book" style="margin-top: 15px;">
-                            <input type="file" id="pension_book_file" name="pension_book_file" style="display:none;"
-                                accept="image/*,.pdf">
-                            <p><strong>年金手帳</strong></p>
-                            <p class="description">20歳以上の方 社会保険加入者</p>
-                            <label for="pension_book_file" class="upload-button-placeholder">画像アップロード</label>
-                            <div class="file-upload-status-container">
-                                <span class="file-status" id="pension_book_file_status">選択されていません</span>
-                                <button type="button" class="delete-file-btn" data-target-id="pension_book_file"
-                                    style="display:none;">削除</button>
-                            </div>
-                        </div>
-                        <div id="pension-number-error" class="error-message"></div>
-                    </div>
-                    <div id="employment-insurance-number-group" class="form-group">
-                        <label for="employment_insurance_number">雇用保険被保険者番号を入力してください。</label>
-                        <input type="text" id="employment_insurance_number" name="employment_insurance_number"
-                            placeholder="1234-567890-1">
-                        <div class="document-box" data-doc-id="employment_insurance_cert" style="margin-top: 15px;">
-                            <input type="file" id="employment_insurance_cert_file" name="employment_insurance_cert_file"
-                                style="display:none;" accept="image/*,.pdf">
-                            <p><strong>雇用保険被保険者証</strong></p>
-                            <p class="description">過去に加入していた方のみ</p>
-                            <label for="employment_insurance_cert_file"
-                                class="upload-button-placeholder">画像アップロード</label>
-                            <div class="file-upload-status-container">
-                                <span class="file-status" id="employment_insurance_cert_file_status">選択されていません</span>
-                                <button type="button" class="delete-file-btn"
-                                    data-target-id="employment_insurance_cert_file" style="display:none;">削除</button>
-                            </div>
-                        </div>
-                        <div id="employment-insurance-number-error" class="error-message"></div>
-                    </div>
-                </fieldset>
-                <fieldset id="documents-section" class="form-section">
-                    <legend>手続き書類</legend>
-                    <div class="form-group">
-                        <label>社会保険資格取得証明書は必要ですか？</label>
-                        <div class="radio-group" style="display: flex; gap: 1rem;">
-                            <label><input type="radio" name="shikaku_todoke" value="yes"> はい</label>
-                            <label><input type="radio" name="shikaku_todoke" value="no"> いいえ</label>
-                        </div>
-                    </div>
-                </fieldset>
 
-                <fieldset id="dependents-fieldset" class="form-section" style="display: none;">
-                    <legend>健康保険扶養親族の確認</legend>
-                    <div class="form-group">
-                        <label>扶養親族はいますか？ (選択必須)</label>
-                        <div class="radio-group" style="display: flex; gap: 1rem;">
-                            <label><input type="radio" name="has_dependents" value="yes" required> はい</label>
-                            <label><input type="radio" name="has_dependents" value="no"> いいえ</label>
-                        </div>
+                <div id="dependents-section" style="display:none;">
+                    <div class="info-box">
+                        <strong>扶養条件</strong><br>
+                        1. 三親等内の親族で、主として被保険者（本人）の収入によって暮らしている<br>
+                        2. 被保険者と同居の場合：年間収入130万円未満かつ被保険者の年収の2分の1未満である※<br>
+                        3. 被保険者と別居の場合：年間収入130万円未満かつ被保険者からの援助による収入額未満※<br>
+                        ※配偶者を除く19歳以上23歳未満の場合、上記「130万円未満」は150万円未満になります。<br>
+                        ※扶養親族が60歳以上または障がい者の場合、上記「130万円未満」は180万円未満になります。
                     </div>
 
-                    <div id="dependents-section" style="display:none;">
-                        <div class="info-box">
-                            <strong>扶養条件</strong><br>
-                            1. 三親等内の親族で、主として被保険者（本人）の収入によって暮らしている<br>
-                            2. 被保険者と同居の場合：年間収入130万円未満かつ被保険者の年収の2分の1未満である※<br>
-                            3. 被保険者と別居の場合：年間収入130万円未満かつ被保険者からの援助による収入額未満※<br>
-                            ※配偶者を除く19歳以上23歳未満の場合、上記「130万円未満」は150万円未満になります。<br>
-                            ※扶養親族が60歳以上または障がい者の場合、上記「130万円未満」は180万円未満になります。
+                    <div id="dependents-list">
                         </div>
-
-                        <div id="dependents-list">
+                    <div id="dependent-buttons-container">
                         </div>
-                        <div id="dependent-buttons-container">
-                        </div>
-                    </div>
-                </fieldset>
-            </div>
+                </div>
+            </fieldset>
+        </div>
 
-            <div class="navigation-buttons">
-                <a href="index.html" class="action-button-style prev-btn">戻る（フロー1_基礎情報）</a>
-                <a href="フロー3_通勤手当申請.html" class="action-button-style next-btn">次へ（フロー3_通勤手当申請）</a>
-            </div>
-        </form>
-    </div>
+        <div class="navigation-buttons">
+            <a href="フロー1_基礎情報_v9.html" class="action-button-style prev-btn">戻る（フロー1_基礎情報）</a>
+            <a href="フロー3_通勤手当申請.html" class="action-button-style next-btn">次へ（フロー3_通勤手当申請）</a>
+        </div>
+    </form>
+</div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // --- DOM要素の取得 ---
-            const taxCategoryRadios = document.querySelectorAll('input[name="tax_category"]');
-            const otsuOptions = document.getElementById('otsu-options');
-            const mainContent = document.getElementById('main-content-after-agreement');
-            const hasDependentsRadios = document.querySelectorAll('input[name="has_dependents"]');
-            const dependentsSection = document.getElementById('dependents-section');
-            const contractHoursInput = document.getElementById('contract-hours');
-            const contractDaysInput = document.getElementById('contract-days');
-            const weeklyHoursOutput = document.getElementById('weekly-hours');
-            const expectedSalaryOutput = document.getElementById('expected-salary');
-            const pensionNumberInput = document.getElementById('pension_number');
-            const employmentInsuranceNumberInput = document.getElementById('employment_insurance_number');
-            const pensionNumberError = document.getElementById('pension-number-error');
-            const employmentInsuranceNumberError = document.getElementById('employment-insurance-number-error');
-            const dependentsList = document.getElementById('dependents-list');
-            const dependentButtonsContainer = document.getElementById('dependent-buttons-container');
-            const mynumberInfo = document.getElementById('mynumber-info');
-            const numbersSection = document.getElementById('numbers-section');
-            const pensionNumberGroup = document.getElementById('pension-number-group');
-            const employmentInsuranceNumberGroup = document.getElementById('employment-insurance-number-group');
-            const documentsSection = document.getElementById('documents-section');
-            const dependentsFieldset = document.getElementById('dependents-fieldset');
-            const nextBtn = document.querySelector('.next-btn');
-            const navigationButtons = document.querySelector('.navigation-buttons');
-            const nextBtnPlaceholder = document.getElementById('next-btn-placeholder');
-            const disabilityStatusRadios = document.querySelectorAll('input[name="disability_status"]');
-            const disabilityUploadSection = document.getElementById('disability-upload-section');
-            disabilityStatusRadios.forEach(radio => {
-                radio.addEventListener('change', e => {
-                    if (e.target.value === 'normal' || e.target.value === 'special') {
-                        disabilityUploadSection.style.display = 'block';
-                    } else {
-                        disabilityUploadSection.style.display = 'none';
-                    }
-                });
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        // --- 「寡婦」と「ひとり親」の連動処理 ---
+        const widowStatusRadios = document.querySelectorAll('input[name="widow_status"]');
+        const singleParentStatusRadios = document.querySelectorAll('input[name="single_parent_status"]');
+
+        widowStatusRadios.forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                // 「寡婦」で「該当する」が選択された場合、「ひとり親」を「該当しない」に設定
+                if (e.target.value === 'yes') {
+                    document.querySelector('input[name="single_parent_status"][value="no"]').checked = true;
+                }
             });
+        });
 
-            const HOURLY_WAGE = 951;
-
-            taxCategoryRadios.forEach(radio => {
-                radio.addEventListener('change', e => {
-                    if (e.target.value === 'otsu') {
-                        otsuOptions.style.display = 'block';
-                        // 初期値のデフォルト選択ロジックは削除
-                    } else {
-                        otsuOptions.style.display = 'none';
-                        document.querySelectorAll('input[name="otsu_insurance_status"]').forEach(subRadio => {
-                            subRadio.checked = false;
-                        });
-                    }
-                });
+        singleParentStatusRadios.forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                // 「ひとり親」で「該当する」が選択された場合、「寡婦」を「該当しない」に設定
+                if (e.target.value === 'yes') {
+                    document.querySelector('input[name="widow_status"][value="no"]').checked = true;
+                }
             });
-
-            hasDependentsRadios.forEach(radio => {
-                radio.addEventListener('change', e => {
-                    dependentsSection.style.display = e.target.value === 'yes' ? 'block' : 'none';
-                    if (e.target.value === 'yes' && dependentsList.children.length === 0) {
-                        addDependent();
-                    }
-                });
+        });
+        
+        // --- DOM要素の取得 ---
+        const taxCategoryRadios = document.querySelectorAll('input[name="tax_category"]');
+        const otsuOptions = document.getElementById('otsu-options');
+        const mainContent = document.getElementById('main-content-after-agreement');
+        const hasDependentsRadios = document.querySelectorAll('input[name="has_dependents"]');
+        const dependentsSection = document.getElementById('dependents-section');
+        const contractHoursInput = document.getElementById('contract-hours');
+        const contractDaysInput = document.getElementById('contract-days');
+        const weeklyHoursOutput = document.getElementById('weekly-hours');
+        const expectedSalaryOutput = document.getElementById('expected-salary');
+        const pensionNumberInput = document.getElementById('pension_number');
+        const employmentInsuranceNumberInput = document.getElementById('employment_insurance_number');
+        const pensionNumberError = document.getElementById('pension-number-error');
+        const employmentInsuranceNumberError = document.getElementById('employment-insurance-number-error');
+        const dependentsList = document.getElementById('dependents-list');
+        const dependentButtonsContainer = document.getElementById('dependent-buttons-container');
+        const mynumberInfo = document.getElementById('mynumber-info');
+        const numbersSection = document.getElementById('numbers-section');
+        const pensionNumberGroup = document.getElementById('pension-number-group');
+        const employmentInsuranceNumberGroup = document.getElementById('employment-insurance-number-group');
+        const documentsSection = document.getElementById('documents-section');
+        const dependentsFieldset = document.getElementById('dependents-fieldset');
+        const nextBtn = document.querySelector('.next-btn');
+        const navigationButtons = document.querySelector('.navigation-buttons');
+        const nextBtnPlaceholder = document.getElementById('next-btn-placeholder');
+        const disabilityStatusRadios = document.querySelectorAll('input[name="disability_status"]');
+        const disabilityUploadSection = document.getElementById('disability-upload-section');
+        disabilityStatusRadios.forEach(radio => {
+            radio.addEventListener('change', e => {
+                if (e.target.value === 'normal' || e.target.value === 'special') {
+                    disabilityUploadSection.style.display = 'block';
+                } else {
+                    disabilityUploadSection.style.display = 'none';
+                }
             });
+        });
 
-            contractHoursInput.addEventListener('input', calculate);
-            contractDaysInput.addEventListener('input', calculate);
-            calculate(); // 初期計算を実行
+        const HOURLY_WAGE = 951;
 
-            function formatInput(input, formatFunc) {
-                input.addEventListener('input', formatFunc);
+        taxCategoryRadios.forEach(radio => {
+            radio.addEventListener('change', e => {
+                if (e.target.value === 'otsu') {
+                    otsuOptions.style.display = 'block';
+                    // 初期値のデフォルト選択ロジックは削除
+                } else {
+                    otsuOptions.style.display = 'none';
+                    document.querySelectorAll('input[name="otsu_insurance_status"]').forEach(subRadio => {
+                        subRadio.checked = false;
+                    });
+                }
+            });
+        });
+
+        hasDependentsRadios.forEach(radio => {
+            radio.addEventListener('change', e => {
+                dependentsSection.style.display = e.target.value === 'yes' ? 'block' : 'none';
+                 if (e.target.value === 'yes' && dependentsList.children.length === 0) {
+                    addDependent();
+                }
+            });
+        });
+
+        contractHoursInput.addEventListener('input', calculate);
+        contractDaysInput.addEventListener('input', calculate);
+        calculate(); // 初期計算を実行
+
+        function formatInput(input, formatFunc) {
+            input.addEventListener('input', formatFunc);
+        }
+        formatInput(pensionNumberInput, e => {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 10) value = value.slice(0, 10);
+            if (value.length > 4) value = value.slice(0, 4) + '-' + value.slice(4);
+            e.target.value = value;
+        });
+        formatInput(employmentInsuranceNumberInput, e => {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 11) value = value.slice(0, 11);
+            if (value.length > 10) value = value.slice(0, 4) + '-' + value.slice(4, 10) + '-' + value.slice(10);
+            else if (value.length > 4) value = value.slice(0, 4) + '-' + value.slice(4);
+            e.target.value = value;
+        });
+
+        function showAlert(alertElement, message, show) {
+            alertElement.innerHTML = show ? message : ''; // innerHTMLに変更して<br>を解釈させる
+            alertElement.style.display = show ? 'block' : 'none';
+        }
+        pensionNumberInput.addEventListener('blur', e => showAlert(pensionNumberError, '10桁の数字で入力してください。', e.target.value.replace(/\D/g, '').length > 0 && e.target.value.replace(/\D/g, '').length !== 10));
+        employmentInsuranceNumberInput.addEventListener('blur', e => showAlert(employmentInsuranceNumberError, '11桁の数字で入力してください。', e.target.value.replace(/\D/g, '').length > 0 && e.target.value.replace(/\D/g, '').length !== 11));
+
+        dependentsList.addEventListener('input', e => {
+            const input = e.target;
+            if (!input.name) return;
+
+            if (input.name.startsWith('dep_dob')) {
+                let value = input.value.replace(/\D/g, '');
+                const year = value.slice(0, 4);
+                const month = value.slice(4, 6);
+                const day = value.slice(6, 8);
+                let formatted = year;
+                if (month) formatted += '/' + month;
+                if (day) formatted += '/' + day;
+                input.value = formatted;
             }
-            formatInput(pensionNumberInput, e => {
-                let value = e.target.value.replace(/\D/g, '');
+            else if (input.name.startsWith('dep_income') || input.name.startsWith('dep_pension_income')) {
+                const value = input.value.replace(/\D/g, '');
+                if (value) {
+                    const formattedValue = parseInt(value, 10).toLocaleString('ja-JP');
+                    if (input.value !== formattedValue) {
+                        input.value = formattedValue;
+                    }
+                }
+            }
+            else if (input.name.startsWith('dep_pension_number')) {
+                let value = input.value.replace(/\D/g, '');
                 if (value.length > 10) value = value.slice(0, 10);
                 if (value.length > 4) value = value.slice(0, 4) + '-' + value.slice(4);
-                e.target.value = value;
-            });
-            formatInput(employmentInsuranceNumberInput, e => {
-                let value = e.target.value.replace(/\D/g, '');
-                if (value.length > 11) value = value.slice(0, 11);
-                if (value.length > 10) value = value.slice(0, 4) + '-' + value.slice(4, 10) + '-' + value.slice(10);
-                else if (value.length > 4) value = value.slice(0, 4) + '-' + value.slice(4);
-                e.target.value = value;
-            });
-
-            function showAlert(alertElement, message, show) {
-                alertElement.innerHTML = show ? message : ''; // innerHTMLに変更して<br>を解釈させる
-                alertElement.style.display = show ? 'block' : 'none';
+                input.value = value;
             }
-            pensionNumberInput.addEventListener('blur', e => showAlert(pensionNumberError, '10桁の数字で入力してください。', e.target.value.replace(/\D/g, '').length > 0 && e.target.value.replace(/\D/g, '').length !== 10));
-            employmentInsuranceNumberInput.addEventListener('blur', e => showAlert(employmentInsuranceNumberError, '11桁の数字で入力してください。', e.target.value.replace(/\D/g, '').length > 0 && e.target.value.replace(/\D/g, '').length !== 11));
+        });
+        
+        dependentsList.addEventListener('blur', handleDependentFieldChange, true);
+        dependentsList.addEventListener('change', handleDependentFieldChange, true);
+        
+        function updateDocumentUploads(dependentForm) {
+            const threshold = getHealthFuyoThreshold(dependentForm);
+            const incomeInput = dependentForm.querySelector('input[name^="dep_income"]');
+            const pensionInput = dependentForm.querySelector('input[name^="dep_pension_income"]');
+            const residenceSelect = dependentForm.querySelector('select[name^="dep_residence"]');
+            const container = dependentForm.querySelector('.document-upload-container');
+            const index = dependentForm.querySelector('input[name^="dep_name"]').name.split('_').pop();
+            
+            let finalHtml = '';
 
-            dependentsList.addEventListener('input', e => {
-                const input = e.target;
-                if (!input.name) return;
+            const income = parseFloat(incomeInput.value.replace(/,/g, '')) || 0;
+            const pension = parseFloat(pensionInput.value.replace(/,/g, '')) || 0;
+            const residence = residenceSelect.value;
 
-                if (input.name.startsWith('dep_dob')) {
-                    let value = input.value.replace(/\D/g, '');
-                    const year = value.slice(0, 4);
-                    const month = value.slice(4, 6);
-                    const day = value.slice(6, 8);
-                    let formatted = year;
-                    if (month) formatted += '/' + month;
-                    if (day) formatted += '/' + day;
-                    input.value = formatted;
-                }
-                else if (input.name.startsWith('dep_income') || input.name.startsWith('dep_pension_income')) {
-                    const value = input.value.replace(/\D/g, '');
-                    if (value) {
-                        const formattedValue = parseInt(value, 10).toLocaleString('ja-JP');
-                        if (input.value !== formattedValue) {
-                            input.value = formattedValue;
-                        }
-                    }
-                }
-                else if (input.name.startsWith('dep_pension_number')) {
-                    let value = input.value.replace(/\D/g, '');
-                    if (value.length > 10) value = value.slice(0, 10);
-                    if (value.length > 4) value = value.slice(0, 4) + '-' + value.slice(4);
-                    input.value = value;
-                }
-            });
-
-            dependentsList.addEventListener('blur', handleDependentFieldChange, true);
-            dependentsList.addEventListener('change', handleDependentFieldChange, true);
-
-            function updateDocumentUploads(dependentForm) {
-                const threshold = getHealthFuyoThreshold(dependentForm);
-                const incomeInput = dependentForm.querySelector('input[name^="dep_income"]');
-                const pensionInput = dependentForm.querySelector('input[name^="dep_pension_income"]');
-                const residenceSelect = dependentForm.querySelector('select[name^="dep_residence"]');
-                const container = dependentForm.querySelector('.document-upload-container');
-                const index = dependentForm.querySelector('input[name^="dep_name"]').name.split('_').pop();
-
-                let finalHtml = '';
-
-                const income = parseFloat(incomeInput.value.replace(/,/g, '')) || 0;
-                const pension = parseFloat(pensionInput.value.replace(/,/g, '')) || 0;
-                const residence = residenceSelect.value;
-
-                if (income >= 1030000 && (income + pension) < threshold) {
-                    let salaryDocsHtml = '';
-                    for (let i = 1; i <= 3; i++) {
-                        salaryDocsHtml += `
+             if (income >= 1030000 && (income + pension) < threshold) {
+                let salaryDocsHtml = '';
+                for (let i = 1; i <= 3; i++) {
+                    salaryDocsHtml += `
                         <div class="document-upload-section">
                             <label>給与明細${i}ヶ月分</label>
                             <div class="file-drop-area" onclick="this.querySelector('input').click();">
@@ -723,12 +673,12 @@
                                 <input type="file" name="dep_salary_doc_${i}_${index}" style="display: none;" accept=".jpg,.jpeg,.png,.pdf,.heic">
                             </div>
                         </div>`;
-                    }
-                    finalHtml += `<div class="document-group"><div class="document-group-title">給与明細</div>${salaryDocsHtml}</div>`;
                 }
+                finalHtml += `<div class="document-group"><div class="document-group-title">給与明細</div>${salaryDocsHtml}</div>`;
+            }
 
-                if (pension > 0) {
-                    finalHtml += `
+            if (pension > 0) {
+                finalHtml += `
                     <div class="document-group">
                         <div class="document-group-title">年金通知書</div>
                         <div class="document-upload-section">
@@ -739,10 +689,10 @@
                             </div>
                         </div>
                     </div>`;
-                }
+            }
 
-                if (residence === 'different') {
-                    finalHtml += `
+            if (residence === 'different') {
+                finalHtml += `
                     <div class="document-group">
                         <div class="document-group-title">仕送り証明</div>
                         <div class="document-upload-section">
@@ -753,734 +703,659 @@
                             </div>
                         </div>
                     </div>`;
+            }
+            
+            container.innerHTML = finalHtml;
+        }
+
+        function updateDependentButtons() {
+            dependentButtonsContainer.innerHTML = '';
+            const forms = dependentsList.querySelectorAll('.dependent-form-container');
+            
+            forms.forEach((form, index) => {
+                let buttonCell = form.querySelector('.button-cell');
+                if (!buttonCell) {
+                    const tbody = form.querySelector('tbody');
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `<td colspan="2" class="button-cell"></td>`;
+                    tbody.appendChild(tr);
+                    buttonCell = tr.querySelector('.button-cell');
                 }
+                buttonCell.innerHTML = '<button type="button" class="delete-dependent-btn">この扶養親族を削除</button>';
+            });
 
-                container.innerHTML = finalHtml;
+            const addButton = document.createElement('button');
+            addButton.type = 'button';
+            addButton.className = 'add-button';
+            addButton.textContent = '＋扶養親族を追加する';
+            addButton.addEventListener('click', addDependent);
+
+            if (forms.length > 0) {
+                forms[forms.length - 1].querySelector('.button-cell').appendChild(addButton);
+            } else {
+                dependentButtonsContainer.appendChild(addButton);
             }
-
-            function updateDependentButtons() {
-                dependentButtonsContainer.innerHTML = '';
-                const forms = dependentsList.querySelectorAll('.dependent-form-container');
-
-                forms.forEach((form, index) => {
-                    let buttonCell = form.querySelector('.button-cell');
-                    if (!buttonCell) {
-                        const tbody = form.querySelector('tbody');
-                        const tr = document.createElement('tr');
-                        tr.innerHTML = `<td colspan="2" class="button-cell"></td>`;
-                        tbody.appendChild(tr);
-                        buttonCell = tr.querySelector('.button-cell');
-                    }
-                    buttonCell.innerHTML = '<button type="button" class="delete-dependent-btn">この扶養親族を削除</button>';
+        }
+        
+        function renumberDependents() {
+            dependentsList.querySelectorAll('.dependent-form-container').forEach((form, index) => {
+                const newIndex = index + 1;
+                form.querySelector('.dependent-block-header').textContent = `扶養親族 ${newIndex}`;
+                form.querySelectorAll('input, select').forEach(input => {
+                    if (input.name) input.name = input.name.replace(/_\d+$/, `_${newIndex}`);
+                    if (input.id) input.id = input.id.replace(/_\d+$/, `_${newIndex}`);
+                    const label = form.querySelector(`label[for="${input.id.replace(/_\d+$/, '')}_${index+1}"]`);
+                    if(label) label.htmlFor = input.id;
                 });
+            });
+        }
 
-                const addButton = document.createElement('button');
-                addButton.type = 'button';
-                addButton.className = 'add-button';
-                addButton.textContent = '＋扶養親族を追加する';
-                addButton.addEventListener('click', addDependent);
-
-                if (forms.length > 0) {
-                    forms[forms.length - 1].querySelector('.button-cell').appendChild(addButton);
-                } else {
-                    dependentButtonsContainer.appendChild(addButton);
-                }
-            }
-
-            function renumberDependents() {
-                dependentsList.querySelectorAll('.dependent-form-container').forEach((form, index) => {
-                    const newIndex = index + 1;
-                    form.querySelector('.dependent-block-header').textContent = `扶養親族 ${newIndex}`;
-                    form.querySelectorAll('input, select').forEach(input => {
-                        if (input.name) input.name = input.name.replace(/_\d+$/, `_${newIndex}`);
-                        if (input.id) input.id = input.id.replace(/_\d+$/, `_${newIndex}`);
-                        const label = form.querySelector(`label[for="${input.id.replace(/_\d+$/, '')}_${index + 1}"]`);
-                        if (label) label.htmlFor = input.id;
-                    });
-                });
-            }
-
-            function addDependent() {
-                const newIndex = dependentsList.children.length + 1;
-                dependentsList.appendChild(createDependentForm(newIndex));
+        function addDependent() {
+            const newIndex = dependentsList.children.length + 1;
+            dependentsList.appendChild(createDependentForm(newIndex));
+            renumberDependents();
+            updateDependentButtons();
+        }
+        
+        dependentsList.addEventListener('click', e => {
+            if (e.target.classList.contains('delete-dependent-btn')) {
+                e.target.closest('.dependent-form-container').remove();
                 renumberDependents();
                 updateDependentButtons();
             }
+        });
 
-            dependentsList.addEventListener('click', e => {
+        const taxDependentsList = document.getElementById('tax-dependents-list');
+
+        function updateTaxDependentButtons() {
+            const forms = taxDependentsList.querySelectorAll('.tax-dependent-form-container');
+            forms.forEach((form, index) => {
+                let buttonCell = form.querySelector('.button-cell');
+                if (!buttonCell) return;
+                buttonCell.innerHTML = '';
+                if (forms.length > 1) {
+                    const deleteButton = document.createElement('button');
+                    deleteButton.type = 'button';
+                    deleteButton.className = 'delete-dependent-btn';
+                    deleteButton.textContent = 'この扶養親族を削除';
+                    buttonCell.appendChild(deleteButton);
+                }
+                if (index === forms.length - 1) {
+                    const addButton = document.createElement('button');
+                    addButton.type = 'button';
+                    addButton.className = 'add-button';
+                    addButton.textContent = '＋扶養親族を追加する';
+                    addButton.style.marginLeft = '8px';
+                    addButton.addEventListener('click', addTaxDependent);
+                    buttonCell.appendChild(addButton);
+                }
+            });
+        }
+        
+        function renumberTaxDependents() {
+            taxDependentsList.querySelectorAll('.tax-dependent-form-container').forEach((form, index) => {
+                const newIndex = index + 1;
+                form.querySelector('.dependent-block-header').textContent = `税扶養親族 ${newIndex}`;
+                form.querySelectorAll('input, select').forEach(input => {
+                    if (input.name) {
+                        input.name = input.name.replace(/_\d+$/, `_${newIndex}`);
+                    }
+                });
+            });
+        }
+
+        function addTaxDependent() {
+            const newIndex = taxDependentsList.children.length + 1;
+            taxDependentsList.appendChild(createTaxDependentForm(newIndex));
+            updateTaxDependentButtons();
+            updateAllTaxDependentDropdowns();   // ← 追加：行追加直後にも再構築
+        }
+
+        // ★ 初期化の最後で一度実行（addTaxDependent() の後）
+        addTaxDependent();
+        updateAllTaxDependentDropdowns();      // ← 追加：初期表示直後にも再構築
+
+        // ★ プルダウンを開くタイミングでも再構築（保険）
+        taxDependentsList.addEventListener('focusin', (e) => {
+        if (e.target.name && e.target.name.startsWith('tax_dep_family_select')) {
+            updateAllTaxDependentDropdowns();
+        }
+        });
+
+        taxDependentsList.addEventListener('mousedown', (e) => {
+        const sel = e.target.closest('select[name^="tax_dep_family_select"]');
+        if (sel) updateAllTaxDependentDropdowns();
+        });        
+
+        
+        if(taxDependentsList) {
+            taxDependentsList.addEventListener('click', e => {
                 if (e.target.classList.contains('delete-dependent-btn')) {
-                    e.target.closest('.dependent-form-container').remove();
-                    renumberDependents();
-                    updateDependentButtons();
-                }
-            });
-
-            const taxDependentsList = document.getElementById('tax-dependents-list');
-
-            function updateTaxDependentButtons() {
-                const forms = taxDependentsList.querySelectorAll('.tax-dependent-form-container');
-                forms.forEach((form, index) => {
-                    let buttonCell = form.querySelector('.button-cell');
-                    if (!buttonCell) return;
-                    buttonCell.innerHTML = '';
-                    if (forms.length > 1) {
-                        const deleteButton = document.createElement('button');
-                        deleteButton.type = 'button';
-                        deleteButton.className = 'delete-dependent-btn';
-                        deleteButton.textContent = 'この扶養親族を削除';
-                        buttonCell.appendChild(deleteButton);
-                    }
-                    if (index === forms.length - 1) {
-                        const addButton = document.createElement('button');
-                        addButton.type = 'button';
-                        addButton.className = 'add-button';
-                        addButton.textContent = '＋扶養親族を追加する';
-                        addButton.style.marginLeft = '8px';
-                        addButton.addEventListener('click', addTaxDependent);
-                        buttonCell.appendChild(addButton);
-                    }
-                });
-            }
-
-            function renumberTaxDependents() {
-                taxDependentsList.querySelectorAll('.tax-dependent-form-container').forEach((form, index) => {
-                    const newIndex = index + 1;
-                    form.querySelector('.dependent-block-header').textContent = `税扶養親族 ${newIndex}`;
-                    form.querySelectorAll('input, select').forEach(input => {
-                        if (input.name) {
-                            input.name = input.name.replace(/_\d+$/, `_${newIndex}`);
-                        }
-                    });
-                });
-            }
-
-            function addTaxDependent() {
-                const newIndex = taxDependentsList.children.length + 1;
-
-                // 新規フォームを生成して追加
-                const formEl = createTaxDependentForm(newIndex);
-                taxDependentsList.appendChild(formEl);
-
-                // ボタン再構築＆プルダウン再構築
-                updateTaxDependentButtons();
-                updateAllTaxDependentDropdowns();
-
-                // --- 修正ポイント ---
-                // デフォルトは必ず「選択してください」にしておく
-                const select = formEl.querySelector(`select[name="tax_dep_family_select_${newIndex}"]`);
-                if (select) {
-                    select.value = "";  // ← 強制的に未選択にする
-                }
-
-                // これによりフロー1からの residence 情報は
-                // ユーザーがプルダウンで家族を選んだタイミングで change ハンドラ経由で反映される
-            }
-
-
-
-            // ★ 初期化の最後で一度実行（addTaxDependent() の後）
-            addTaxDependent();
-            updateAllTaxDependentDropdowns();      // ← 追加：初期表示直後にも再構築
-
-            // ★ プルダウンを開くタイミングでも再構築（保険）
-            taxDependentsList.addEventListener('focusin', (e) => {
-                if (e.target.name && e.target.name.startsWith('tax_dep_family_select')) {
-                    updateAllTaxDependentDropdowns();
-                }
-            });
-
-            taxDependentsList.addEventListener('mousedown', (e) => {
-                const sel = e.target.closest('select[name^="tax_dep_family_select"]');
-                if (sel) updateAllTaxDependentDropdowns();
-            });
-
-
-            if (taxDependentsList) {
-                taxDependentsList.addEventListener('click', e => {
-                    if (e.target.classList.contains('delete-dependent-btn')) {
-                        e.target.closest('.tax-dependent-form-container').remove();
-                        renumberTaxDependents();
-                        updateTaxDependentButtons();
-                    }
-                });
-            }
-
-            const hasTaxDependentsRadios = document.querySelectorAll('input[name="has_tax_dependents"]');
-            const taxDependentsWrapper = document.getElementById('tax-dependents-wrapper');
-            const taxDependentInfoBox = document.querySelector('#tax-dependents-section .info-box');
-
-            if (hasTaxDependentsRadios.length > 0 && taxDependentsWrapper) {
-                hasTaxDependentsRadios.forEach(radio => {
-                    radio.addEventListener('change', e => {
-                        if (e.target.value === 'yes') {
-                            taxDependentsWrapper.style.display = 'block';
-                            if (taxDependentInfoBox) taxDependentInfoBox.style.display = 'block';
-                            if (taxDependentsList.children.length === 0) {
-                                addTaxDependent();
-                            }
-                        } else {
-                            taxDependentsWrapper.style.display = 'none';
-                            if (taxDependentInfoBox) taxDependentInfoBox.style.display = 'none';
-                        }
-                    });
-                });
-            }
-
-            function updateAllTaxDependentDropdowns() {
-                const familyData = JSON.parse(localStorage.getItem('family_data')) || [];
-                const allTaxForms = taxDependentsList.querySelectorAll('.tax-dependent-form-container');
-                let selectedIndexes = [];
-
-                // 現在選択されているすべての家族のインデックスを収集
-                allTaxForms.forEach(form => {
-                    const select = form.querySelector('select[name^="tax_dep_family_select"]');
-                    if (select.value && select.value !== 'manual') {
-                        selectedIndexes.push(select.value);
-                    }
-                });
-
-                // 各フォームのプルダウンを再構築
-                allTaxForms.forEach(form => {
-                    const select = form.querySelector('select[name^="tax_dep_family_select"]');
-                    const currentSelection = select.value;
-
-                    // オプションをクリア（「選択してください」は残す）
-                    while (select.options.length > 1) {
-                        select.remove(1);
-                    }
-
-                    // 選択肢を再生成
-                    familyData.forEach((family, index) => {
-                        // 他で選択されておらず、かつ、このフォームの現在の選択肢である場合のみ表示
-                        if (selectedIndexes.indexOf(String(index)) === -1 || String(index) === currentSelection) {
-                            const option = new Option(family.fullName, index);
-                            select.add(option);
-                        }
-                    });
-
-                    const manualOption = new Option("手動で入力する", "manual");
-                    select.add(manualOption);
-
-                    // 選択状態を復元
-                    select.value = currentSelection;
-                });
-            }
-
-
-            // 税扶養親族フォームのイベント処理
-            // 税扶養親族フォームのイベント処理（差し替え）
-taxDependentsList.addEventListener('change', e => {
-    const target = e.target;
-    const formContainer = target.closest('.tax-dependent-form-container');
-    if (!formContainer) return;
-
-    const index = formContainer.querySelector('.dependent-block-header')
-        .textContent.match(/\d+/)[0];
-
-    // 家族選択プルダウン
-    if (target.name.startsWith('tax_dep_family_select')) {
-        const familyData = JSON.parse(localStorage.getItem('family_data')) || [];
-        const selectedIndex = target.value;
-
-        const nameInput = formContainer.querySelector(`input[name="tax_dep_name_${index}"]`);
-        const furiganaInput = formContainer.querySelector(`input[name="tax_dep_furigana_${index}"]`);
-        const dobInput = formContainer.querySelector(`input[name="tax_dep_dob_${index}"]`);
-        const relationshipSelect = formContainer.querySelector(`select[name="tax_dep_relationship_${index}"]`);
-
-        let selectedFamily = null;
-
-        if (selectedIndex === 'manual') {
-            [nameInput, furiganaInput, dobInput].forEach(el => { el.readOnly = false; el.value = ''; });
-            relationshipSelect.disabled = false;
-            relationshipSelect.value = '';
-        } else if (selectedIndex !== '' && familyData[selectedIndex]) {
-            selectedFamily = familyData[selectedIndex];
-
-            // 基本項目
-            nameInput.value = selectedFamily.fullName || '';
-            furiganaInput.value = `${selectedFamily.lastNameKana || ''} ${selectedFamily.firstNameKana || ''}`.trim();
-
-            // tax側は <input type="date"> なので YYYY-MM-DD 形式が望ましい
-            // Flow1が YYYY/MM/DD の場合は - に変換
-            dobInput.value = (selectedFamily.dob || '').replace(/\//g, '-') || '';
-
-            // 夫/妻 → 配偶者 に正規化
-            const rel = (selectedFamily.relationship || '').trim();
-            relationshipSelect.value = (rel === '夫' || rel === '妻') ? '配偶者' : rel;
-
-            [nameInput, furiganaInput, dobInput].forEach(el => el.readOnly = true);
-            relationshipSelect.disabled = true;
-        } else {
-            [nameInput, furiganaInput, dobInput].forEach(el => { el.readOnly = true; el.value = ''; });
-            relationshipSelect.disabled = true;
-            relationshipSelect.value = '';
-        }
-
-        // ★ フロー1の「住まい（同居/別居）」を税扶養に既定反映（※selectedFamily が取れたときだけ）
-        if (selectedFamily && (selectedFamily.residence === 'same' || selectedFamily.residence === 'different')) {
-            const resRadios = formContainer.querySelectorAll(`input[name="tax_dep_residence_${index}"]`);
-            resRadios.forEach(r => r.checked = (r.value === selectedFamily.residence));
-
-            // 別居のときは住所行を展開
-            const adrRow = formContainer.querySelector('.tax-dependent-address-fields');
-            if (adrRow) adrRow.style.display = (selectedFamily.residence === 'different') ? 'table-row' : 'none';
-        }
-
-        // 重複候補の再構築
-        updateAllTaxDependentDropdowns();
-    }
-
-    // 障がい者情報の切り替え
-    if (target.name.startsWith('tax_dep_disability')) {
-        const uploadSection = formContainer.querySelector('.tax-dep-disability-upload-section');
-        uploadSection.style.display = (target.value === 'normal' || target.value === 'special') ? 'block' : 'none';
-    }
-
-    // 税扶養の住まい（ラジオ）
-    if (target.name.startsWith('tax_dep_residence')) {
-        const addressFields = formContainer.querySelector('.tax-dependent-address-fields');
-        const isDifferent = (target.value === 'different');
-        addressFields.style.display = isDifferent ? 'table-row' : 'none';
-
-        // 健保扶養の同姓同名行へも同期（別居のみ）
-        const nameToSync = formContainer.querySelector(`input[name^="tax_dep_name_"]`)?.value?.trim();
-        if (isDifferent && nameToSync) {
-            const healthDependentForms = dependentsList.querySelectorAll('.dependent-form-container');
-            healthDependentForms.forEach(hForm => {
-                const hNameInput = hForm.querySelector('input[name^="dep_name"]');
-                if (hNameInput && hNameInput.value.trim() === nameToSync) {
-                    const depResidenceSelect = hForm.querySelector('select[name^="dep_residence"]');
-                    const hAddressFields = hForm.querySelector('.dependent-address-fields');
-
-                    if (depResidenceSelect) depResidenceSelect.value = 'different';
-                    if (hAddressFields) hAddressFields.style.display = 'table-row';
-
-                    // 住所コピー
-                    ['postal_code','prefecture','city','address1','address2'].forEach(field => {
-                        const taxField = formContainer.querySelector(`input[name^="tax_dep_${field}_"]`);
-                        const depField = hForm.querySelector(`input[name^="dep_${field}_"]`);
-                        if (taxField && depField) depField.value = taxField.value || '';
-                    });
+                    e.target.closest('.tax-dependent-form-container').remove();
+                    renumberTaxDependents();
+                    updateTaxDependentButtons();
                 }
             });
         }
-    }
-});
 
+        const hasTaxDependentsRadios = document.querySelectorAll('input[name="has_tax_dependents"]');
+        const taxDependentsWrapper = document.getElementById('tax-dependents-wrapper');
+        const taxDependentInfoBox = document.querySelector('#tax-dependents-section .info-box');
+        
+        if (hasTaxDependentsRadios.length > 0 && taxDependentsWrapper) {
+            hasTaxDependentsRadios.forEach(radio => {
+                radio.addEventListener('change', e => {
+                    if (e.target.value === 'yes') {
+                        taxDependentsWrapper.style.display = 'block';
+                        if(taxDependentInfoBox) taxDependentInfoBox.style.display = 'block';
+                        if (taxDependentsList.children.length === 0) {
+                            addTaxDependent();
+                        }
+                    } else {
+                        taxDependentsWrapper.style.display = 'none';
+                        if(taxDependentInfoBox) taxDependentInfoBox.style.display = 'none';
+                    }
+                });
+            });
+        }
 
-            // 健康保険扶養親族フォームのイベント処理
-            // 健康保険扶養親族フォームのイベント処理（差し替え）
-dependentsList.addEventListener('change', e => {
-    const target = e.target;
-    const formContainer = target.closest('.dependent-form-container');
-    if (!formContainer) return;
-
-    const index = formContainer.querySelector('.dependent-block-header')
-        .textContent.match(/\d+/)[0];
-
-    if (target.name.startsWith('dep_family_select')) {
-        const familyData = JSON.parse(localStorage.getItem('family_data')) || [];
-        const selectedIndex = target.value;
-
-        let syncedFromTax = false;
-
-        const nameInput = formContainer.querySelector(`input[name="dep_name_${index}"]`);
-        const furiganaInput = formContainer.querySelector(`input[name="dep_furigana_${index}"]`);
-        const dobInput = formContainer.querySelector(`input[name="dep_dob_${index}"]`);
-        const relationshipSelect = formContainer.querySelector(`select[name="dep_relationship_${index}"]`);
-        const editableFields = [furiganaInput, dobInput];
-        const selectableFields = [relationshipSelect];
-
-        let selectedFamily = null;
-
-        if (selectedIndex === 'manual') {
-            editableFields.forEach(el => { el.readOnly = false; el.value = ''; });
-            selectableFields.forEach(el => { el.disabled = false; el.value = ''; });
-            nameInput.value = '';
-        } else if (selectedIndex !== '' && familyData[selectedIndex]) {
-            selectedFamily = familyData[selectedIndex];
-
-            nameInput.value = selectedFamily.fullName || '';
-            furiganaInput.value = `${selectedFamily.lastNameKana || ''} ${selectedFamily.firstNameKana || ''}`.trim();
-
-            // 健保側の生年月日はテキスト（YYYY/MM/DD）想定
-            dobInput.value = (selectedFamily.dob || '').replace(/-/g, '/') || '';
-
-            // 夫/妻 はそのまま
-            const rel = (selectedFamily.relationship || '').trim();
-            relationshipSelect.value = rel;
-
-            // ★ フロー1の「住まい」を健保側セレクトへ既定反映
-            const depResidenceSelect = formContainer.querySelector('select[name^="dep_residence"]');
-            const adrRow = formContainer.querySelector('.dependent-address-fields');
-            if (depResidenceSelect && (selectedFamily.residence === 'same' || selectedFamily.residence === 'different')) {
-                depResidenceSelect.value = selectedFamily.residence;
-                if (adrRow) adrRow.style.display = (depResidenceSelect.value === 'different') ? 'table-row' : 'none';
-            }
-
-            editableFields.forEach(el => el.readOnly = true);
-            selectableFields.forEach(el => el.disabled = true);
-
-            // 税扶養の同姓同名行が 既に別居 なら、住所をコピー
+        function updateAllTaxDependentDropdowns() {
+            const familyData = JSON.parse(localStorage.getItem('family_data')) || [];
             const allTaxForms = taxDependentsList.querySelectorAll('.tax-dependent-form-container');
-            allTaxForms.forEach(taxForm => {
-                const taxName = taxForm.querySelector('input[name^="tax_dep_name"]')?.value?.trim();
-                if (taxName === (selectedFamily.fullName || '').trim()) {
-                    const taxResidence = taxForm.querySelector('input[name^="tax_dep_residence"]:checked')?.value;
-                    if (taxResidence === 'different') {
-                        const depAddressFields = formContainer.querySelector('.dependent-address-fields');
-                        if (depResidenceSelect) depResidenceSelect.value = 'different';
-                        if (depAddressFields) depAddressFields.style.display = 'table-row';
+            let selectedIndexes = [];
 
-                        ['postal_code','prefecture','city','address1','address2'].forEach(field => {
-                            const taxFieldVal = taxForm.querySelector(`input[name^="tax_dep_${field}"]`)?.value || '';
-                            const depField = formContainer.querySelector(`input[name^="dep_${field}"]`);
-                            if (depField) depField.value = taxFieldVal;
-                        });
-                        syncedFromTax = true;
-                    }
+            // 現在選択されているすべての家族のインデックスを収集
+            allTaxForms.forEach(form => {
+                const select = form.querySelector('select[name^="tax_dep_family_select"]');
+                if (select.value && select.value !== 'manual') {
+                    selectedIndexes.push(select.value);
                 }
             });
-        } else {
-            editableFields.forEach(el => { el.readOnly = true; el.value = ''; });
-            selectableFields.forEach(el => { el.disabled = true; el.value = ''; });
-            nameInput.value = '';
+
+            // 各フォームのプルダウンを再構築
+            allTaxForms.forEach(form => {
+                const select = form.querySelector('select[name^="tax_dep_family_select"]');
+                const currentSelection = select.value;
+                
+                // オプションをクリア（「選択してください」は残す）
+                while (select.options.length > 1) {
+                    select.remove(1);
+                }
+
+                // 選択肢を再生成
+                familyData.forEach((family, index) => {
+                    // 他で選択されておらず、かつ、このフォームの現在の選択肢である場合のみ表示
+                    if (selectedIndexes.indexOf(String(index)) === -1 || String(index) === currentSelection) {
+                        const option = new Option(family.fullName, index);
+                        select.add(option);
+                    }
+                });
+                
+                const manualOption = new Option("手動で入力する", "manual");
+                select.add(manualOption);
+
+                // 選択状態を復元
+                select.value = currentSelection;
+            });
         }
 
-        // ★ 税扶養から同期できなかった場合のフォールバック：Flow1の residence
-        if (!syncedFromTax && selectedFamily && selectedFamily.residence) {
-            const depResidenceSelect = formContainer.querySelector('select[name^="dep_residence"]');
-            const adrRow = formContainer.querySelector('.dependent-address-fields');
-            if (depResidenceSelect) depResidenceSelect.value = selectedFamily.residence;
-            if (adrRow) adrRow.style.display = (selectedFamily.residence === 'different') ? 'table-row' : 'none';
-        }
-    }
-});
+        // 税扶養親族フォームのイベント処理
+        // 税扶養親族フォームのイベント処理
+        taxDependentsList.addEventListener('change', e => {
+            const target = e.target;
+            const formContainer = target.closest('.tax-dependent-form-container');
+            if (!formContainer) return;
+            const index = formContainer.querySelector('.dependent-block-header').textContent.match(/\d+/)[0];
 
+            // 家族選択プルダウンの処理
+            if (target.name.startsWith('tax_dep_family_select')) {
+                const familyData = JSON.parse(localStorage.getItem('family_data')) || [];
+                const selectedIndex = target.value;
+                
+                const nameInput = formContainer.querySelector(`input[name="tax_dep_name_${index}"]`);
+                const furiganaInput = formContainer.querySelector(`input[name="tax_dep_furigana_${index}"]`);
+                const dobInput = formContainer.querySelector(`input[name="tax_dep_dob_${index}"]`);
+                const relationshipSelect = formContainer.querySelector(`select[name="tax_dep_relationship_${index}"]`);
 
-            // 税扶養親族の住所入力が健保扶養に反映されるようにkeyupイベントも追加
-            taxDependentsList.addEventListener('keyup', e => {
-                const target = e.target;
-                const formContainer = target.closest('.tax-dependent-form-container');
-                if (!formContainer || !target.name.startsWith('tax_dep_')) return;
-                const index = formContainer.querySelector('.dependent-block-header').textContent.match(/\d+/)[0];
+                if (selectedIndex === 'manual') {
+                    [nameInput, furiganaInput, dobInput].forEach(el => { el.readOnly = false; el.value = ''; });
+                    relationshipSelect.disabled = false;
+                    relationshipSelect.value = '';
+                } else if (selectedIndex !== '' && familyData[selectedIndex]) {
+                    const selectedFamily = familyData[selectedIndex];
+                    nameInput.value = selectedFamily.fullName || '';
+                    furiganaInput.value = `${selectedFamily.lastNameKana || ''} ${selectedFamily.firstNameKana || ''}`.trim();
+                    dobInput.value = selectedFamily.dob || ''; // yyyy-mm-dd形式
+                    const rel = (selectedFamily.relationship || '').trim();
+                    relationshipSelect.value = (rel === '夫' || rel === '妻') ? '配偶者' : rel;
+                    
+                    [nameInput, furiganaInput, dobInput].forEach(el => el.readOnly = true);
+                    relationshipSelect.disabled = true;
+                } else {
+                     [nameInput, furiganaInput, dobInput].forEach(el => { el.readOnly = true; el.value = ''; });
+                     relationshipSelect.disabled = true;
+                     relationshipSelect.value = '';
+                }
+                updateAllTaxDependentDropdowns(); // 他のプルダウンを更新
+            }
 
+            // 障がい者情報の処理
+            if (target.name.startsWith('tax_dep_disability')) {
+                const uploadSection = formContainer.querySelector('.tax-dep-disability-upload-section');
+                uploadSection.style.display = (target.value === 'normal' || target.value === 'special') ? 'block' : 'none';
+            }
+            
+            // 住まいの処理
+            if (target.name.startsWith('tax_dep_residence')) {
+                const addressFields = formContainer.querySelector('.tax-dependent-address-fields');
+                const isDifferent = (target.value === 'different');
+                addressFields.style.display = isDifferent ? 'table-row' : 'none';
+                
+                // 健保扶養の住所に反映
                 const nameToSync = formContainer.querySelector(`input[name="tax_dep_name_${index}"]`).value;
-                const residenceValue = formContainer.querySelector(`input[name="tax_dep_residence_${index}"]:checked`).value;
-
-                if (residenceValue === 'different' && nameToSync) {
+                if(isDifferent && nameToSync) {
                     const healthDependentForms = dependentsList.querySelectorAll('.dependent-form-container');
                     healthDependentForms.forEach(hForm => {
                         const hNameInput = hForm.querySelector('input[name^="dep_name"]');
                         if (hNameInput && hNameInput.value === nameToSync) {
-                            const fieldName = target.name.replace(`tax_dep_`, '').replace(`_${index}`, '');
-                            const healthField = hForm.querySelector(`input[name="dep_${fieldName}_${hForm.querySelector('input[name^="dep_name"]').name.split('_').pop()}"]`);
-                            if (healthField) healthField.value = target.value;
+                             hForm.querySelector('select[name^="dep_residence"]').value = 'different';
+                             const hAddressFields = hForm.querySelector('.dependent-address-fields');
+                             if(hAddressFields) hAddressFields.style.display = 'table-row';
+                             
+                             // 各住所フィールドの値をコピー
+                             ['postal_code', 'prefecture', 'city', 'address1', 'address2'].forEach(field => {
+                                 const taxField = formContainer.querySelector(`input[name="tax_dep_${field}_${index}"]`);
+                                 const healthField = hForm.querySelector(`input[name="dep_${field}_${hForm.querySelector('input[name^="dep_name"]').name.split('_').pop()}"]`);
+                                 if (taxField && healthField) {
+                                     healthField.value = taxField.value;
+                                 }
+                             });
                         }
                     });
                 }
-            });
+            }
+        });
 
-            // ---------------------------------------------------------------
-            // ここから下の関数はすべて、新しいコードに置き換えられます
-            // ---------------------------------------------------------------
+        // 健康保険扶養親族フォームのイベント処理
+        dependentsList.addEventListener('change', e => {
+            const target = e.target;
+            const formContainer = target.closest('.dependent-form-container');
+            if (!formContainer) return;
+            const index = formContainer.querySelector('.dependent-block-header').textContent.match(/\d+/)[0];
 
-            function calculate() {
-                // フロー1で保存された生年月日をlocalStorageから取得して年齢計算
-                const birthDateStr = localStorage.getItem('birth_date');
-                let age = null;
-                if (birthDateStr) {
-                    const birthDate = new Date(birthDateStr);
-                    const today = new Date();
-                    age = today.getFullYear() - birthDate.getFullYear();
-                    const m = today.getMonth() - birthDate.getMonth();
-                    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-                        age--;
-                    }
+            if (target.name.startsWith('dep_family_select')) {
+                const familyData = JSON.parse(localStorage.getItem('family_data')) || [];
+                const selectedIndex = target.value;
+
+                const nameInput = formContainer.querySelector(`input[name="dep_name_${index}"]`);
+                const furiganaInput = formContainer.querySelector(`input[name="dep_furigana_${index}"]`);
+                const dobInput = formContainer.querySelector(`input[name="dep_dob_${index}"]`);
+                const relationshipSelect = formContainer.querySelector(`select[name="dep_relationship_${index}"]`);
+                
+                // 編集可能/不可の状態を切り替えるための要素
+                const editableFields = [furiganaInput, dobInput];
+                const selectableFields = [relationshipSelect];
+
+                if (selectedIndex === 'manual') {
+                    editableFields.forEach(el => { el.readOnly = false; el.value = ''; });
+                    selectableFields.forEach(el => { el.disabled = false; el.value = ''; });
+                    nameInput.value = '';
+                } else if (selectedIndex !== '' && familyData[selectedIndex]) {
+                    const selectedFamily = familyData[selectedIndex];
+                    nameInput.value = selectedFamily.fullName || '';
+                    furiganaInput.value = `${selectedFamily.lastNameKana || ''} ${selectedFamily.firstNameKana || ''}`.trim();
+                    dobInput.value = selectedFamily.dob ? selectedFamily.dob.replace(/-/g, '/') : '';
+                    relationshipSelect.value = selectedFamily.relationship || '';
+                    
+                    editableFields.forEach(el => el.readOnly = true);
+                    selectableFields.forEach(el => el.disabled = true);
+                    
+                    // 税扶養の情報を検索して同期
+                    const allTaxForms = taxDependentsList.querySelectorAll('.tax-dependent-form-container');
+                    allTaxForms.forEach(taxForm => {
+                        const taxName = taxForm.querySelector('input[name^="tax_dep_name"]').value;
+                        if (taxName === selectedFamily.fullName) {
+                            const taxResidence = taxForm.querySelector('input[name^="tax_dep_residence"]:checked').value;
+                            if (taxResidence === 'different') {
+                                const depResidenceSelect = formContainer.querySelector('select[name^="dep_residence"]');
+                                const depAddressFields = formContainer.querySelector('.dependent-address-fields');
+                                depResidenceSelect.value = 'different';
+                                depAddressFields.style.display = 'table-row';
+                                
+                                ['postal_code', 'prefecture', 'city', 'address1', 'address2'].forEach(field => {
+                                    const taxFieldVal = taxForm.querySelector(`input[name^="tax_dep_${field}"]`).value;
+                                    const depField = formContainer.querySelector(`input[name^="dep_${field}"]`);
+                                    if(depField) depField.value = taxFieldVal;
+                                });
+                            }
+                        }
+                    });
+                } else {
+                    editableFields.forEach(el => { el.readOnly = true; el.value = ''; });
+                    selectableFields.forEach(el => { el.disabled = true; el.value = ''; });
+                    nameInput.value = '';
                 }
+            }
+        });
+        
+        // 税扶養親族の住所入力が健保扶養に反映されるようにkeyupイベントも追加
+        taxDependentsList.addEventListener('keyup', e => {
+             const target = e.target;
+             const formContainer = target.closest('.tax-dependent-form-container');
+             if (!formContainer || !target.name.startsWith('tax_dep_')) return;
+             const index = formContainer.querySelector('.dependent-block-header').textContent.match(/\d+/)[0];
+             
+             const nameToSync = formContainer.querySelector(`input[name="tax_dep_name_${index}"]`).value;
+             const residenceValue = formContainer.querySelector(`input[name="tax_dep_residence_${index}"]:checked`).value;
+             
+             if (residenceValue === 'different' && nameToSync) {
+                 const healthDependentForms = dependentsList.querySelectorAll('.dependent-form-container');
+                 healthDependentForms.forEach(hForm => {
+                     const hNameInput = hForm.querySelector('input[name^="dep_name"]');
+                     if (hNameInput && hNameInput.value === nameToSync) {
+                         const fieldName = target.name.replace(`tax_dep_`, '').replace(`_${index}`, '');
+                         const healthField = hForm.querySelector(`input[name="dep_${fieldName}_${hForm.querySelector('input[name^="dep_name"]').name.split('_').pop()}"]`);
+                         if(healthField) healthField.value = target.value;
+                     }
+                 });
+             }
+        });
 
-                const hours = parseFloat(contractHoursInput.value) || 0;
-                const days = parseFloat(contractDaysInput.value) || 0;
-                const weeklyHours = (hours * days * 12) / (365 / 7);
-                weeklyHoursOutput.value = weeklyHours.toFixed(1);
+        // ---------------------------------------------------------------
+        // ここから下の関数はすべて、新しいコードに置き換えられます
+        // ---------------------------------------------------------------
 
-                const salary = HOURLY_WAGE * hours * days;
-                expectedSalaryOutput.value = salary.toLocaleString();
-
-                const insuranceJoinMessage = document.getElementById('insurance-join-message') || document.createElement('p');
-                if (!document.getElementById('insurance-join-message')) {
-                    insuranceJoinMessage.id = 'insurance-join-message';
-                    expectedSalaryOutput.closest('.info-box').insertAdjacentElement('afterend', insuranceJoinMessage);
+        function calculate() {
+            // フロー1で保存された生年月日をlocalStorageから取得して年齢計算
+            const birthDateStr = localStorage.getItem('birth_date');
+            let age = null;
+            if (birthDateStr) {
+                const birthDate = new Date(birthDateStr);
+                const today = new Date();
+                age = today.getFullYear() - birthDate.getFullYear();
+                const m = today.getMonth() - birthDate.getMonth();
+                if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                    age--;
                 }
+            }
+        
+            const hours = parseFloat(contractHoursInput.value) || 0;
+            const days = parseFloat(contractDaysInput.value) || 0;
+            const weeklyHours = (hours * days * 12) / (365 / 7);
+            weeklyHoursOutput.value = weeklyHours.toFixed(1);
 
-                // 同意確認を削除し、メインコンテンツをデフォルトで表示
-                mainContent.style.display = 'block';
+            const salary = HOURLY_WAGE * hours * days;
+            expectedSalaryOutput.value = salary.toLocaleString();
+            
+            const insuranceJoinMessage = document.getElementById('insurance-join-message') || document.createElement('p');
+            if(!document.getElementById('insurance-join-message')) {
+                insuranceJoinMessage.id = 'insurance-join-message';
+                expectedSalaryOutput.closest('.info-box').insertAdjacentElement('afterend', insuranceJoinMessage);
+            }
+            
+            // 同意確認を削除し、メインコンテンツをデフォルトで表示
+            mainContent.style.display = 'block';
 
-                // 初期化
-                mynumberInfo.style.display = 'none';
-                numbersSection.style.display = 'none';
-                documentsSection.style.display = 'none';
-                pensionNumberGroup.style.display = 'none';
-                employmentInsuranceNumberGroup.style.display = 'none';
-                dependentsFieldset.style.display = 'none';
-
-                // 次へボタンを元の場所に戻す
-                nextBtnPlaceholder.style.display = 'none';
-                if (nextBtnPlaceholder.contains(nextBtn)) {
-                    navigationButtons.appendChild(nextBtn);
-                }
-
-                if (weeklyHours >= 20 && salary >= 88000) {
-                    if (age !== null && age >= 75) {
-                        insuranceJoinMessage.innerHTML = '雇用保険のみ加入となります。';
-                        numbersSection.style.display = 'block';
-                        employmentInsuranceNumberGroup.style.display = 'block';
-                        documentsSection.style.display = 'block';
-                    } else {
-                        insuranceJoinMessage.innerHTML = '社会保険・雇用保険に加入となります。';
-                        dependentsFieldset.style.display = 'block';
-                        mynumberInfo.style.display = 'block';
-                        numbersSection.style.display = 'block';
-                        documentsSection.style.display = 'block';
-                        pensionNumberGroup.style.display = 'block';
-                        employmentInsuranceNumberGroup.style.display = 'block';
-                    }
-                } else if (weeklyHours >= 20) {
-                    insuranceJoinMessage.innerHTML = '雇用保険に加入となります。';
+            // 初期化
+            mynumberInfo.style.display = 'none';
+            numbersSection.style.display = 'none';
+            documentsSection.style.display = 'none';
+            pensionNumberGroup.style.display = 'none';
+            employmentInsuranceNumberGroup.style.display = 'none';
+            dependentsFieldset.style.display = 'none';
+            
+            // 次へボタンを元の場所に戻す
+            nextBtnPlaceholder.style.display = 'none';
+            if (nextBtnPlaceholder.contains(nextBtn)) {
+                navigationButtons.appendChild(nextBtn);
+            }
+            
+            if (weeklyHours >= 20 && salary >= 88000) {
+                if (age !== null && age >= 75) {
+                    insuranceJoinMessage.innerHTML = '雇用保険のみ加入となります。';
                     numbersSection.style.display = 'block';
                     employmentInsuranceNumberGroup.style.display = 'block';
                     documentsSection.style.display = 'block';
                 } else {
-                    insuranceJoinMessage.innerHTML = '社会保険・雇用保険の加入対象外です。';
-                    mainContent.style.display = 'none';
-                    nextBtnPlaceholder.appendChild(nextBtn);
-                    nextBtnPlaceholder.style.display = 'block';
+                    insuranceJoinMessage.innerHTML = '社会保険・雇用保険に加入となります。';
+                    dependentsFieldset.style.display = 'block';
+                    mynumberInfo.style.display = 'block';
+                    numbersSection.style.display = 'block';
+                    documentsSection.style.display = 'block';
+                    pensionNumberGroup.style.display = 'block';
+                    employmentInsuranceNumberGroup.style.display = 'block';
                 }
+            } else if (weeklyHours >= 20) {
+                insuranceJoinMessage.innerHTML = '雇用保険に加入となります。';
+                numbersSection.style.display = 'block';
+                employmentInsuranceNumberGroup.style.display = 'block';
+                documentsSection.style.display = 'block';
+            } else {
+                insuranceJoinMessage.innerHTML = '社会保険・雇用保険の加入対象外です。';
+                mainContent.style.display = 'none';
+                nextBtnPlaceholder.appendChild(nextBtn);
+                nextBtnPlaceholder.style.display = 'block';
             }
+        }
 
-
-            function getDependentAgeFromForm(formEl) {
-                const dobInput = formEl.querySelector('input[name^="dep_dob"]');
-                if (!dobInput || !dobInput.value) return null; // "YYYY/MM/DD"
-                const m = dobInput.value.match(/^(\d{4})\/(\d{2})\/(\d{2})$/);
-                if (!m) return null;
-                const y = +m[1], mo = +m[2], d = +m[3];
-                const today = new Date();
-                let age = today.getFullYear() - y;
-                const mdiff = (today.getMonth() + 1) - mo;
-                if (mdiff < 0 || (mdiff === 0 && today.getDate() < d)) age--;
-                return age;
+        function getDependentAgeFromForm(formEl) {
+            const dobInput = formEl.querySelector('input[name^="dep_dob"]');
+            if (!dobInput || !dobInput.value) return null; // "YYYY/MM/DD"
+            const m = dobInput.value.match(/^(\d{4})\/(\d{2})\/(\d{2})$/);
+            if (!m) return null;
+            const y = +m[1], mo = +m[2], d = +m[3];
+            const today = new Date();
+            let age = today.getFullYear() - y;
+            const mdiff = (today.getMonth()+1) - mo;
+            if (mdiff < 0 || (mdiff === 0 && today.getDate() < d)) age--;
+            return age;
             }
-
 
             function isDependentDisabled(formEl) {
-                // 健保扶養フォームには障がい区分UIが無いため、当面は「税扶養フォームの選択」を参照（同姓同名マッチ）
-                const name = formEl.querySelector('input[name^="dep_name"]')?.value?.trim();
-                if (!name) return false;
-                const taxForms = document.querySelectorAll('.tax-dependent-form-container');
-                for (const tax of taxForms) {
-                    const tname = tax.querySelector('input[name^="tax_dep_name"]')?.value?.trim();
-                    if (tname && tname === name) {
-                        const checked = tax.querySelector('input[name^="tax_dep_disability_"]:checked')?.value;
-                        if (checked === 'normal' || checked === 'special') return true;
-                    }
+            // 健保扶養フォームには障がい区分UIが無いため、当面は「税扶養フォームの選択」を参照（同姓同名マッチ）
+            const name = formEl.querySelector('input[name^="dep_name"]')?.value?.trim();
+            if (!name) return false;
+            const taxForms = document.querySelectorAll('.tax-dependent-form-container');
+            for (const tax of taxForms) {
+                const tname = tax.querySelector('input[name^="tax_dep_name"]')?.value?.trim();
+                if (tname && tname === name) {
+                const checked = tax.querySelector('input[name^="tax_dep_disability_"]:checked')?.value;
+                if (checked === 'normal' || checked === 'special') return true;
                 }
-                return false;
             }
-
+            return false;
+            }
 
             function getHealthFuyoThreshold(formEl) {
-                // 既定 130万円
-                let threshold = 1300000;
-                const age = getDependentAgeFromForm(formEl);
-                const relationship = formEl.querySelector('select[name^="dep_relationship"]')?.value || '';
-                const disabled = isDependentDisabled(formEl);
+            // 既定 130万円
+            let threshold = 1300000;
+            const age = getDependentAgeFromForm(formEl);
+            const relationship = formEl.querySelector('select[name^="dep_relationship"]')?.value || '';
+            const disabled = isDependentDisabled(formEl);
 
-                // 60歳以上 or 障がい者 → 180万円
-                if ((age !== null && age >= 60) || disabled) threshold = 1800000;
+            // 60歳以上 or 障がい者 → 180万円
+            if ((age !== null && age >= 60) || disabled) threshold = 1800000;
 
-                // 19〜22歳（配偶者を除く）→ 150万円
-                if (age !== null && age >= 19 && age < 23 && relationship !== '夫' && relationship !== '妻') {
-                    threshold = Math.max(threshold, 1500000); // 180が優先されるケースを考慮
-                }
-                return threshold;
+            // 19〜22歳（配偶者を除く）→ 150万円
+            if (age !== null && age >= 19 && age < 23 && relationship !== '夫' && relationship !== '妻') {
+                threshold = Math.max(threshold, 1500000); // 180が優先されるケースを考慮
             }
-
+            return threshold;
+            }
 
 
             function handleDependentFieldChange(e) {
-                const input = e.target, name = input.name || '', rawValue = input.value;
-                const dependentForm = input.closest('.dependent-form-container');
-                if (!dependentForm) return;
+            const input = e.target, name = input.name || '', rawValue = input.value;
+            const dependentForm = input.closest('.dependent-form-container');
+            if (!dependentForm) return;
 
-                // 被保険者年収（1/2判定用）: 月給 → 年収
-                const employeeMonthlySalary = parseFloat(
-                    (document.getElementById('expected-salary')?.value || '').replace(/,/g, '')
-                ) || 0;
-                const employeeAnnualSalary = employeeMonthlySalary * 12;
+            // 被保険者年収（1/2判定用）: 月給 → 年収
+            const employeeMonthlySalary = parseFloat(
+                (document.getElementById('expected-salary')?.value || '').replace(/,/g, '')
+            ) || 0;
+            const employeeAnnualSalary = employeeMonthlySalary * 12;
 
-                // ユーティリティ
-                const toNumber = (v) => (parseFloat(String(v).replace(/,/g, '')) || 0);
-                const ensureAlertEl = (baseTd) => {
-                    if (!baseTd) return null;
-                    let el = baseTd.querySelector('.error-message');
-                    if (!el) {
-                        el = document.createElement('div');
-                        el.className = 'error-message';
-                        el.style.display = 'none';
-                        baseTd.appendChild(el);
-                    }
-                    return el;
-                };
-                const safeShow = (el, msg, isErr) => {
-                    if (typeof window.showAlert === 'function') return window.showAlert(el, msg, isErr);
-                    if (!el) return;
-                    el.innerHTML = msg || '';
-                    el.style.display = msg ? 'block' : 'none';
-                    el.style.color = isErr ? '#d92d20' : '';
-                };
-
-                if (name.startsWith('dep_dob')) {
-                    // 生年月日
-                    const td = input.closest('td');
-                    const alertElement = ensureAlertEl(td);
-                    const value = (rawValue || '').trim();
-                    safeShow(alertElement, '', false);
-
-                    if (!value) {
-                        delete dependentForm.dataset.age;
-                        if (typeof window.revalidateDependentIncome === 'function') {
-                            window.revalidateDependentIncome(dependentForm);
-                        }
-                        return;
-                    }
-
-                    // YYYY/MM/DD または YYYY-MM-DD を許容
-                    const norm = value.replace(/-/g, '/');
-                    const m = norm.match(/^(\d{4})\/(\d{1,2})\/(\d{1,2})$/);
-                    if (!m) return safeShow(alertElement, '日付は "YYYY/MM/DD" の形式で入力してください。', true);
-
-                    const year = +m[1], month = +m[2], day = +m[3];
-                    const date = new Date(year, month - 1, day);
-                    const valid = (date.getFullYear() === year) && (date.getMonth() === month - 1) && (date.getDate() === day);
-                    if (!valid) return safeShow(alertElement, '有効な日付を入力してください。', true);
-
-                    // 年齢算出 & キャッシュ
-                    const today = new Date();
-                    let age = today.getFullYear() - year;
-                    const mdiff = (today.getMonth() + 1) - month;
-                    if (mdiff < 0 || (mdiff === 0 && today.getDate() < day)) age--;
-                    dependentForm.dataset.age = String(age);
-
-                    if (age >= 75) {
-                        safeShow(alertElement, '75歳以上は扶養対象外となります。', true);
-                    } else {
-                        safeShow(alertElement, '', false);
-                    }
-
-                    // しきい値（130/150/180）に影響 → 再評価
-                    if (typeof window.revalidateDependentIncome === 'function') {
-                        window.revalidateDependentIncome(dependentForm);
-                    }
-
-                } else if (name.startsWith('dep_income') || name.startsWith('dep_pension_income')) {
-                    // 年収・年金
-                    const incomeInput = dependentForm.querySelector('input[name^="dep_income"]');
-                    const pensionIncomeInput = dependentForm.querySelector('input[name^="dep_pension_income"]');
-                    if (!incomeInput || !pensionIncomeInput) return;
-
-                    const incomeAlertEl = ensureAlertEl(incomeInput.closest('td'));
-                    const pensionAlertEl = ensureAlertEl(pensionIncomeInput.closest('td'));
-
-                    const income = toNumber(incomeInput.value);
-                    const pensionIncome = toNumber(pensionIncomeInput.value);
-                    const totalIncome = income + pensionIncome;
-
-                    const threshold = getHealthFuyoThreshold(dependentForm);
-
-                    let incomeMessages = [];
-                    let pensionMessages = [];
-
-                    // 提出物・適格性
-                    if (income >= 1030000) {
-                        incomeMessages.push('年収103万円以上は「直近3カ月分の給与明細」が必要です。');
-                    }
-                    if (totalIncome >= threshold) {
-                        const man = (threshold / 10000).toLocaleString('ja-JP');
-                        incomeMessages.push(`年間収入の合計がしきい値（${man}円未満）を超えるため、扶養に入れません。`);
-                    }
-                    if (employeeAnnualSalary > 0 && totalIncome > (employeeAnnualSalary / 2)) {
-                        incomeMessages.push('被保険者の年収の1/2以上のため扶養対象外です。');
-                    }
-                    if (pensionIncome > 0) {
-                        pensionMessages.push('「年金通知書」の提出が必要です。');
-                    }
-
-                    safeShow(incomeAlertEl, incomeMessages.join('<br>'), incomeMessages.length > 0);
-                    safeShow(pensionAlertEl, pensionMessages.join('<br>'), pensionMessages.length > 0);
-
-                    updateDocumentUploads(dependentForm);
-
-                } else if (name.startsWith('dep_pension_number')) {
-                    // 年金番号
-                    const td = input.closest('td');
-                    const alertElement = ensureAlertEl(td);
-                    const numValue = (rawValue || '').replace(/\D/g, '');
-                    safeShow(alertElement, '10桁の数字で入力してください。', numValue.length > 0 && numValue.length !== 10);
-
-                } else if (name.startsWith('dep_residence')) {
-                    // 同居/別居/国外
-                    const td = input.closest('td');
-                    const alertElement = ensureAlertEl(td);
-                    const addressFields = dependentForm.querySelector('.dependent-address-fields');
-
-                    safeShow(alertElement, '', false);
-                    if (rawValue === 'different') {
-                        if (addressFields) addressFields.style.display = 'table-row';
-                    } else if (rawValue === 'different_overseas') {
-                        if (addressFields) addressFields.style.display = 'none';
-                        safeShow(alertElement, '国外居住者は健康保険扶養へ入れることはできません', true);
-                    } else {
-                        if (addressFields) addressFields.style.display = 'none';
-                    }
-                    updateDocumentUploads(dependentForm);
-
-                } else if (name.startsWith('dep_relationship')) {
-                    // 続柄変更（19〜22歳・配偶者除外の150万条件に影響）
-                    const pensionRow = dependentForm.querySelector('.dependent-pension-row');
-                    if (pensionRow) {
-                        if (rawValue === '妻' || rawValue === '夫') {
-                            pensionRow.style.display = 'table-row';
-                        } else {
-                            pensionRow.style.display = 'none';
-                        }
-                    }
-                    // しきい値が変わり得るので再評価
-                    if (typeof window.revalidateDependentIncome === 'function') {
-                        window.revalidateDependentIncome(dependentForm);
-                    }
-
-                } else if (name.startsWith('dep_job')) {
-                    // 職業（その他）
-                    const jobOtherInput = dependentForm.querySelector('input[name^="dep_job_other"]');
-                    if (jobOtherInput) {
-                        jobOtherInput.style.display = (rawValue === 'other') ? 'block' : 'none';
-                    }
+            // ユーティリティ
+            const toNumber = (v) => (parseFloat(String(v).replace(/,/g, '')) || 0);
+            const ensureAlertEl = (baseTd) => {
+                if (!baseTd) return null;
+                let el = baseTd.querySelector('.error-message');
+                if (!el) {
+                el = document.createElement('div');
+                el.className = 'error-message';
+                el.style.display = 'none';
+                baseTd.appendChild(el);
                 }
+                return el;
+            };
+            const safeShow = (el, msg, isErr) => {
+                if (typeof window.showAlert === 'function') return window.showAlert(el, msg, isErr);
+                if (!el) return;
+                el.innerHTML = msg || '';
+                el.style.display = msg ? 'block' : 'none';
+                el.style.color = isErr ? '#d92d20' : '';
+            };
+
+            if (name.startsWith('dep_dob')) {
+                // 生年月日
+                const td = input.closest('td');
+                const alertElement = ensureAlertEl(td);
+                const value = (rawValue || '').trim();
+                safeShow(alertElement, '', false);
+
+                if (!value) {
+                delete dependentForm.dataset.age;
+                if (typeof window.revalidateDependentIncome === 'function') {
+                    window.revalidateDependentIncome(dependentForm);
+                }
+                return;
+                }
+
+                // YYYY/MM/DD または YYYY-MM-DD を許容
+                const norm = value.replace(/-/g, '/');
+                const m = norm.match(/^(\d{4})\/(\d{1,2})\/(\d{1,2})$/);
+                if (!m) return safeShow(alertElement, '日付は "YYYY/MM/DD" の形式で入力してください。', true);
+
+                const year = +m[1], month = +m[2], day = +m[3];
+                const date = new Date(year, month - 1, day);
+                const valid = (date.getFullYear() === year) && (date.getMonth() === month - 1) && (date.getDate() === day);
+                if (!valid) return safeShow(alertElement, '有効な日付を入力してください。', true);
+
+                // 年齢算出 & キャッシュ
+                const today = new Date();
+                let age = today.getFullYear() - year;
+                const mdiff = (today.getMonth() + 1) - month;
+                if (mdiff < 0 || (mdiff === 0 && today.getDate() < day)) age--;
+                dependentForm.dataset.age = String(age);
+
+                if (age >= 75) {
+                safeShow(alertElement, '75歳以上は扶養対象外となります。', true);
+                } else {
+                safeShow(alertElement, '', false);
+                }
+
+                // しきい値（130/150/180）に影響 → 再評価
+                if (typeof window.revalidateDependentIncome === 'function') {
+                window.revalidateDependentIncome(dependentForm);
+                }
+
+            } else if (name.startsWith('dep_income') || name.startsWith('dep_pension_income')) {
+                // 年収・年金
+                const incomeInput = dependentForm.querySelector('input[name^="dep_income"]');
+                const pensionIncomeInput = dependentForm.querySelector('input[name^="dep_pension_income"]');
+                if (!incomeInput || !pensionIncomeInput) return;
+
+                const incomeAlertEl = ensureAlertEl(incomeInput.closest('td'));
+                const pensionAlertEl = ensureAlertEl(pensionIncomeInput.closest('td'));
+
+                const income = toNumber(incomeInput.value);
+                const pensionIncome = toNumber(pensionIncomeInput.value);
+                const totalIncome = income + pensionIncome;
+
+                const threshold = getHealthFuyoThreshold(dependentForm);
+
+                let incomeMessages = [];
+                let pensionMessages = [];
+
+                // 提出物・適格性
+                if (income >= 1030000) {
+                incomeMessages.push('年収103万円以上は「直近3カ月分の給与明細」が必要です。');
+                }
+                if (totalIncome >= threshold) {
+                const man = (threshold / 10000).toLocaleString('ja-JP');
+                incomeMessages.push(`年間収入の合計がしきい値（${man}円未満）を超えるため、扶養に入れません。`);
+                }
+                if (employeeAnnualSalary > 0 && totalIncome > (employeeAnnualSalary / 2)) {
+                incomeMessages.push('被保険者の年収の1/2以上のため扶養対象外です。');
+                }
+                if (pensionIncome > 0) {
+                pensionMessages.push('「年金通知書」の提出が必要です。');
+                }
+
+                safeShow(incomeAlertEl, incomeMessages.join('<br>'), incomeMessages.length > 0);
+                safeShow(pensionAlertEl, pensionMessages.join('<br>'), pensionMessages.length > 0);
+
+                updateDocumentUploads(dependentForm);
+
+            } else if (name.startsWith('dep_pension_number')) {
+                // 年金番号
+                const td = input.closest('td');
+                const alertElement = ensureAlertEl(td);
+                const numValue = (rawValue || '').replace(/\D/g, '');
+                safeShow(alertElement, '10桁の数字で入力してください。', numValue.length > 0 && numValue.length !== 10);
+
+            } else if (name.startsWith('dep_residence')) {
+                // 同居/別居/国外
+                const td = input.closest('td');
+                const alertElement = ensureAlertEl(td);
+                const addressFields = dependentForm.querySelector('.dependent-address-fields');
+
+                safeShow(alertElement, '', false);
+                if (rawValue === 'different') {
+                if (addressFields) addressFields.style.display = 'table-row';
+                } else if (rawValue === 'different_overseas') {
+                if (addressFields) addressFields.style.display = 'none';
+                safeShow(alertElement, '国外居住者は健康保険扶養へ入れることはできません', true);
+                } else {
+                if (addressFields) addressFields.style.display = 'none';
+                }
+                updateDocumentUploads(dependentForm);
+
+            } else if (name.startsWith('dep_relationship')) {
+                // 続柄変更（19〜22歳・配偶者除外の150万条件に影響）
+                const pensionRow = dependentForm.querySelector('.dependent-pension-row');
+                if (pensionRow) {
+                if (rawValue === '妻' || rawValue === '夫') {
+                    pensionRow.style.display = 'table-row';
+                } else {
+                    pensionRow.style.display = 'none';
+                }
+                }
+                // しきい値が変わり得るので再評価
+                if (typeof window.revalidateDependentIncome === 'function') {
+                window.revalidateDependentIncome(dependentForm);
+                }
+
+            } else if (name.startsWith('dep_job')) {
+                // 職業（その他）
+                const jobOtherInput = dependentForm.querySelector('input[name^="dep_job_other"]');
+                if (jobOtherInput) {
+                jobOtherInput.style.display = (rawValue === 'other') ? 'block' : 'none';
+                }
+            }
             }
 
 
+        function createDependentForm(index) {
+            const container = document.createElement('div');
+            container.className = 'dependent-form-container';
 
-            function createDependentForm(index) {
-                const container = document.createElement('div');
-                container.className = 'dependent-form-container';
+            const familyData = JSON.parse(localStorage.getItem('family_data')) || [];
+            let familyOptions = familyData.map((family, i) => `<option value="${i}">${family.fullName}</option>`).join('');
 
-                const familyData = JSON.parse(localStorage.getItem('family_data')) || [];
-                let familyOptions = familyData.map((family, i) => `<option value="${i}">${family.fullName}</option>`).join('');
-
-                const relationships = ['夫', '妻', '長男', '長女', '次男', '次女', '三男', '三女', '四男', '四女', '五男', '五女', '六男', '六女', '父', '母', '義父', '義母', '祖父', '祖母', '孫', '兄', '姉', '弟', '妹', '義兄', '義姉', '義弟', '義妹', '伯父', '伯母', '叔父', '叔母', '甥', '姪', '里子', '婿', '嫁', '子'];
-                const relationshipOptions = relationships.map(r => `<option value="${r}">${r}</option>`).join('');
-                container.innerHTML = `
+            const relationships = ['夫', '妻', '長男', '長女', '次男', '次女', '三男', '三女', '四男', '四女', '五男', '五女', '六男', '六女', '父', '母', '義父', '義母', '祖父', '祖母', '孫', '兄', '姉', '弟', '妹', '義兄', '義姉', '義弟', '義妹', '伯父', '伯母', '叔父', '叔母', '甥', '姪', '里子', '婿', '嫁', '子'];
+            const relationshipOptions = relationships.map(r => `<option value="${r}">${r}</option>`).join('');
+            container.innerHTML = `
                 <table class="dependent-table">
                     <tbody>
                         <tr><td colspan="2" class="dependent-block-header">扶養親族 ${index}</td></tr>
@@ -1565,13 +1440,13 @@ dependentsList.addEventListener('change', e => {
                                     </div>
                                     <div style="flex: 1;">
                                         <label style="font-weight: normal; font-size: 0.9em;">住所(市区町村)</label>
-                                        <input type="text" name="dep_city_${index}" placeholder="例:千代田区">
+                                        <input type="text" name="tax_dep_city_${index}" placeholder="例:千代田区">
                                     </div>
                                 </div>
                                 <div style="display: flex; gap: 10px;">
                                     <div style="flex: 1;">
                                         <label style="font-weight: normal; font-size: 0.9em;">住所(町名・番地)</label>
-                                        <input type="text" name="dep_address1_${index}" placeholder="例:千代田 1-1-3">
+                                        <input type="text" name="tax_dep_address1_${index}" placeholder="例:千代田 1-1-3">
                                     </div>
                                     <div style="flex: 1;">
                                         <label style="font-weight: normal; font-size: 0.9em; margin-bottom: 4px;">住所(建物名・部屋番号)</label>
@@ -1585,29 +1460,27 @@ dependentsList.addEventListener('change', e => {
                             <td>
                                 <div class="file-upload-notes">形式： [JPG, PNG, PDF, HEIC], ファイルサイズ：2MBまで</div>
                                 <div class="document-upload-container">
-                                </div>
+                                    </div>
                             </td>
                         </tr>
                         <tr><td colspan="2" class="button-cell"></td></tr>
                     </tbody>
                 </table>`;
-                return container;
-            }
+            return container;
+        }
 
+        function createTaxDependentForm(index) {
+            const container = document.createElement('div');
+            container.className = 'tax-dependent-form-container'; 
+            
+            // createTaxDependentForm 関数内
+            const familyData = JSON.parse(localStorage.getItem('family_data')) || [];
+            let familyOptions = familyData.map((family, i) => `<option value="${i}">${family.fullName}</option>`).join('');
+            
+            const relationships = ['配偶者', '長男', '長女', '次男', '次女', '三男', '三女', '四男', '四女', '五男', '五女', '六男', '六女', '父', '母', '義父', '義母', '祖父', '祖母', '孫', '兄', '姉', '弟', '妹', '義兄', '義姉', '義弟', '義妹', '伯父', '伯母', '叔父', '叔母', '甥', '姪', '里子', '婿', '嫁', '子'];
+            const relationshipOptions = relationships.map(r => `<option value="${r}">${r}</option>`).join('');
 
-
-            function createTaxDependentForm(index) {
-                const container = document.createElement('div');
-                container.className = 'tax-dependent-form-container';
-
-                // createTaxDependentForm 関数内
-                const familyData = JSON.parse(localStorage.getItem('family_data')) || [];
-                let familyOptions = familyData.map((family, i) => `<option value="${i}">${family.fullName}</option>`).join('');
-
-                const relationships = ['配偶者', '長男', '長女', '次男', '次女', '三男', '三女', '四男', '四女', '五男', '五女', '六男', '六女', '父', '母', '義父', '義母', '祖父', '祖母', '孫', '兄', '姉', '弟', '妹', '義兄', '義姉', '義弟', '義妹', '伯父', '伯母', '叔父', '叔母', '甥', '姪', '里子', '婿', '嫁', '子'];
-                const relationshipOptions = relationships.map(r => `<option value="${r}">${r}</option>`).join('');
-
-                container.innerHTML = `
+            container.innerHTML = `
                 <div class="dependent-form-container" style="margin-bottom: 0;">
                     <table class="dependent-table" style="margin-bottom: 0;">
                         <tbody>
@@ -1681,8 +1554,8 @@ dependentsList.addEventListener('change', e => {
                                         <div style="flex: 1;"><label style="font-weight: normal; font-size: 0.9em;">住所(市区町村)</label><input type="text" name="tax_dep_city_${index}" placeholder="例:千代田区"></div>
                                     </div>
                                     <div style="display: flex; gap: 10px;">
-                                    <div style="flex: 1;"><label style="font-weight: normal; font-size: 0.9em;">住所(町名・番地)</label><input type="text" name="tax_dep_address1_${index}" placeholder="例:千代田 1-1"></div>
-                                    <div style="flex: 1;"><label style="font-weight: normal; font-size: 0.9em;">住所(建物名・部屋番号)</label><input type="text" name="tax_dep_address2_${index}" placeholder="例:〇〇ビル101号室"></div>
+                                       <div style="flex: 1;"><label style="font-weight: normal; font-size: 0.9em;">住所(町名・番地)</label><input type="text" name="tax_dep_address1_${index}" placeholder="例:千代田 1-1"></div>
+                                       <div style="flex: 1;"><label style="font-weight: normal; font-size: 0.9em;">住所(建物名・部屋番号)</label><input type="text" name="tax_dep_address2_${index}" placeholder="例:〇〇ビル101号室"></div>
                                     </div>
                                 </td>
                             </tr>
@@ -1692,333 +1565,358 @@ dependentsList.addEventListener('change', e => {
                         </tbody>
                     </table>
                 </div>`;
-                return container;
+            return container;
+        }
+
+    });
+    // =========================
+    // フロー1 → フロー2 同期（配偶者）
+    // 想定セレクタ：
+    //  - フロー1 家族行: .flow1-dependent-row
+    //    - 氏名: input[name^="dep_name"]
+    //    - 生年月日: input[name^="dep_dob"] (任意)
+    //    - 続柄: select[name^="dep_relationship"]（値: "夫" / "妻" / それ以外）
+    //  - フロー2 税扶養行: .tax-dependent-form-container
+    //    - 氏名: input[name^="tax_dep_name"]
+    //    - 生年月日: input[name^="tax_dep_dob"] (任意)
+    //    - 続柄: select[name^="tax_dep_relationship"]（"配偶者" を含む）
+    // =========================
+
+    (function () {
+    const SPOUSE_VALUES_FLOW1 = new Set(['夫', '妻']); // フロー1で配偶者判定
+    const TAX_SPOUSE_VALUE = '配偶者';                 // フロー2で選択する値
+    const LOCK_ATTR = 'data-locked-by-spouse-sync';
+
+    // 既存の spouse 同期ユーティリティ群（SPOUSE_VALUES_FLOW1 等）の下に追加
+    document.addEventListener('DOMContentLoaded', () => {
+        // Flow1→Flow2 の初期同期を実行
+        if (typeof syncAllSpouseToTax === 'function') {
+            syncAllSpouseToTax();
+        }
+    });
+
+
+    // 名前をゆるくマッチさせる（全角半角・空白除去）
+    function normalizeName(s) {
+        return (s || '')
+        .replace(/\s+/g, '')
+        .replace(/[‐-‒–—―ｰ\-－ー]/g, '')
+        .replace(/[（）()]/g, '')
+        .replace(/[　]/g, '')
+        .toLowerCase();
+    }
+
+    // 日付を 8桁に正規化（YYYYMMDD）。一致精度を上げるため任意で使用
+    function normalizeDob(s) {
+        if (!s) return '';
+        const t = String(s).trim().replace(/-/g, '/');
+        const m = t.match(/^(\d{4})[\/.](\d{1,2})[\/.](\d{1,2})$/);
+        if (!m) return '';
+        const y = m[1], mo = ('0' + m[2]).slice(-2), d = ('0' + m[3]).slice(-2);
+        return `${y}${mo}${d}`;
+    }
+
+    // フロー2（税扶養）側で該当者を探す
+    function findTaxRowByNameDob(name, dob) {
+        const keyName = normalizeName(name);
+        const keyDob  = normalizeDob(dob);
+        const rows = document.querySelectorAll('.tax-dependent-form-container');
+        let looseCandidate = null;
+
+        for (const row of rows) {
+        const nEl = row.querySelector('input[name^="tax_dep_name"]');
+        const dEl = row.querySelector('input[name^="tax_dep_dob"]');
+        const nKey = normalizeName(nEl?.value || '');
+        const dKey = normalizeDob(dEl?.value || '');
+
+        // まず名前＋DOBの厳密一致
+        if (keyName && keyDob && nKey === keyName && dKey === keyDob) return row;
+
+        // DOBが無い場合は名前のみで暫定一致（候補保持）
+        if (!keyDob && keyName && nKey === keyName) looseCandidate = row;
+        }
+        return looseCandidate;
+    }
+
+    // 配偶者同期：夫/妻 → 配偶者（ロック）／それ以外 → ロック解除
+    function applySpouseSyncForRow(flow1Row) {
+        const nameEl = flow1Row.querySelector('input[name^="dep_name"]');
+        const dobEl  = flow1Row.querySelector('input[name^="dep_dob"]');
+        const relSel = flow1Row.querySelector('select[name^="dep_relationship"]');
+        if (!nameEl || !relSel) return;
+
+        const relVal = relSel.value || '';
+        const isSpouse = SPOUSE_VALUES_FLOW1.has(relVal);
+        const taxRow = findTaxRowByNameDob(nameEl.value, dobEl?.value);
+
+        if (!taxRow) return;
+
+        const taxRelSel = taxRow.querySelector('select[name^="tax_dep_relationship"]');
+        if (!taxRelSel) return;
+
+        if (isSpouse) {
+        // 値を「配偶者」にし、ロックして注記
+        if (taxRelSel.value !== TAX_SPOUSE_VALUE) {
+            taxRelSel.value = TAX_SPOUSE_VALUE;
+            taxRelSel.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+        taxRelSel.setAttribute('disabled', 'disabled');
+        taxRelSel.setAttribute(LOCK_ATTR, '1');
+        addOrUpdateNote(taxRelSel, '（フロー1の続柄が「夫／妻」のため自動設定）');
+        } else {
+        // ロック解除（本スクリプトがロックした場合のみ）
+        if (taxRelSel.hasAttribute(LOCK_ATTR)) {
+            taxRelSel.removeAttribute('disabled');
+            taxRelSel.removeAttribute(LOCK_ATTR);
+            removeNote(taxRelSel);
+        }
+        }
+    }
+
+    // セレクトの直後に注記を表示
+    function addOrUpdateNote(selectEl, text) {
+        let note = selectEl.nextElementSibling;
+        if (!note || !note.classList || !note.classList.contains('spouse-sync-note')) {
+        note = document.createElement('span');
+        note.className = 'spouse-sync-note';
+        note.style.marginLeft = '8px';
+        note.style.fontSize = '12px';
+        note.style.color = '#666';
+        selectEl.insertAdjacentElement('afterend', note);
+        }
+        note.textContent = text || '';
+    }
+    function removeNote(selectEl) {
+        const note = selectEl.nextElementSibling;
+        if (note && note.classList && note.classList.contains('spouse-sync-note')) {
+        note.remove();
+        }
+    }
+
+    // フロー1全行を走査して同期
+    function syncAllSpouseToTax() {
+        document.querySelectorAll('.flow1-dependent-row').forEach(applySpouseSyncForRow);
+    }
+
+    // 変更イベントを購読（フロー1の続柄が変わったら即同期）
+    function onFlow1Change(e) {
+        const el = e.target;
+        if (el && el.matches('.flow1-dependent-row select[name^="dep_relationship"]')) {
+        const row = el.closest('.flow1-dependent-row');
+        if (row) applySpouseSyncForRow(row);
+        }
+    }
+
+    // DOM追加（行追加）にも対応：MutationObserver
+    function observeDynamicRows() {
+        const root = document.body;
+        const mo = new MutationObserver((mutations) => {
+        let changed = false;
+        for (const m of mutations) {
+            for (const node of m.addedNodes) {
+            if (!(node instanceof HTMLElement)) continue;
+            if (node.matches && node.matches('.flow1-dependent-row')) changed = true;
+            if (node.querySelector && node.querySelector('.flow1-dependent-row')) changed = true;
             }
-
-
+        }
+        if (changed) syncAllSpouseToTax();
         });
-        // =========================
-        // フロー1 → フロー2 同期（配偶者）
-        // 想定セレクタ：
-        //  - フロー1 家族行: .flow1-dependent-row
-        //    - 氏名: input[name^="dep_name"]
-        //    - 生年月日: input[name^="dep_dob"] (任意)
-        //    - 続柄: select[name^="dep_relationship"]（値: "夫" / "妻" / それ以外）
-        //  - フロー2 税扶養行: .tax-dependent-form-container
-        //    - 氏名: input[name^="tax_dep_name"]
-        //    - 生年月日: input[name^="tax_dep_dob"] (任意)
-        //    - 続柄: select[name^="tax_dep_relationship"]（"配偶者" を含む）
-        // =========================
+        mo.observe(root, { childList: true, subtree: true });
+    }
 
-        (function () {
-            const SPOUSE_VALUES_FLOW1 = new Set(['夫', '妻']); // フロー1で配偶者判定
-            const TAX_SPOUSE_VALUE = '配偶者';                 // フロー2で選択する値
-            const LOCK_ATTR = 'data-locked-by-spouse-sync';
+    // 初期化
+    document.addEventListener('DOMContentLoaded', () => {
+        syncAllSpouseToTax();
+        document.addEventListener('change', onFlow1Change, true);
+        observeDynamicRows();
+    });
 
-            // 既存の spouse 同期ユーティリティ群（SPOUSE_VALUES_FLOW1 等）の下に追加
-            document.addEventListener('DOMContentLoaded', () => {
-                // Flow1→Flow2 の初期同期を実行
-                if (typeof syncAllSpouseToTax === 'function') {
-                    syncAllSpouseToTax();
-                }
-            });
+    // 必要に応じて、公開API（他コードから再同期したい時に呼び出し）
+    window.syncSpouseRelationshipToTax = syncAllSpouseToTax;
+    })();
+</script>
+<script>
+(function () {
+  // ===== 設定（必要に応じて調整） =========================================
+  const TAX_ROW = '.tax-dependent-form-container';
+  const TAX_PERSON_SELECT = 'select[name^="tax_dep_family_select"]';
+  const TAX_NAME = 'input[name^="tax_dep_name"]';
+  const TAX_DOB  = 'input[name^="tax_dep_dob"]';
+  const TAX_RES  = 'input[name^="tax_dep_residence_"]';
 
+  const HLTH_ROW = '.dependent-form-container';
+  const HLTH_NAME = 'input[name^="dep_name"]';
+  const HLTH_DOB  = 'input[name^="dep_dob"]';
+  const HLTH_RES  = 'select[name^="dep_residence"]';
 
-            // 名前をゆるくマッチさせる（全角半角・空白除去）
-            function normalizeName(s) {
-                return (s || '')
-                    .replace(/\s+/g, '')
-                    .replace(/[‐-‒–—―ｰ\-－ー]/g, '')
-                    .replace(/[（）()]/g, '')
-                    .replace(/[　]/g, '')
-                    .toLowerCase();
-            }
+  // 税扶養の「別居」値 → 健保扶養の値（既存UIに合わせて）
+  const MAP_TAX_RES_TO_HLTH = {
+    '別居': 'different',
+    '同居': 'same',
+    '国外': 'different_overseas',
+    // 英語値にも一応対応
+    'different': 'different',
+    'same': 'same',
+    'different_overseas': 'different_overseas'
+  };
 
-            // 日付を 8桁に正規化（YYYYMMDD）。一致精度を上げるため任意で使用
-            function normalizeDob(s) {
-                if (!s) return '';
-                const t = String(s).trim().replace(/-/g, '/');
-                const m = t.match(/^(\d{4})[\/.](\d{1,2})[\/.](\d{1,2})$/);
-                if (!m) return '';
-                const y = m[1], mo = ('0' + m[2]).slice(-2), d = ('0' + m[3]).slice(-2);
-                return `${y}${mo}${d}`;
-            }
+  // ===== ヘルパー ===========================================================
+  function normalizeName(s) {
+    return (s || '')
+      .replace(/\s+/g, '')
+      .replace(/[‐-‒–—―ｰ\-－ー]/g, '')
+      .replace(/[（）()]/g, '')
+      .replace(/[　]/g, '')
+      .toLowerCase();
+  }
+  function normalizeDob(s) {
+    if (!s) return '';
+    const t = String(s).trim().replace(/-/g, '/');
+    const m = t.match(/^(\d{4})[\/.](\d{1,2})[\/.](\d{1,2})$/);
+    if (!m) return '';
+    const y = m[1], mo = ('0' + m[2]).slice(-2), d = ('0' + m[3]).slice(-2);
+    return `${y}${mo}${d}`;
+  }
+  function optionKey(opt) {
+    // 値優先（id が入っている前提）。なければ表示文字列を正規化してキー化
+    const v = opt.value != null ? String(opt.value) : '';
+    if (v) return v;
+    return normalizeName(opt.textContent || '');
+  }
+  function collectSelectedKeys(excludeSelect = null) {
+    const selects = document.querySelectorAll(`${TAX_ROW} ${TAX_PERSON_SELECT}`);
+    const keys = new Set();
+    selects.forEach(sel => {
+      if (sel === excludeSelect) return;
+      const v = sel.value;
+      if (v) keys.add(v);
+    });
+    return keys;
+  }
+  function refreshTaxPersonOptionVisibility() {
+    const selects = document.querySelectorAll(`${TAX_ROW} ${TAX_PERSON_SELECT}`);
+    const selectedGlobal = collectSelectedKeys(null);
 
-            // フロー2（税扶養）側で該当者を探す
-            function findTaxRowByNameDob(name, dob) {
-                const keyName = normalizeName(name);
-                const keyDob = normalizeDob(dob);
-                const rows = document.querySelectorAll('.tax-dependent-form-container');
-                let looseCandidate = null;
+    selects.forEach(sel => {
+      // このセレクトの選択値は常に表示しておく（変更時に消えないように）
+      const mySelected = new Set(selectedGlobal);
+      if (sel.value) mySelected.delete(sel.value);
 
-                for (const row of rows) {
-                    const nEl = row.querySelector('input[name^="tax_dep_name"]');
-                    const dEl = row.querySelector('input[name^="tax_dep_dob"]');
-                    const nKey = normalizeName(nEl?.value || '');
-                    const dKey = normalizeDob(dEl?.value || '');
+      [...sel.options].forEach(opt => {
+        const key = optionKey(opt);
+        // 未選択ダミー（例：'選択してください'）は常に表示
+        const isPlaceholder = (opt.value === '' || opt.disabled);
+        if (isPlaceholder) {
+          opt.hidden = false;
+          return;
+        }
+        opt.hidden = mySelected.has(key);
+      });
+    });
+  }
 
-                    // まず名前＋DOBの厳密一致
-                    if (keyName && keyDob && nKey === keyName && dKey === keyDob) return row;
+  // 氏名・生年月日で税扶養行 → 健保行を対応付け
+  function findHealthRowByTaxRow(taxRow) {
+    const name = taxRow.querySelector(TAX_NAME)?.value;
+    const dob  = taxRow.querySelector(TAX_DOB)?.value;
+    if (!name) return null;
 
-                    // DOBが無い場合は名前のみで暫定一致（候補保持）
-                    if (!keyDob && keyName && nKey === keyName) looseCandidate = row;
-                }
-                return looseCandidate;
-            }
+    const keyName = normalizeName(name);
+    const keyDob  = normalizeDob(dob);
+    let loose = null;
 
-            // 配偶者同期：夫/妻 → 配偶者（ロック）／それ以外 → ロック解除
-            function applySpouseSyncForRow(flow1Row) {
-                const nameEl = flow1Row.querySelector('input[name^="dep_name"]');
-                const dobEl = flow1Row.querySelector('input[name^="dep_dob"]');
-                const relSel = flow1Row.querySelector('select[name^="dep_relationship"]');
-                if (!nameEl || !relSel) return;
+    document.querySelectorAll(HLTH_ROW).forEach(hrow => {
+      const hn = hrow.querySelector(HLTH_NAME)?.value || '';
+      const hd = hrow.querySelector(HLTH_DOB)?.value || '';
+      const nk = normalizeName(hn);
+      const dk = normalizeDob(hd);
 
-                const relVal = relSel.value || '';
-                const isSpouse = SPOUSE_VALUES_FLOW1.has(relVal);
-                const taxRow = findTaxRowByNameDob(nameEl.value, dobEl?.value);
+      if (keyName && keyDob && nk === keyName && dk === keyDob) {
+        loose = hrow; // 厳密一致を優先
+      } else if (!keyDob && keyName && nk === keyName && !loose) {
+        loose = hrow; // 名前だけ一致の暫定
+      }
+    });
+    return loose;
+  }
 
-                if (!taxRow) return;
+  // ===== 要件1: 税扶養で選択済みは他のリストから非表示 =======================
+  function onTaxPersonChange() {
+    refreshTaxPersonOptionVisibility();
+  }
 
-                const taxRelSel = taxRow.querySelector('select[name^="tax_dep_relationship"]');
-                if (!taxRelSel) return;
+  // ===== 要件2: 税扶養の別居 → 健保扶養の別居に同期 =========================
+  function onTaxResidenceChange(e) {
+    const sel = e.target;
+    if (!sel.matches(`${TAX_ROW} ${TAX_RES}`)) return;
 
-                if (isSpouse) {
-                    // 値を「配偶者」にし、ロックして注記
-                    if (taxRelSel.value !== TAX_SPOUSE_VALUE) {
-                        taxRelSel.value = TAX_SPOUSE_VALUE;
-                        taxRelSel.dispatchEvent(new Event('change', { bubbles: true }));
-                    }
-                    taxRelSel.setAttribute('disabled', 'disabled');
-                    taxRelSel.setAttribute(LOCK_ATTR, '1');
-                    addOrUpdateNote(taxRelSel, '（フロー1の続柄が「夫／妻」のため自動設定）');
-                } else {
-                    // ロック解除（本スクリプトがロックした場合のみ）
-                    if (taxRelSel.hasAttribute(LOCK_ATTR)) {
-                        taxRelSel.removeAttribute('disabled');
-                        taxRelSel.removeAttribute(LOCK_ATTR);
-                        removeNote(taxRelSel);
-                    }
-                }
-            }
+    const taxRow = sel.closest(TAX_ROW);
+    if (!taxRow) return;
 
-            // セレクトの直後に注記を表示
-            function addOrUpdateNote(selectEl, text) {
-                let note = selectEl.nextElementSibling;
-                if (!note || !note.classList || !note.classList.contains('spouse-sync-note')) {
-                    note = document.createElement('span');
-                    note.className = 'spouse-sync-note';
-                    note.style.marginLeft = '8px';
-                    note.style.fontSize = '12px';
-                    note.style.color = '#666';
-                    selectEl.insertAdjacentElement('afterend', note);
-                }
-                note.textContent = text || '';
-            }
-            function removeNote(selectEl) {
-                const note = selectEl.nextElementSibling;
-                if (note && note.classList && note.classList.contains('spouse-sync-note')) {
-                    note.remove();
-                }
-            }
+    const taxVal = sel.value;
+    const mapped = MAP_TAX_RES_TO_HLTH.hasOwnProperty(taxVal)
+      ? MAP_TAX_RES_TO_HLTH[taxVal]
+      : null;
 
-            // フロー1全行を走査して同期
-            function syncAllSpouseToTax() {
-                document.querySelectorAll('.flow1-dependent-row').forEach(applySpouseSyncForRow);
-            }
+    if (!mapped) return; // 未定義の値は無視
 
-            // 変更イベントを購読（フロー1の続柄が変わったら即同期）
-            function onFlow1Change(e) {
-                const el = e.target;
-                if (el && el.matches('.flow1-dependent-row select[name^="dep_relationship"]')) {
-                    const row = el.closest('.flow1-dependent-row');
-                    if (row) applySpouseSyncForRow(row);
-                }
-            }
+    const healthRow = findHealthRowByTaxRow(taxRow);
+    if (!healthRow) return;
 
-            // DOM追加（行追加）にも対応：MutationObserver
-            function observeDynamicRows() {
-                const root = document.body;
-                const mo = new MutationObserver((mutations) => {
-                    let changed = false;
-                    for (const m of mutations) {
-                        for (const node of m.addedNodes) {
-                            if (!(node instanceof HTMLElement)) continue;
-                            if (node.matches && node.matches('.flow1-dependent-row')) changed = true;
-                            if (node.querySelector && node.querySelector('.flow1-dependent-row')) changed = true;
-                        }
-                    }
-                    if (changed) syncAllSpouseToTax();
-                });
-                mo.observe(root, { childList: true, subtree: true });
-            }
+    const healthSel = healthRow.querySelector(HLTH_RES);
+    if (!healthSel) return;
 
-            // 初期化
-            document.addEventListener('DOMContentLoaded', () => {
-                syncAllSpouseToTax();
-                document.addEventListener('change', onFlow1Change, true);
-                observeDynamicRows();
-            });
+    if (healthSel.value !== mapped) {
+      healthSel.value = mapped;
+      healthSel.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+  }
 
-            // 必要に応じて、公開API（他コードから再同期したい時に呼び出し）
-            window.syncSpouseRelationshipToTax = syncAllSpouseToTax;
-        })();
-    </script>
-    <script>
-        (function () {
-            const SPOUSE_VALUES_FLOW1 = new Set(['夫', '妻']); // フロー1で配偶者判定
-            const TAX_SPOUSE_VALUE = '配偶者';                 // フロー2で選択する値
-            const LOCK_ATTR = 'data-locked-by-spouse-sync';
+  // ===== 監視（行の追加にも追従） ============================================
+  function wireEventsWithin(container) {
+    container.querySelectorAll(`${TAX_ROW} ${TAX_PERSON_SELECT}`).forEach(sel => {
+      sel.removeEventListener('change', onTaxPersonChange);
+      sel.addEventListener('change', onTaxPersonChange);
+    });
+    container.querySelectorAll(`${TAX_ROW} ${TAX_RES}`).forEach(sel => {
+      sel.removeEventListener('change', onTaxResidenceChange);
+      sel.addEventListener('change', onTaxResidenceChange);
+    });
+  }
 
-            // 既存の spouse 同期ユーティリティ群（SPOUSE_VALUES_FLOW1 等）の下に追加
-            document.addEventListener('DOMContentLoaded', () => {
-                // Flow1→Flow2 の初期同期を実行
-                if (typeof syncAllSpouseToTax === 'function') {
-                    syncAllSpouseToTax();
-                }
-            });
+  function observeDynamic() {
+    const mo = new MutationObserver((muts) => {
+      let needsRefresh = false;
+      muts.forEach(m => {
+        m.addedNodes.forEach(node => {
+          if (!(node instanceof HTMLElement)) return;
+          if (node.matches && (node.matches(TAX_ROW) || node.matches(HLTH_ROW))) {
+            wireEventsWithin(node.parentElement || document);
+            needsRefresh = true;
+          }
+          if (node.querySelector && (node.querySelector(TAX_ROW) || node.querySelector(HLTH_ROW))) {
+            wireEventsWithin(node);
+            needsRefresh = true;
+          }
+        });
+      });
+      if (needsRefresh) refreshTaxPersonOptionVisibility();
+    });
+    mo.observe(document.body, { childList: true, subtree: true });
+  }
 
-            // 名前をゆるくマッチさせる（全角半角・空白除去）
-            function normalizeName(s) {
-                return (s || '')
-                    .replace(/\s+/g, '')
-                    .replace(/[‐-‒–—―ｰ\-－ー]/g, '')
-                    .replace(/[（）()]/g, '')
-                    .replace(/[　]/g, '')
-                    .toLowerCase();
-            }
+  // ===== 初期化 ==============================================================
+  document.addEventListener('DOMContentLoaded', () => {
+    wireEventsWithin(document);
+    refreshTaxPersonOptionVisibility();
+    document.addEventListener('change', onTaxResidenceChange, true);
+    observeDynamic();
+  });
 
-            // 日付を 8桁に正規化（YYYYMMDD）。一致精度を上げるため任意で使用
-            function normalizeDob(s) {
-                if (!s) return '';
-                const t = String(s).trim().replace(/-/g, '/');
-                const m = t.match(/^(\d{4})[\/.](\d{1,2})[\/.](\d{1,2})$/);
-                if (!m) return '';
-                const y = m[1], mo = ('0' + m[2]).slice(-2), d = ('0' + m[3]).slice(-2);
-                return `${y}${mo}${d}`;
-            }
-
-            // フロー2（税扶養）側で該当者を探す
-            function findTaxRowByNameDob(name, dob) {
-                const keyName = normalizeName(name);
-                const keyDob = normalizeDob(dob);
-                const rows = document.querySelectorAll('.tax-dependent-form-container');
-                let looseCandidate = null;
-
-                for (const row of rows) {
-                    const nEl = row.querySelector('input[name^="tax_dep_name"]');
-                    const dEl = row.querySelector('input[name^="tax_dep_dob"]');
-                    const nKey = normalizeName(nEl?.value || '');
-                    const dKey = normalizeDob(dEl?.value || '');
-
-                    // まず名前＋DOBの厳密一致
-                    if (keyName && keyDob && nKey === keyName && dKey === keyDob) return row;
-
-                    // DOBが無い場合は名前のみで暫定一致（候補保持）
-                    if (!keyDob && keyName && nKey === keyName) looseCandidate = row;
-                }
-                return looseCandidate;
-            }
-
-            // 配偶者同期：夫/妻 → 配偶者（ロック）／それ以外 → ロック解除
-            function applySpouseSyncForRow(flow1Row) {
-                const nameEl = flow1Row.querySelector('input[name^="dep_name"]');
-                const dobEl = flow1Row.querySelector('input[name^="dep_dob"]');
-                const relSel = flow1Row.querySelector('select[name^="dep_relationship"]');
-                if (!nameEl || !relSel) return;
-
-                const relVal = relSel.value || '';
-                const isSpouse = SPOUSE_VALUES_FLOW1.has(relVal);
-                const taxRow = findTaxRowByNameDob(nameEl.value, dobEl?.value);
-
-                if (!taxRow) return;
-
-                const taxRelSel = taxRow.querySelector('select[name^="tax_dep_relationship"]');
-                if (!taxRelSel) return;
-
-                if (isSpouse) {
-                    // 値を「配偶者」にし、ロックして注記
-                    if (taxRelSel.value !== TAX_SPOUSE_VALUE) {
-                        taxRelSel.value = TAX_SPOUSE_VALUE;
-                        taxRelSel.dispatchEvent(new Event('change', { bubbles: true }));
-                    }
-                    taxRelSel.setAttribute('disabled', 'disabled');
-                    taxRelSel.setAttribute(LOCK_ATTR, '1');
-                    addOrUpdateNote(taxRelSel, '（フロー1の続柄が「夫／妻」のため自動設定）');
-                } else {
-                    // ロック解除（本スクリプトがロックした場合のみ）
-                    if (taxRelSel.hasAttribute(LOCK_ATTR)) {
-                        taxRelSel.removeAttribute('disabled');
-                        taxRelSel.removeAttribute(LOCK_ATTR);
-                        removeNote(taxRelSel);
-                    }
-                }
-            }
-
-            // セレクトの直後に注記を表示
-            function addOrUpdateNote(selectEl, text) {
-                let note = selectEl.nextElementSibling;
-                if (!note || !note.classList || !note.classList.contains('spouse-sync-note')) {
-                    note = document.createElement('span');
-                    note.className = 'spouse-sync-note';
-                    note.style.marginLeft = '8px';
-                    note.style.fontSize = '12px';
-                    note.style.color = '#666';
-                    selectEl.insertAdjacentElement('afterend', note);
-                }
-                note.textContent = text || '';
-            }
-            function removeNote(selectEl) {
-                const note = selectEl.nextElementSibling;
-                if (note && note.classList && note.classList.contains('spouse-sync-note')) {
-                    note.remove();
-                }
-            }
-
-            // フロー1全行を走査して同期
-            function syncAllSpouseToTax() {
-                document.querySelectorAll('.flow1-dependent-row').forEach(applySpouseSyncForRow);
-            }
-
-            // 変更イベントを購読（フロー1の続柄が変わったら即同期）
-            function onFlow1Change(e) {
-                const el = e.target;
-                if (el && el.matches('.flow1-dependent-row select[name^="dep_relationship"]')) {
-                    const row = el.closest('.flow1-dependent-row');
-                    if (row) applySpouseSyncForRow(row);
-                }
-            }
-
-            // DOM追加（行追加）にも対応：MutationObserver
-            function observeDynamicRows() {
-                const root = document.body;
-                const mo = new MutationObserver((mutations) => {
-                    let changed = false;
-                    for (const m of mutations) {
-                        for (const node of m.addedNodes) {
-                            if (!(node instanceof HTMLElement)) continue;
-                            if (node.matches && node.matches('.flow1-dependent-row')) changed = true;
-                            if (node.querySelector && node.querySelector('.flow1-dependent-row')) changed = true;
-                        }
-                    }
-                    if (changed) syncAllSpouseToTax();
-                });
-                mo.observe(root, { childList: true, subtree: true });
-            }
-
-            // 初期化
-            document.addEventListener('DOMContentLoaded', () => {
-                syncAllSpouseToTax();
-                document.addEventListener('change', onFlow1Change, true);
-                observeDynamicRows();
-            });
-
-            // 必要に応じて、公開API（他コードから再同期したい時に呼び出し）
-            window.syncSpouseRelationshipToTax = syncAllSpouseToTax;
-        })();
-    </script>
-
+  // 外部から強制更新したい場合の公開API
+  window.refreshTaxPersonLists = refreshTaxPersonOptionVisibility;
+})();
+</script>
 
 </body>
-
 </html>
-
