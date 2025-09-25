@@ -478,8 +478,9 @@
                     <div class="info-box">
                         <strong>扶養条件</strong><br>
                         1. 三親等内の親族で、主として被保険者（本人）の収入によって暮らしている<br>
-                        2. 被保険者と同居の場合：年間収入130万円未満かつ被保険者の年収の2分の1未満である※<br>
-                        3. 被保険者と別居の場合：年間収入130万円未満かつ被保険者からの援助による収入額未満※<br>
+                        2. 被保険者と同居の場合：年間収入130万円未満かつ被保険者の年収の2分の1未満である<br>
+                        3. 被保険者と別居の場合：年間収入130万円未満かつ被保険者からの援助による収入額未満<br>
+                        
                         ※配偶者を除く19歳以上23歳未満の場合、上記「130万円未満」は150万円未満になります。<br>
                         ※扶養親族が60歳以上または障がい者の場合、上記「130万円未満」は180万円未満になります。
                     </div>
@@ -653,14 +654,17 @@
             const incomeInput = dependentForm.querySelector('input[name^="dep_income"]');
             const pensionInput = dependentForm.querySelector('input[name^="dep_pension_income"]');
             const residenceSelect = dependentForm.querySelector('select[name^="dep_residence"]');
+            const jobSelect = dependentForm.querySelector('select[name^="dep_job"]');
             const container = dependentForm.querySelector('.document-upload-container');
-            const index = dependentForm.querySelector('input[name^="dep_name"]').name.split('_').pop();
-            
+            const indexMatch = dependentForm.querySelector('input[name^="dep_furigana_1"], select[name^="dep_family_select_1"]');
+            const index = indexMatch ? indexMatch.name.split('_').pop() : '1';
+
             let finalHtml = '';
 
             const income = parseFloat(incomeInput.value.replace(/,/g, '')) || 0;
             const pension = parseFloat(pensionInput.value.replace(/,/g, '')) || 0;
             const residence = residenceSelect.value;
+            const job = jobSelect.value;
 
              if (income >= 1030000 && (income + pension) < threshold) {
                 let salaryDocsHtml = '';
@@ -691,10 +695,10 @@
                     </div>`;
             }
 
-            if (residence === 'different') {
+            if (residence === 'different' && job !== 'student') {
                 finalHtml += `
                     <div class="document-group">
-                        <div class="document-group-title">仕送り証明</div>
+                        <div class="document-group-title">仕送り証明</br><span style="margin-left: 0px; margin-top: 5px; font-size: 0.8em;  color: #666;">※扶養認定を受ける方が16歳未満または16歳以上の学生の場合は不要です。</span></div>
                         <div class="document-upload-section">
                             <label>仕送り明細書</label>
                             <div class="file-drop-area" onclick="this.querySelector('input').click();">
@@ -1340,8 +1344,9 @@
                 // 職業（その他）
                 const jobOtherInput = dependentForm.querySelector('input[name^="dep_job_other"]');
                 if (jobOtherInput) {
-                jobOtherInput.style.display = (rawValue === 'other') ? 'block' : 'none';
+                    jobOtherInput.style.display = (rawValue === 'other') ? 'block' : 'none';
                 }
+                updateDocumentUploads(dependentForm);
             }
             }
 
