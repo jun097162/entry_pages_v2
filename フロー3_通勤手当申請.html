@@ -250,6 +250,7 @@ h1 {
                         <label><input type="radio" name="commute_method" value="moped"> 原付</label>
                         <label><input type="radio" name="commute_method" value="bicycle"> 自転車</label>
                         <label><input type="radio" name="commute_method" value="walk"> 徒歩</label>
+                        <label><input type="radio" name="commute_method" value="none"> 支給不要</label>
                     </div>
                 </div>
 
@@ -607,6 +608,20 @@ h1 {
                 const googleSearchBtn = document.getElementById('search_route_btn');
                 const mapElement = document.getElementById('map');
                 
+                // 「支給不要」が選択された場合、関連セクションをすべて非表示にして処理を終了
+                if (selectedValue === 'none') {
+                    addressSection.style.display = 'none';
+                    googleSearchBtn.style.display = 'none';
+                    mapElement.style.display = 'none';
+                    for (const key in commuteSections) {
+                        if (commuteSections[key]) {
+                            commuteSections[key].style.display = 'none';
+                        }
+                    }
+                    return; // ここで処理を終了
+                }
+
+                // --- 以下は「支給不要」以外が選択された場合の既存の処理 ---
                 const showGoogleRouteSearchFor = ['car', 'motorcycle', 'moped', 'bicycle'];
                 const showEkispertSearchFor = ['public_transport', 'public_transport_bicycle'];
 
