@@ -132,7 +132,7 @@ textarea {
     margin-top: 5px;
 }
 .annotation {
-     /* ... existing styles ... */
+    /* ... existing styles ... */
 }
 .document-box {
     border: 1px dashed #ccc;
@@ -263,16 +263,16 @@ textarea {
     height: 100%;
     overflow: auto;
     background-color: rgba(0,0,0,0.6);
-    align-items: center; 
+    align-items: center;
     justify-content: center;
 }
 .modal-content {
     background-color: #fefefe;
-    margin: auto; 
-    padding: 25px; 
+    margin: auto;
+    padding: 25px;
     border: 1px solid #888;
     width: 80%;
-    max-width: 600px; 
+    max-width: 600px;
     border-radius: 8px;
     position: relative;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
@@ -290,19 +290,19 @@ textarea {
 
 .modal-header h3 {
     margin: 0;
-    font-size: 1.4em; 
+    font-size: 1.4em;
     color: #333;
     border-bottom: none;
 }
 
 /* General modal close button style */
-.modal .close-button { 
+.modal .close-button {
     color: #aaa;
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
-    line-height: 1; 
-    padding: 0 5px; 
+    line-height: 1;
+    padding: 0 5px;
 }
 .modal .close-button:hover,
 .modal .close-button:focus {
@@ -312,8 +312,9 @@ textarea {
 
 /* Contract Agreement Modal Specific Styles */
 .contract-agreement-modal .modal-content { /* Specific overrides for contract modals */
-    padding: 25px 30px; 
-    max-width: 900px; 
+    padding: 25px 30px;
+    max-width: 900px;
+    height: 95vh; /* ★ 修正: モーダルの高さをウィンドウの95%に */
 }
 .contract-agreement-modal .modal-body .form-group { margin-bottom: 20px; }
 .contract-agreement-modal .modal-body label { display: block; font-size: 14px; font-weight: bold; color: #333; margin-bottom: 8px; }
@@ -330,7 +331,7 @@ textarea {
 
 .contract-viewer {
     border: 1px solid #ccc; border-radius: 6px; padding: 10px; margin-bottom: 15px;
-    background-color: #fff; overflow-x: auto; max-height: 400px; overflow-y: auto;
+    background-color: #fff; overflow-x: auto; max-height: 800px; /* ★ 修正: 高さを400pxから800pxに変更 */ overflow-y: auto;
 }
 .contract-viewer img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
 .action-prompt {  text-align: center; font-size: 14px; color: #555; margin-bottom: 15px; }
@@ -687,7 +688,7 @@ textarea {
                             <input type="file" id="photo_file" name="photo_file" style="display:none;" accept="image/*">
                             <p><strong>本人の顔写真</strong></p>
                             <p class="description">3か月以内の写真</p>
-                            
+
                             <div class="image-preview-box" id="photo_file_preview" style="margin: 0 auto 10px; width:150px;">
                                 <span>プレビューなし</span>
                             </div>
@@ -697,7 +698,7 @@ textarea {
                                 <button type="button" class="delete-file-btn" data-target-id="photo_file" style="display:none;">削除</button>
                             </div>
                         </div>
-                        
+
                         <div class="document-box" data-doc-id="resident_proof">
                             <input type="file" id="resident_proof_file" name="resident_proof_file" style="display:none;" accept="image/*,.pdf">
                             <p><strong>住民票記載事項証明書もしくは住民票のコピー</strong></p>
@@ -793,7 +794,7 @@ textarea {
                     </div>
                 </div>
                 <div id="foreign_documents_container" class="inline-fields" style="display:none; margin-top:15px; gap: 10px; flex-wrap: wrap;">
-                    </div>
+                </div>
             </fieldset>
 
             <fieldset class="form-section">
@@ -905,7 +906,7 @@ textarea {
             <fieldset class="form-section">
                 <legend><h2>家族状況</h2></legend>
                 <div id="family_entries_container">
-                    </div>
+                </div>
             </fieldset>
 
             <fieldset class="form-section">
@@ -1002,7 +1003,7 @@ textarea {
                         <label for="jp_bank_name">銀行名</label>
                         <input type="text" id="jp_bank_name" name="jp_bank_name" value="ゆうちょ銀行" readonly class="readonly-field">
                     </div>
-                    
+
                     <div class="form-group">
                         <label>口座の記号・番号を入力</label>
                         <div class="jp-bank-account-number-fields">
@@ -1012,7 +1013,7 @@ textarea {
                             </div>
                             <span>-</span>
                             <div class="form-group">
-                                <label for="jp_kigo_2" style="font-weight:normal;">&nbsp;</label>
+                                <label for="jp_kigo_2" style="font-weight:normal;"> </label>
                                 <input type="tel" id="jp_kigo_2" name="jp_kigo_2" maxlength="1" placeholder="例: 1">
                             </div>
                             <span>-</span>
@@ -1047,60 +1048,179 @@ textarea {
         <div class="modal-content">
             <div class="modal-header">
                 <h3 id="employmentContractModalTitle">労働条件通知書 兼 雇用契約書</h3>
-                <span class="close-button" data-modal-id="employmentContractModal">&times;</span>
+                <span class="close-button" data-modal-id="employmentContractModal">×</span>
             </div>
             <div class="modal-body">
                 <div class="contract-viewer">
                     <h3 style="text-align: center; font-size: 1.4em; margin-bottom: 1em;">労働条件通知書 兼 雇用契約書</h3>
-                    <table class="contract-details-table">
+                    <table class="contract-details-table" style="margin-bottom: 0;">
                         <tbody>
-                            <tr><th>被用者名</th><td>岡本太郎</td></tr>
-                            <tr><th>社員番号</th><td>999999</td></tr>
-                            <tr><th>雇用区分</th><td>サプラー《サプラー》</td></tr>
-                            <tr><th>入社日</th><td>2025年 4月 25日</td></tr>
-                            <tr><th>契約終了日</th><td>2025年 9月 30日</td></tr>
-                            <tr><th>事業所名</th><td>みぎわーむ</td></tr>
-                            <tr><th>事業所 CD</th><td>201712</td></tr>
-                            <tr><th>業務内容</th><td>調理および付随業務全般</td></tr>
-                            <tr><th>契約時間</th><td>8 時間</td></tr>
-                            <tr><th>契約日数</th><td>22 日</td></tr>
-                            <tr><th>基本的な勤務パターン1</th><td>5時30分～14時30分（内休憩60分）</td></tr>
-                            <tr><th>基本的な勤務パターン2</th><td>10時30分～19時30分（内休憩60分）</td></tr>
-                            <tr><th>給与(時間給)</th><td>1,500 円</td></tr>
-                            <tr><th>第2加算時給</th><td></td></tr>
-                            <tr><th>第3加算時給</th><td></td></tr>
-                            <tr><th>第4加算時給</th><td></td></tr>
-                            <tr><th>{手当名}手当1</th><td></td></tr>
-                            <tr><th>{手当名}手当2</th><td></td></tr>
-                            <tr><th>{手当名}手当3</th><td></td></tr>
-                            <tr><th>賞与</th><td>なし</td></tr>
-                            <tr><th>社会保険</th><td>契約条件が法定の要件を満たした場合に、健康保険・厚生年金・雇用保険に加入いただきます。</td></tr>
-                            <tr><th>休日</th><td>契約日数に基づき、月次シフト表により指示します。</td></tr>
-                            <tr><th>有給休暇</th><td>入社から6か月間、契約日数の8割以上勤務した場合に初回付与します。付与日数は契約日数によって異なります。2回目以降は入社より1年6ヶ月後、以降毎年4月1日に就業規則に定める基準を満たした場合に付与します。</td></tr>
-                            <tr><th>契約更新</th><td>契約社員は毎年7月1日、サプラーは毎年10月1日に更新します。更新の有無は契約期間満了時の業務量、勤務成績、態度、能力、経営状況等により判断します。</td></tr>
-                            <tr><th>給与改定</th><td>契約社員・サプラー：次回契約更新時に個人の評価、会社業績等により見直しを行う場合があります。初回契約期間中に給与を改定する場合は、別途変更雇用契約書を作成することとします。（試用期間給から本給への変更も含む）</td></tr>
-                            <tr><th>退職金</th><td>正社員・地域正社員：10年以上勤続した場合に、規程に基づき支給します。<br>契約社員・サプラー：ありません。</td></tr>
-                            <tr><th>定年</th><td>正社員・地域正社員・契約社員：満70歳</td></tr>
-                            <tr><th>その他</th><td>
-                                <li>月度における勤務日数、時間については業務の状況により変動することがあります。</li>
-                                <li>業務上の必要に応じて勤務地を変更することがあります。</li>
-                                <li>所定外労働・休日労働をさせることがあります。</li>
-                                <li>マネージャー(MGR)職以上については、その役職手当をみなし時間外勤務手当とします。申請した時間外勤務手当が、それぞれの月間固定時間外勤務手当を超えた場合に、超過額を別途支給します。</li>
-                                <li>正社員・地域正社員・契約社員が契約期間中に満 65 歳の誕生日を迎えた場合、原則として誕生月の翌月より基本給を引き下げます。引き下げは基本給のみが対象となり、役職に応じた役職手当については変更ありません。</li>
-                                <li>賃金は毎月末日締めとし、翌月 20 日に被用者本人の指定口座に振り込みます。</li>
-                                <li>退職及び解雇の基準は就業規則に準じます。</li>
-                                <li>上記に記載されていないほかの就労条件等は、就業規則に準じます。</li>
-                            </td></tr>
-                            <tr><th>使用者 会社名</th><td>株式会社 LEOC</td></tr>
-                            <tr><th>使用者 代表取締役</th><td>田島 利行</td></tr>
+                            <tr>
+                                <th style="width: 15%;">被用者</th>
+                                <td style="width: 35%;">岡本太郎</td>
+                                <th style="width: 15%;">社員番号</th>
+                                <td style="width: 35%;">999999</td>
+                            </tr>
+                            <tr>
+                                <th>雇用区分</th>
+                                <td colspan="3">サプラー</td>
+                            </tr>
                         </tbody>
                     </table>
-                    
+
+                    <h4 style="margin: 1em 0 0.5em 0; text-align:center; background-color:#f2f2f2; padding:5px; border-top:1px solid #ccc; border-left:1px solid #ccc; border-right:1px solid #ccc;">雇用期間</h4>
+                    <table class="contract-details-table" style="margin-bottom: 0;">
+                        <tbody>
+                            <tr>
+                                <th style="width: 15%;">入社日</th>
+                                <td style="width: 35%;">2025年4月1日</td>
+                                <th style="width: 15%;">契約終了日</th>
+                                <td style="width: 35%;">2026年9月30日</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4 style="margin: 1em 0 0.5em 0; text-align:center; background-color:#f2f2f2; padding:5px; border-top:1px solid #ccc; border-left:1px solid #ccc; border-right:1px solid #ccc;">勤務地</h4>
+                    <table class="contract-details-table" style="margin-bottom: 0;">
+                        <tbody>
+                            <tr>
+                                <th style="width: 15%;">事業所名</th>
+                                <td style="width: 35%;">みぎわーむ</td>
+                                <th style="width: 15%;">事業所CD</th>
+                                <td style="width: 35%;">201712</td>
+                            </tr>
+                            <tr>
+                                <th>業務内容</th>
+                                <td colspan="3">調理および付随業務全般</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4 style="margin: 1em 0 0.5em 0; text-align:center; background-color:#f2f2f2; padding:5px; border-top:1px solid #ccc; border-left:1px solid #ccc; border-right:1px solid #ccc;">所定労働時間</h4>
+                    <table class="contract-details-table" style="margin-bottom: 0;">
+                        <tbody>
+                            <tr>
+                                <th style="width: 50%;">契約時間<br><small>※1日あたりの平均的な実働時間(フルタイムの場合は8時間)</small></th>
+                                <th style="width: 50%;">契約日数<br><small>※1ヵ月あたりの平均的な勤務日数(フルタイムの場合は22日)</small></th>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center; font-size: 1.2em;">8時間</td>
+                                <td style="text-align: center; font-size: 1.2em;">22日</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4 style="margin: 1em 0 0.5em 0; text-align:center; background-color:#f2f2f2; padding:5px; border-top:1px solid #ccc; border-left:1px solid #ccc; border-right:1px solid #ccc;">基本的な勤務パターン</h4>
+                    <table class="contract-details-table" style="margin-bottom: 0;">
+                        <tbody>
+                            <tr>
+                                <th style="width: 25%;">勤務パターン1</th>
+                                <td>5時30分～14時30分 (内休憩60分)</td>
+                                <th style="width: 25%;">勤務パターン2</th>
+                                <td>10時30分～19時30分 (内休憩60分)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="text-align:center; font-size:0.9em; margin-top:5px;">※この時間帯を基本とし、シフト表により指示します。</p>
+
+                    <h4 style="margin: 1em 0 0.5em 0; text-align:center; background-color:#f2f2f2; padding:5px; border-top:1px solid #ccc; border-left:1px solid #ccc; border-right:1px solid #ccc;">給与</h4>
+                    <table class="contract-details-table" style="margin-bottom: 0;">
+                        <tbody>
+                            <tr>
+                                <th style="width: 25%;">給与(時間給or月給)</th>
+                                <td colspan="3">1,500円</td>
+                            </tr>
+                            <tr>
+                                <th rowspan="2">加算時給</th>
+                                <th style="text-align:center;">第2</th>
+                                <th style="text-align:center;">第3</th>
+                                <th style="text-align:center;">第4</th>
+                            </tr>
+                            <tr>
+                                <td style="text-align:right;">30円</td>
+                                <td style="text-align:right;">円</td>
+                                <td style="text-align:right;">円</td>
+                            </tr>
+                             <tr>
+                                <th rowspan="2">手当</th>
+                                <th style="text-align:center;">{{手当名}}手当1</th>
+                                <th style="text-align:center;">{{手当名}}手当2</th>
+                                <th style="text-align:center;">{{手当名}}手当3</th>
+                            </tr>
+                             <tr>
+                                <td style="text-align:right;">20,000円</td>
+                                <td style="text-align:right;">円</td>
+                                <td style="text-align:right;">円</td>
+                            </tr>
+                            <tr>
+                                <th>賞与</th>
+                                <td colspan="3">なし</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="text-align:center; font-size:0.9em; margin-top:5px;">※会社の業績・個人の評価等の要因により変動することがあります。</p>
+
+                    <table class="contract-details-table" style="margin-top: 20px;">
+                        <tbody>
+                            <tr>
+                                <th style="width:25%;">社会保険</th>
+                                <td>契約条件(日数、時間、給与)に応じて"社会保険加入"もしくは"雇用保険加入"を表示</td>
+                            </tr>
+                             <tr>
+                                <th>休日</th>
+                                <td>契約日数に基づき、月次シフト表により指示します。</td>
+                            </tr>
+                            <tr>
+                                <th>有給休暇</th>
+                                <td>入社から6か月間、契約日数の8割以上勤務した場合に初回付与します。付与日数は契約日数によって異なります。2回目以降は入社より1年6ヶ月後、以降毎年4月1日に就業規則に定める基準を満たした場合に付与します。</td>
+                            </tr>
+                             <tr>
+                                <th>契約更新</th>
+                                <td>契約社員は毎年7月1日、サプラーは毎年10月1日に更新します。更新の有無は契約期間満了時の業務量、勤務成績、態度、能力、経営状況等により判断します。</td>
+                            </tr>
+                             <tr>
+                                <th>給与改定</th>
+                                <td>契約社員・サプラー：次回契約更新時に個人の評価、会社業績等により見直しを行う場合があります。初回契約期間中に給与を改定する場合は、別途変更雇用契約書を作成することとします。（試用期間給から本給への変更も含む）</td>
+                            </tr>
+                             <tr>
+                                <th>退職金</th>
+                                <td>正社員・地域正社員：10年以上勤続した場合に、規程に基づき支給します。<br>契約社員・サプラー：ありません。</td>
+                            </tr>
+                            <tr>
+                                <th>定年</th>
+                                <td>正社員・地域正社員・契約社員：満70歳<br>サプラー：ありません。</td>
+                            </tr>
+                            <tr>
+                                <th>その他</th>
+                                <td>
+                                    <ol style="padding-left: 1.5em; margin:0;">
+                                        <li>月度における勤務日数、時間については業務の状況により変動することがあります。</li>
+                                        <li>業務上の必要に応じて勤務地を変更することがあります。</li>
+                                        <li>所定外労働・休日労働をさせることがあります。</li>
+                                        <li>マネージャー(MG)職以上については、その役職手当をみなし時間外勤務手当とします。申請した時間外勤務手当が、それぞれの月間固定時間外勤務手当を超えた場合に、超過額を別途支給します。</li>
+                                        <li>正社員・地域正社員・契約社員が契約期間中に満 65 歳の誕生日を迎えた場合、原則として誕生月の翌月より基本給を引き下げます。引き下げは基本給のみが対象となり、役職に応じた役職手当については変更ありません。</li>
+                                        <li>賃金は毎月末日締めとし、翌月 20 日に被用者本人の指定口座に振り込みます。</li>
+                                        <li>退職及び解雇の基準は就業規則に準じます。</li>
+                                        <li>上記に記載されていないほかの就労条件等は、就業規則に準じます。</li>
+                                    </ol>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>使用者 会社名</th>
+                                <td>株式会社 LEOC</td>
+                            </tr>
+                             <tr>
+                                <th>使用者 代表取締役</th>
+                                <td>田島 利行</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
                     <div class="agreement-details" id="employmentContract_agreement_details" style="text-align: right; margin-top: 25px; font-size: 16px; line-height: 1.5;"></div>
-    
+
                     <div class="additional-contract-info" style="text-align: left; font-size: 14px; line-height: 1.6; margin-top: 2em;">
                         <h1 style="font-size: 1.3em; border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-top: 1.5em;">雇用契約締結時における注意事項等</h1>
-    
+
                         <h2 style="font-size: 1.2em; border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-top: 1.5em;">■ 時間外勤務手当について</h2>
                         <p>
                         部長職以下で、所定した所定労働時間を超える勤務を行った場合はその時間分の手当を支給します。<br>
@@ -1110,7 +1230,7 @@ textarea {
                             <li>一日の実労働時間が8時間を超えた場合、または平均した実労働時間が一日あたり8時間を超えた場合の超過分。</li>
                             <li>一ヶ月の労働時間が下記月間法定労働時間を超えた場合の超過分。</li>
                         </ol>
-    
+
                         <table class="contract-details-table" style="margin-top: 15px; font-size: 13px; table-layout: fixed; width: 100%;">
                             <thead>
                                 <tr>
@@ -1134,7 +1254,7 @@ textarea {
                         <p style="font-size: 0.9em; color: #555; margin-top: 5px;">
                         ※マネージャー(MGR)職以上については、その役職手当をみなし時間外勤務手当とします。<br>申請した時間外勤務手当が、それぞれの役職の時間外勤務手当を超えた場合に、超過額を別途支給します。
                         </p>
-    
+
                         <h2 style="font-size: 1.2em; border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-top: 1.5em;">■ 休日勤務手当について</h2>
                         <p>
                         月間を通して、月の公休を取得しきれない勤務を行った場合は、別途休日勤務手当を支給します。
@@ -1143,7 +1263,7 @@ textarea {
                             <li>正社員・地域正社員・契約社員の公休は年間 121 日、契約社員 107 の公休は年間 107 日となります。<br>各月ごとの公休はシフト表などで通知します。</li>
                             <li>サプラーの公休は月間5日 (2月のみ4日)となります。</li>
                         </ul>
-    
+
                         <h2 style="font-size: 1.2em; border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-top: 1.5em;">■ 有給休暇について</h2>
                         <p>
                         所定労働日数の8割以上出勤した場合、入社日の6か月後より下表の通り付与されます。
@@ -1242,7 +1362,7 @@ textarea {
                         <p style="font-size: 0.9em; color: #555; margin-top: 5px;">
                         ※3回目以降の付与では、その2回前に付与された有休の残数は消滅し、積立傷病休暇に加算されます（最大60日）
                         </p>
-    
+
                         <h2 style="font-size: 1.2em; border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-top: 1.5em;">■ 期間中の雇用契約解除について</h2>
                         <p>
                         下記事由に該当する場合は、雇用契約期間中であっても契約を終了する場合があります。
@@ -1260,7 +1380,7 @@ textarea {
                         </ol>
                     </div>
                 </div>
-                
+
                 <div id="employmentContract_pre_agreement_content">
                     <p class="action-prompt">書類を確認のうえ、「合意に進む」を押してください。</p>
                     <div id="insurance_confirmation_section" style="display:none; border: 1px solid #e0e0e0; padding: 15px; margin: 10px 20px; border-radius: 5px; background-color: #f9f9f9;">
@@ -1288,7 +1408,7 @@ textarea {
                         </div>
                         <div class="form-group">
                             <label>書類の受け取り方法<span class="required-label">必須</span></label>
-                            <div class="checkbox-group agree-modal-body"> 
+                            <div class="checkbox-group agree-modal-body">
                                 <input type="checkbox" id="employmentContract_agree_electronic_delivery" name="agree_electronic_delivery" checked>
                                 <label for="employmentContract_agree_electronic_delivery">電子通知で受け取ることに同意する</label>
                             </div>
@@ -1303,7 +1423,7 @@ textarea {
                         </div>
                     </form>
                 </div>
-    
+
                 <div class="post-agreement-actions-modal" id="employmentContract_post_agreement_content">
                     <p class="action-prompt" style="color:green; font-weight:bold;">この書類は合意済みです。</p>
                     <div class="action-buttons-row-inner">
@@ -1319,15 +1439,15 @@ textarea {
                 </div>
             </div>
             <div class="modal-footer" id="employmentContract_modal_footer">
-                </div>
+            </div>
         </div>
     </div>
-    
+
         <div id="guaranteeContractModal" class="modal contract-agreement-modal">
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 id="guaranteeContractModalTitle">誓約書</h3>
-                    <span class="close-button" data-modal-id="guaranteeContractModal">&times;</span>
+                    <span class="close-button" data-modal-id="guaranteeContractModal">×</span>
                 </div>
                 <div class="modal-body">
                     <div class="contract-viewer">
@@ -1335,7 +1455,7 @@ textarea {
                             <h3 style="text-align: center; font-size: 1.4em; margin-bottom: 1em;">誓約書</h3>
                             <p>私は、今般貴社に入社するにあたり、本紙裏面に記載の誓約事項および貴社の就業規則、その他の諸規定を遵守し、誠実に職務に精励することを誓約いたします。</p>
                             <h4 style="margin-top: 1.5em; font-size: 1.2em; border-bottom: 1px solid #ccc; padding-bottom: 0.2em;">誓約事項</h4>
-                            
+
                             <h4 style="margin-top: 1em; font-weight: bold;">【遵守事項】</h4>
                             <ol style="padding-left: 20px; margin-top: 0.5em;">
                                 <li>貴社（貴社のグループ会社を含みます。以下同じ。）の就業規則、諸規程及びその他の諸規則により定められた内容を十分に理解し、これを遵守します。</li>
@@ -1353,13 +1473,13 @@ textarea {
                                 <li>就業規則の規定に基づきハラスメント行為をしない事を誓います。本制約を破った場合には、会社からの相応の処分を受け入れます。</li>
                                 <li>以上各項の他、社業の発展に進んで協力し、それを妨げる言動は行いません。</li>
                             </ol>
-    
+
                             <h4 style="margin-top: 1.5em; font-weight: bold;">【体調管理に関する事項】</h4>
                             <ol style="padding-left: 20px; margin-top: 0.5em;">
                                 <li>別紙『体調不良に関する従業員の皆様へのお願い』を確認し、体調不良時の対応を厳守遵守することを誓います。</li>
                                 <li>定期健康診断、その後の二次診断、及び貴社が随時指定する医師の診断について貴社の指示に従って受診し、その結果をすべて遅滞なく報告します。また、貴社の健康管理上の指示についても従います。</li>
                             </ol>
-    
+
                             <h4 style="margin-top: 1.5em; font-weight: bold;">【貴社機密情報及び個人情報等の守秘に関する事項】</h4>
                             <ol style="padding-left: 20px; margin-top: 0.5em;">
                                 <li>業務を遂行する過程で知り得る一切の機密情報を、貴社、貴社社員、および貴社顧客の機密情報と認識し、私に対する指揮命令者を除く貴社役員、社員などの従事者およびその他の第三者に漏洩若しくは開示をせず、不正な使用、複製、複写を致しません。また、自己の利益のための者若しくは貴社と競合する他の事業者その他の第三者にも機密情報を漏洩または開示をしません。</li>
@@ -1389,7 +1509,7 @@ textarea {
                         </div>
                         <div class="agreement-details" id="guaranteeContract_agreement_details" style="text-align: right; margin-top: 20px; font-size: 16px; line-height: 1.5;"></div>
                     </div>
-    
+
                     <div id="guaranteeContract_pre_agreement_content">
                         <p class="action-prompt">書類を確認のうえ、「合意に進む」を押してください。</p>
                         <div class="button-group">
@@ -1434,20 +1554,20 @@ textarea {
                     </div>
                 </div>
                 <div class="modal-footer" id="guaranteeContract_modal_footer">
-                    </div>
+                </div>
             </div>
         </div>
-    
+
         <script>
             // --- START: 給与支払口座フォーム切り替え機能 ---
             function toggleBankAccountForm() {
                 const isJpBank = document.querySelector('input[name="bank_type"][value="jp"]').checked;
                 const generalForm = document.getElementById('general-bank-form');
                 const jpBankForm = document.getElementById('jp-bank-form');
-                
+
                 const generalInputs = generalForm.querySelectorAll('input, select');
                 const jpInputs = jpBankForm.querySelectorAll('input, select');
-    
+
                 if (isJpBank) {
                     jpBankForm.style.display = 'block';
                     generalForm.style.display = 'none';
@@ -1461,23 +1581,23 @@ textarea {
                 }
             }
             // --- END: 給与支払口座フォーム切り替え機能 ---
-    
+
             document.addEventListener('DOMContentLoaded', function () {
                 // --- START: File Upload Logic ---
                 function setupFileUpload(parentElement) {
                     const targetSelector = parentElement ? parentElement.querySelectorAll('.document-box, .file-upload-wrapper') : document.querySelectorAll('.document-box');
-    
+
                     targetSelector.forEach(docBox => {
                         const fileInput = docBox.querySelector('input[type="file"]');
                         const statusSpan = docBox.querySelector('.file-status');
                         const deleteBtn = docBox.querySelector('.delete-file-btn');
                         const uploadLabel = docBox.querySelector('.upload-button-placeholder');
-    
+
                         if (!fileInput || !statusSpan || !uploadLabel) return;
-                        
-                        statusSpan.dataset.initialText = statusSpan.textContent; 
+
+                        statusSpan.dataset.initialText = statusSpan.textContent;
                         uploadLabel.dataset.initialLabel = uploadLabel.textContent;
-                        
+
                         const storedFilename = localStorage.getItem(fileInput.id + '_filename');
                         if (storedFilename) {
                             statusSpan.textContent = storedFilename;
@@ -1485,11 +1605,11 @@ textarea {
                             uploadLabel.textContent = '変更';
                             // NOTE: ページ読み込み時のサムネイル復元は複雑化するため、今回は実装から除外
                         }
-    
+
                         fileInput.addEventListener('change', function() {
                             updateFileStatusDisplay(this, statusSpan, deleteBtn, uploadLabel);
                         });
-    
+
                         if (deleteBtn) {
                             deleteBtn.addEventListener('click', function() {
                                 fileInput.value = '';
@@ -1498,12 +1618,12 @@ textarea {
                         }
                     });
                 }
-                
+
                 function displayImageThumbnail(fileInput) {
                     const previewId = fileInput.id + '_preview';
                     const previewBox = document.getElementById(previewId);
                     if (!previewBox) return;
-    
+
                     const file = fileInput.files[0];
                     // ファイルが存在し、画像ファイルである場合
                     if (file && file.type.startsWith('image/')) {
@@ -1516,7 +1636,7 @@ textarea {
                         previewBox.innerHTML = '<span>プレビューなし</span>';
                     }
                 }
-    
+
                 function updateFileStatusDisplay(fileInput, statusElement, deleteButton, uploadLabelElement) {
                     if (fileInput.files && fileInput.files.length > 0) {
                         statusElement.textContent = fileInput.files[0].name;
@@ -1532,9 +1652,9 @@ textarea {
                     // サムネイル表示関数を呼び出す
                     displayImageThumbnail(fileInput);
                 }
-                
+
                 setupFileUpload();
-    
+
                 // --- START: Basic Info, Nationality, File Upload (partial) ---
                 const nationalityRadios = document.querySelectorAll('input[name="nationality"]');
                 const foreignNationalityDetails = document.getElementById('foreign_nationality_details');
@@ -1542,19 +1662,19 @@ textarea {
                 const countryNameOtherGroup = document.getElementById('country_name_other_group');
                 const residenceStatusGroup = document.getElementById('residence_status_group');
                 const foreignDocumentsContainer = document.getElementById('foreign_documents_container');
-                
+
                 function createForeignerDocumentUploadBox(id, name, labelText, icon = '📄') {
                     const docBox = document.createElement('div');
                     docBox.className = 'document-box';
                     docBox.id = `${id}_doc_box`;
                     docBox.style.flexBasis = 'calc(50% - 5px)';
-                    
+
                     const pLabel = document.createElement('p');
                     const strongLabel = document.createElement('strong');
                     strongLabel.innerHTML = `${icon} ${labelText}`;
                     pLabel.appendChild(strongLabel);
                     docBox.appendChild(pLabel);
-    
+
                     // サムネイル表示エリア
                     const previewBox = document.createElement('div');
                     previewBox.className = 'image-preview-box';
@@ -1563,24 +1683,24 @@ textarea {
                     previewBox.style.width = '150px';
                     previewBox.innerHTML = '<span>プレビューなし</span>';
                     docBox.appendChild(previewBox);
-                    
+
                     const fileInput = document.createElement('input');
                     fileInput.type = 'file'; fileInput.id = id; fileInput.name = name; fileInput.style.display = 'none'; fileInput.accept = 'image/*,.pdf';
                     docBox.appendChild(fileInput);
-    
+
                     const uploadLabel = document.createElement('label');
                     uploadLabel.htmlFor = id; uploadLabel.className = 'upload-button-placeholder'; uploadLabel.textContent = 'アップロード';
                     uploadLabel.style.marginTop = '5px'; uploadLabel.style.display = 'inline-block';
                     docBox.appendChild(uploadLabel);
-                    
+
                     const statusContainer = document.createElement('div');
                     statusContainer.className = 'file-upload-status-container';
-    
+
                     const pStatus = document.createElement('span');
                     pStatus.className = 'file-status'; pStatus.id = `${id}_file_status`; pStatus.textContent = '選択されていません';
                     pStatus.dataset.initialText = '選択されていません';
                     statusContainer.appendChild(pStatus);
-    
+
                     const deleteBtn = document.createElement('button');
                     deleteBtn.type = 'button';
                     deleteBtn.className = 'delete-file-btn';
@@ -1589,29 +1709,29 @@ textarea {
                     deleteBtn.style.display = 'none';
                     statusContainer.appendChild(deleteBtn);
                     docBox.appendChild(statusContainer);
-    
+
                     const storedFilename = localStorage.getItem(id + '_filename');
                     if (storedFilename) {
                         pStatus.textContent = storedFilename;
                         deleteBtn.style.display = 'inline-block';
                         uploadLabel.textContent = '変更';
                     }
-    
+
                     fileInput.addEventListener('change', function() {
                         updateFileStatusDisplay(this, pStatus, deleteBtn, uploadLabel);
                     });
                     deleteBtn.addEventListener('click', function() {
-                        fileInput.value = ''; 
+                        fileInput.value = '';
                         updateFileStatusDisplay(fileInput, pStatus, deleteBtn, uploadLabel);
                     });
                     return docBox;
                 }
-    
+
                 /// 国籍ラジオボタンの変更イベント処理
                 function handleNationalityChange() {
                     const currentScrollY = window.scrollY;
                     const selectedNationality = document.querySelector('input[name="nationality"]:checked').value;
-    
+
                     if (selectedNationality === 'foreign') {
                         foreignNationalityDetails.style.display = 'block';
                         residenceStatusGroup.style.display = 'block';
@@ -1627,10 +1747,10 @@ textarea {
                         residenceStatusGroup.style.display = 'none';
                         foreignDocumentsContainer.style.display = 'none';
                     }
-                    
+
                     window.scrollTo(0, currentScrollY);
                 }
-    
+
                 // 国名セレクトボックスの変更イベント処理
                 function handleCountryChange() {
                     if (countryNameSelect.value === 'other') {
@@ -1639,7 +1759,7 @@ textarea {
                         countryNameOtherGroup.style.display = 'none';
                     }
                 }
-                
+
                 if (foreignNationalityDetails && residenceStatusGroup && foreignDocumentsContainer) {
                     nationalityRadios.forEach(radio => radio.addEventListener('change', handleNationalityChange));
                     if (countryNameSelect) countryNameSelect.addEventListener('change', handleCountryChange);
@@ -1647,12 +1767,12 @@ textarea {
                     handleCountryChange();
                 }
                 // --- END: Basic Info, Nationality, File Upload (partial) ---
-    
-    
+
+
                 // --- START: Contract Document Modal Logic ---
                 const contractDocumentBoxes = document.querySelectorAll('.clickable-document');
                 const allModals = document.querySelectorAll('.modal');
-    
+
                 function openModal(modalElement) { modalElement.style.display = 'flex'; }
                 function closeModal(modalElement) {
                     modalElement.style.display = 'none';
@@ -1668,7 +1788,7 @@ textarea {
                     if (agreeForm) agreeForm.style.display = 'none';
                     const rejectForm = modalElement.querySelector(`#${contractId}_reject_form`);
                     if (rejectForm) rejectForm.style.display = 'none';
-                    
+
                     ['signer_name', 'reject_reason'].forEach(field => {
                         const input = modalElement.querySelector(`#${contractId}_${field}`);
                         if (input) { input.value = ''; input.classList.remove('input-error'); }
@@ -1679,7 +1799,7 @@ textarea {
                     if (deliveryError) deliveryError.textContent = '';
                     const deliveryCheckbox = modalElement.querySelector(`#${contractId}_agree_electronic_delivery`);
                     if(deliveryCheckbox) deliveryCheckbox.checked = true;
-    
+
                     const preAgreementContent = modalElement.querySelector(`#${contractId}_pre_agreement_content`);
                     if(preAgreementContent) {
                         const buttonGroup = preAgreementContent.querySelector('.button-group');
@@ -1687,15 +1807,15 @@ textarea {
                     }
                     updateModalFooter(modalElement, contractId, 'initial');
                 }
-    
+
                 contractDocumentBoxes.forEach(box => {
                     box.addEventListener('click', function() {
                         const modalId = this.dataset.modalTarget;
                         const contractId = this.dataset.contractId;
                         const modalElement = document.querySelector(modalId);
-                        if (modalElement) { 
+                        if (modalElement) {
                             loadContractModalState(modalElement, contractId);
-                            openModal(modalElement); 
+                            openModal(modalElement);
                             // ▼▼▼ 修正 ▼▼▼
                             // 雇用契約書モーダルの場合のみ、保険加入判定を実行
                             if (contractId === 'employmentContract') {
@@ -1704,37 +1824,37 @@ textarea {
                         }
                     });
                 });
-    
+
                 document.querySelectorAll('.modal .close-button').forEach(button => {
                     button.addEventListener('click', function() { closeModal(this.closest('.modal')); });
                 });
-    
+
                 window.addEventListener('click', function(event) {
                     allModals.forEach(modal => { if (event.target === modal) { closeModal(modal); } });
                 });
-    
+
                 function loadContractModalState(modalElement, contractId) {
                     const contractStatus = localStorage.getItem(`${contractId}_status`) || 'pending';
                     const preAgreementContent = modalElement.querySelector(`#${contractId}_pre_agreement_content`);
                     const postAgreementContent = modalElement.querySelector(`#${contractId}_post_agreement_content`);
-                    
+
                     const agreeForm = modalElement.querySelector(`#${contractId}_agree_form`);
                     const rejectForm = modalElement.querySelector(`#${contractId}_reject_form`);
                     const buttonGroup = preAgreementContent.querySelector('.button-group');
-    
+
                     if(agreeForm) agreeForm.style.display = 'none';
                     if(rejectForm) rejectForm.style.display = 'none';
                     if(buttonGroup) buttonGroup.style.display = 'flex';
-    
+
                     if (contractStatus === 'agreed') {
                         preAgreementContent.style.display = 'none';
                         postAgreementContent.style.display = 'flex';
                         updateModalFooter(modalElement, contractId, 'agreed');
-    
+
                         const signerName = localStorage.getItem(`${contractId}_signer_name`);
                         const formattedDateTime = localStorage.getItem(`${contractId}_agreement_datetime`);
                         const detailsElement = document.getElementById(`${contractId}_agreement_details`);
-    
+
                         if (detailsElement && signerName && formattedDateTime) {
                             detailsElement.innerHTML = `
                                 <p style="margin: 5px 0;">合意日時: ${formattedDateTime}</p>
@@ -1742,21 +1862,21 @@ textarea {
                             `;
                         }
                     } else {
-                        preAgreementContent.style.display = 'block'; 
+                        preAgreementContent.style.display = 'block';
                         postAgreementContent.style.display = 'none';
-                        updateModalFooter(modalElement, contractId, 'initial'); 
-    
+                        updateModalFooter(modalElement, contractId, 'initial');
+
                         const detailsElement = document.getElementById(`${contractId}_agreement_details`);
                         if (detailsElement) {
                             detailsElement.innerHTML = '';
                         }
                     }
                 }
-    
+
                 function updateModalFooter(modalElement, contractId, state) {
                     const footer = modalElement.querySelector(`#${contractId}_modal_footer`);
                     footer.innerHTML = '';
-    
+
                     if (state === 'agree_form') {
                         footer.innerHTML = `<button type="button" class="action-btn btn-secondary" data-action="cancel_agree" data-contract-id="${contractId}">キャンセル</button><button type="button" class="action-btn agree-btn" data-action="submit_agree" data-contract-id="${contractId}">合意する</button>`;
                     } else if (state === 'reject_form') {
@@ -1768,16 +1888,16 @@ textarea {
                     }
                     footer.querySelectorAll('button').forEach(btn => { btn.addEventListener('click', handleModalFooterAction); });
                 }
-    
+
                 function handleModalFooterAction(event) {
                     const action = event.target.dataset.action;
                     const contractId = event.target.dataset.contractId;
                     const modalElement = document.getElementById(`${contractId}Modal`);
-                    
+
                     const agreeForm = modalElement.querySelector(`#${contractId}_agree_form`);
                     const rejectForm = modalElement.querySelector(`#${contractId}_reject_form`);
                     const buttonGroup = modalElement.querySelector(`#${contractId}_pre_agreement_content .button-group`);
-    
+
                     if (action === 'cancel_agree' || action === 'cancel_reject') {
                         if(agreeForm) agreeForm.style.display = 'none';
                         if(rejectForm) rejectForm.style.display = 'none';
@@ -1787,9 +1907,9 @@ textarea {
                     } else if (action === 'submit_reject') { submitRejection(modalElement, contractId);
                     } else if (action === 'close') { closeModal(modalElement); }
                 }
-    
-                modalEventListeners('add'); 
-    
+
+                modalEventListeners('add');
+
                 function modalEventListeners(actionType) {
                     document.querySelectorAll('.contract-agreement-modal .agree-btn, .contract-agreement-modal .reject-btn').forEach(button => {
                         if (button.closest && button.closest(`#${button.dataset.contractId}_pre_agreement_content`)) {
@@ -1803,16 +1923,16 @@ textarea {
                         }
                     });
                 }
-                
+
                 function handlePreAgreementActions(event, type) {
                     const contractId = event.target.dataset.contractId;
                     const modalElement = document.getElementById(`${contractId}Modal`);
                     const agreeForm = modalElement.querySelector(`#${contractId}_agree_form`);
                     const rejectForm = modalElement.querySelector(`#${contractId}_reject_form`);
                     const buttonGroup = modalElement.querySelector(`#${contractId}_pre_agreement_content .button-group`);
-                    
+
                     buttonGroup.style.display = 'none';
-    
+
                     if (type === 'agree') {
                         agreeForm.style.display = 'block'; rejectForm.style.display = 'none';
                         updateModalFooter(modalElement, contractId, 'agree_form');
@@ -1821,15 +1941,15 @@ textarea {
                         updateModalFooter(modalElement, contractId, 'reject_form');
                     }
                 }
-    
+
                 function updateAgreeButtonState() {
                     const modal = document.getElementById('employmentContractModal');
                     if (!modal) return;
-    
+
                     const agreeBtn = modal.querySelector('#employmentContract_pre_agreement_content .agree-btn');
                     const checkboxes = modal.querySelectorAll('#insurance_confirmation_section input[type="checkbox"]');
                     if (!agreeBtn || checkboxes.length === 0) return;
-    
+
                     let allRequiredChecked = true;
                     checkboxes.forEach(cb => {
                         const parentDiv = cb.closest('div');
@@ -1838,34 +1958,34 @@ textarea {
                             allRequiredChecked = false;
                         }
                     });
-    
+
                     if (agreeBtn.disabled === !allRequiredChecked) return; // 状態が変わらないなら何もしない
-    
+
                     agreeBtn.disabled = !allRequiredChecked;
                     agreeBtn.style.cursor = allRequiredChecked ? 'pointer' : 'not-allowed';
                     agreeBtn.style.opacity = allRequiredChecked ? '1' : '0.6';
                 }
-    
+
                 function checkInsuranceEligibilityAndShowConfirmations() {
                     const modal = document.getElementById('employmentContractModal');
                     if (!modal) return;
-                    
+
                     // UI要素を取得
                     const section = document.getElementById('insurance_confirmation_section');
                     const empCheckDiv = document.getElementById('employment_insurance_check_div');
                     const socCheckDiv = document.getElementById('social_insurance_check_div');
                     const empCheckbox = document.getElementById('confirm_employment_insurance');
                     const socCheckbox = document.getElementById('confirm_social_insurance');
-    
+
                     // UIの状態をリセット
                     section.style.display = 'none';
                     empCheckDiv.style.display = 'none';
                     socCheckDiv.style.display = 'none';
                     empCheckbox.checked = false;
                     socCheckbox.checked = false;
-    
+
                     const empType = document.getElementById('mock_employment_type').value;
-    
+
                     if (empType !== 'サプラー') {
                         // サプラー以外は、社会保険・雇用保険に強制加入
                         empCheckDiv.style.display = 'block';
@@ -1874,7 +1994,7 @@ textarea {
                         updateAgreeButtonState();
                         return; // 計算をスキップ
                     }
-                    
+
                     // テーブルから契約情報を取得・解析するヘルパー関数
                     const getValueFromTable = (headerText) => {
                         const th = Array.from(modal.querySelectorAll('.contract-details-table th')).find(el => el.textContent.includes(headerText));
@@ -1885,23 +2005,23 @@ textarea {
                         }
                         return 0;
                     };
-    
+
                     const contractHours = getValueFromTable('契約時間');
                     const contractDays = getValueFromTable('契約日数');
                     const hourlyWage = getValueFromTable('給与(時間給)');
-    
+
                     if (contractHours === 0 || contractDays === 0 || hourlyWage === 0) {
                         updateAgreeButtonState(); // 数値が不正ならボタンの状態を初期化して終了
                         return;
                     }
-    
+
                     // 加入条件を計算
                     const weeklyHours = (contractHours * contractDays * 12) / (365 / 7);
                     const monthlySalary = hourlyWage * contractHours * contractDays;
-    
+
                     const isEligibleForEmployment = weeklyHours >= 20;
                     const isEligibleForSocial = isEligibleForEmployment && monthlySalary >= 88000;
-    
+
                     let insuranceRequired = false;
                     if (isEligibleForSocial) {
                         // 社会保険・雇用保険の両方が対象
@@ -1913,40 +2033,40 @@ textarea {
                         empCheckDiv.style.display = 'block';
                         insuranceRequired = true;
                     }
-    
+
                     if (insuranceRequired) {
                         section.style.display = 'block';
                     }
-    
+
                     // ボタンの初期状態を設定
                     updateAgreeButtonState();
                 }
-    
+
                 function submitAgreement(modalElement, contractId) {
                     const signerNameInput = modalElement.querySelector(`#${contractId}_signer_name`);
                     const deliveryCheckbox = modalElement.querySelector(`#${contractId}_agree_electronic_delivery`);
                     const signerError = modalElement.querySelector(`#${contractId}_signer_name_error`);
                     const deliveryError = modalElement.querySelector(`#${contractId}_agree_delivery_error`);
                     let isValid = true;
-    
+
                     signerError.textContent = ''; deliveryError.textContent = ''; signerNameInput.classList.remove('input-error');
-    
+
                     if (signerNameInput.value.trim() === '') {
                         signerError.textContent = '氏名を入力してください。'; signerNameInput.classList.add('input-error'); isValid = false;
                     }
                     if (!deliveryCheckbox.checked) {
                         deliveryError.textContent = '電子通知での受け取りに同意してください。'; isValid = false;
                     }
-    
+
                     if (isValid) {
                         const agreementDateTime = new Date();
                         const formattedDateTime = `${agreementDateTime.getFullYear()}年${agreementDateTime.getMonth() + 1}月${agreementDateTime.getDate()}日 ${agreementDateTime.getHours()}:${agreementDateTime.getMinutes().toString().padStart(2, '0')}:${agreementDateTime.getSeconds().toString().padStart(2, '0')}`;
                         const signerName = signerNameInput.value.trim();
-    
+
                         localStorage.setItem(`${contractId}_status`, 'agreed');
                         localStorage.setItem(`${contractId}_signer_name`, signerName);
                         localStorage.setItem(`${contractId}_agreement_datetime`, formattedDateTime);
-    
+
                         const detailsElement = document.getElementById(`${contractId}_agreement_details`);
                         if (detailsElement) {
                             detailsElement.innerHTML = `
@@ -1954,26 +2074,26 @@ textarea {
                                 <p style="margin: 5px 0;">署名者名: ${signerName}</p>
                             `;
                         }
-    
+
                         const mainDocStatus = document.getElementById(`${contractId}Status`);
                         mainDocStatus.textContent = '（合意済）'; mainDocStatus.className = 'contract-status status-agreed';
                         document.getElementById(`${contractId}PostActions`).style.display = 'flex';
-    
+
                         alert(`${modalElement.querySelector('h3').textContent} に合意しました。`);
                         loadContractModalState(modalElement, contractId);
                     }
                 }
-    
+
                 function submitRejection(modalElement, contractId) {
                     const rejectReasonInput = modalElement.querySelector(`#${contractId}_reject_reason`);
                     const reasonError = modalElement.querySelector(`#${contractId}_reject_reason_error`);
                     let isValid = true;
                     reasonError.textContent = ''; rejectReasonInput.classList.remove('input-error');
-    
+
                     if (rejectReasonInput.value.trim() === '') {
                         reasonError.textContent = '差し戻し理由を入力してください。'; rejectReasonInput.classList.add('input-error'); isValid = false;
                     }
-    
+
                     if (isValid) {
                         localStorage.setItem(`${contractId}_status`, 'rejected');
                         localStorage.setItem(`${contractId}_reject_reason`, rejectReasonInput.value.trim());
@@ -1983,22 +2103,22 @@ textarea {
                         if (detailsElement) {
                             detailsElement.innerHTML = '';
                         }
-    
+
                         const mainDocStatus = document.getElementById(`${contractId}Status`);
                         mainDocStatus.textContent = '（差戻済）'; mainDocStatus.className = 'contract-status status-rejected';
                         document.getElementById(`${contractId}PostActions`).style.display = 'none';
-                        
+
                         alert(`${modalElement.querySelector('h3').textContent} を差し戻しました。`);
                         closeModal(modalElement);
                     }
                 }
-    
+
                 contractDocumentBoxes.forEach(box => {
                     const contractId = box.dataset.contractId;
                     const status = localStorage.getItem(`${contractId}_status`);
                     const mainDocStatus = document.getElementById(`${contractId}Status`);
                     const postActions = document.getElementById(`${contractId}PostActions`);
-    
+
                     if (status === 'agreed') {
                         mainDocStatus.textContent = '（合意済）'; mainDocStatus.className = 'contract-status status-agreed'; postActions.style.display = 'flex';
                     } else if (status === 'rejected') {
@@ -2007,47 +2127,47 @@ textarea {
                         mainDocStatus.textContent = '（未合意）'; mainDocStatus.className = 'contract-status status-pending'; postActions.style.display = 'none';
                     }
                 });
-    
+
                 function printContract(contractId) {
                     let title = '契約書';
                     if (contractId === 'employmentContract') title = '労働条件通知書_兼_雇用契約書';
                     else if (contractId === 'guaranteeContract') title = '誓約書';
-    
+
                     const modal = document.getElementById(`${contractId}Modal`);
                     if (!modal) return;
                     const viewer = modal.querySelector('.contract-viewer');
                     if (!viewer) return;
-    
+
                     const printWindow = window.open('', '_blank');
                     printWindow.document.write(`<html><head><title>${title}</title><style>
-                        @page { size: A4; margin: 20mm; }
-                        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; color: #333; font-size: 10pt; -webkit-print-color-adjust: exact; }
-                        .contract-details-table { width: 100%; border-collapse: collapse; font-size: 9pt; }
-                        .contract-details-table th, .contract-details-table td { border: 1px solid #ccc; padding: 5px; text-align: left; vertical-align: top; }
-                        .contract-details-table th { background-color: #f8f9fa !important; font-weight: bold; width: 25%; }
-                        h3 { text-align: center; font-size: 1.3em; margin-bottom: 1em;}
-                        .agreement-details { text-align: right; margin-top: 25px; font-size: 12pt; line-height: 1.6; }
-                        .additional-contract-info { page-break-before: always; }
-                        .additional-contract-info h1 { font-size: 1.2em; }
-                        .additional-contract-info h2 { font-size: 1.1em; }
-                        .contract-text-content { font-size: 10pt; line-height: 1.7; }
-                        .contract-text-content h4 { font-size: 1.1em; }
-                        ol, ul { padding-left: 20px; }
-                    </style></head><body>`);
+                            @page { size: A4; margin: 20mm; }
+                            body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; color: #333; font-size: 10pt; -webkit-print-color-adjust: exact; }
+                            .contract-details-table { width: 100%; border-collapse: collapse; font-size: 9pt; }
+                            .contract-details-table th, .contract-details-table td { border: 1px solid #ccc; padding: 5px; text-align: left; vertical-align: top; }
+                            .contract-details-table th { background-color: #f8f9fa !important; font-weight: bold; width: 25%; }
+                            h3 { text-align: center; font-size: 1.3em; margin-bottom: 1em;}
+                            .agreement-details { text-align: right; margin-top: 25px; font-size: 12pt; line-height: 1.6; }
+                            .additional-contract-info { page-break-before: always; }
+                            .additional-contract-info h1 { font-size: 1.2em; }
+                            .additional-contract-info h2 { font-size: 1.1em; }
+                            .contract-text-content { font-size: 10pt; line-height: 1.7; }
+                            .contract-text-content h4 { font-size: 1.1em; }
+                            ol, ul { padding-left: 20px; }
+                        </style></head><body>`);
                     printWindow.document.write(viewer.innerHTML);
                     printWindow.document.write('</body></html>');
                     printWindow.document.close();
                     setTimeout(() => { printWindow.focus(); printWindow.print(); printWindow.close(); }, 250);
                 }
-    
+
                 async function downloadContractAsPdf(contractId) {
                     let filename = '契約書.pdf';
                     if (contractId === 'employmentContract') filename = '労働条件通知書_兼_雇用契約書.pdf';
                     else if (contractId === 'guaranteeContract') filename = '誓約書.pdf';
-    
+
                     const viewer = document.querySelector(`#${contractId}Modal .contract-viewer`);
                     if (!viewer) return;
-    
+
                     const clone = viewer.cloneNode(true);
                     clone.style.border = 'none';
                     clone.style.maxHeight = 'none'; clone.style.height = 'auto'; clone.style.overflow = 'visible';
@@ -2065,7 +2185,7 @@ textarea {
                     const opt = { margin: [MARGINS_MM.top, MARGINS_MM.left, MARGINS_MM.bottom, MARGINS_MM.right], filename, image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2, useCORS: true, scrollX: 0, scrollY: 0 }, jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }, pagebreak: { mode: ['css','legacy'] } };
                     try { await html2pdf().from(clone).set(opt).save(); } finally { if (renderRoot.contains(clone)) renderRoot.removeChild(clone); }
                 }
-                
+
                 document.querySelectorAll('.print-contract-btn').forEach(btn => {
                     btn.addEventListener('click', (event) => {
                         const modal = event.target.closest('.modal'), docBox = event.target.closest('.document-box');
@@ -2084,7 +2204,7 @@ textarea {
                         if (contractId) await downloadContractAsPdf(contractId);
                     });
                 });
-    
+
                 ['signer_name', 'reject_reason'].forEach(fieldPrefix => {
                     ['employmentContract', 'guaranteeContract'].forEach(contractId => {
                         const input = document.getElementById(`${contractId}_${fieldPrefix}`), errorSpan = document.getElementById(`${contractId}_${fieldPrefix}_error`);
@@ -2096,7 +2216,7 @@ textarea {
                     if(checkbox && errorSpan) checkbox.addEventListener('change', function(){ if(this.checked) errorSpan.textContent = ''; });
                 });
                 // --- END: Contract Document Modal Logic ---
-    
+
                 // --- START: Postal Code Auto-Address and Formatting Logic ---
                 function formatPostalCode(inputElement) { let value = inputElement.value.replace(/[^0-9]/g, ""); if (value.length > 3) value = value.substring(0, 3) + "-" + value.substring(3); if (value.length > 8) value = value.substring(0, 8); inputElement.value = value; }
                 async function fetchAddressFromPostalCode(postalCode, prefix) { const pc = postalCode.replace(/-/g, ''); if (pc.length !== 7) { alert('有効な郵便番号を7桁で入力してください。'); return; } try { const response = await fetch(`https://zipcloud.ibsnet.co.jp/api/search?zipcode=${pc}`); if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`); const data = await response.json(); if (data.status === 200 && data.results) { const result = data.results[0]; document.getElementById(`${prefix}prefecture`).value = result.address1 || ''; document.getElementById(`${prefix}city`).value = result.address2 || ''; document.getElementById(`${prefix}address_line1`).value = result.address3 || ''; } else { alert(`住所が見つかりませんでした: ${data.message || ''}`); } } catch (error) { console.error('住所検索エラー:', error); alert('住所の検索中にエラーが発生しました。'); } }
@@ -2106,31 +2226,31 @@ textarea {
                 if (emergencyPostalCodeInput) { emergencyPostalCodeInput.addEventListener('input', () => formatPostalCode(emergencyPostalCodeInput)); emergencyPostalCodeInput.addEventListener('blur', () => formatPostalCode(emergencyPostalCodeInput)); }
                 if (searchEmergencyAddressBtn && emergencyPostalCodeInput) searchEmergencyAddressBtn.addEventListener('click', () => fetchAddressFromPostalCode(emergencyPostalCodeInput.value, 'emergency_'));
                 // --- END: Postal Code Auto-Address and Formatting Logic ---
-    
+
                 // --- START: Bank Info ---
                 toggleBankAccountForm();
-                
+
                 // 銀行名・支店名の検索機能
                 const API_BASE_URL = 'https://bank.teraren.com', bankNameInput = document.getElementById('general_bank_name'), bankNameSuggestionsBox = document.getElementById('bank_name_suggestions'), bankCodeInput = document.getElementById('general_bank_code'), branchNameInput = document.getElementById('general_branch_name'), branchNameSuggestionsBox = document.getElementById('branch_name_suggestions'), branchCodeInput = document.getElementById('general_branch_code');
                 async function fetchJson(url) { try { const response = await fetch(url, { headers: { 'Accept': 'application/json' } }); if (!response.ok) throw new Error(`HTTP error ${response.status}: ${response.statusText}`); const contentType = response.headers.get("content-type"); if (!contentType || !contentType.includes("application/json")) { const text = await response.text(); throw new TypeError(`Received non-JSON response: ${text.substring(0, 100)}`); } return await response.json(); } catch (error) { console.error('API fetch error:', error); throw error; } }
                 function showSuggestions(inputElement, suggestionBox, items, itemKey = 'name') { suggestionBox.innerHTML = ''; if (items && items.length > 0) { items.forEach(item => { const div = document.createElement('div'); div.textContent = item[itemKey]; div.addEventListener('mousedown', () => { inputElement.value = item[itemKey]; suggestionBox.style.display = 'none'; suggestionBox.innerHTML = ''; if (inputElement.id === 'general_bank_name') { bankNameInput.dataset.bankCode = item.code || ''; bankCodeInput.value = item.code || ''; branchNameInput.value = ''; branchCodeInput.value = ''; branchNameInput.focus(); } else if (inputElement.id === 'general_branch_name') { branchCodeInput.value = item.code || ''; } }); suggestionBox.appendChild(div); }); suggestionBox.style.display = 'block'; } else { suggestionBox.style.display = 'none'; } }
                 if (bankNameInput && bankNameSuggestionsBox) { bankNameInput.addEventListener('input', async function () { const query = this.value.trim(); this.dataset.bankCode = ''; bankCodeInput.value = ''; branchNameInput.value = ''; branchCodeInput.value = ''; if (query.length < 1) { bankNameSuggestionsBox.style.display = 'none'; return; } try { const data = await fetchJson(`${API_BASE_URL}/banks/search.json?name=${encodeURIComponent(query)}`); const filteredBanks = Array.isArray(data) ? data.filter(bank => bank.code !== '9900') : []; showSuggestions(this, bankNameSuggestionsBox, filteredBanks, 'name'); } catch (err) { bankNameSuggestionsBox.style.display = 'none'; } }); bankNameInput.addEventListener('blur', async function () { setTimeout(() => { if (!bankNameSuggestionsBox.contains(document.activeElement)) bankNameSuggestionsBox.style.display = 'none'; }, 200); if (bankCodeInput.value) return; const query = this.value.trim(); if (query.length < 1) return; try { const data = await fetchJson(`${API_BASE_URL}/banks/search.json?name=${encodeURIComponent(query)}`); const exactMatch = Array.isArray(data) ? data.find(bank => bank.name === query && bank.code !== '9900') : null; if (exactMatch) { this.dataset.bankCode = exactMatch.code; bankCodeInput.value = exactMatch.code; } } catch (err) { console.error('銀行の完全一致検索に失敗:', err); } }); }
                 if (branchNameInput && branchNameSuggestionsBox && bankNameInput) { branchNameInput.addEventListener('input', async function () { const bankCode = bankNameInput.dataset.bankCode || '', query = this.value.trim(); branchCodeInput.value = ''; if (!bankCode || query.length < 1) { branchNameSuggestionsBox.style.display = 'none'; return; } try { const data = await fetchJson(`${API_BASE_URL}/banks/${bankCode}/branches/search.json?name=${encodeURIComponent(query)}`); showSuggestions(this, branchNameSuggestionsBox, Array.isArray(data) ? data : [], 'name'); } catch (err) { branchNameSuggestionsBox.style.display = 'none'; } }); branchNameInput.addEventListener('blur', async function () { setTimeout(() => { if (!branchNameSuggestionsBox.contains(document.activeElement)) branchNameSuggestionsBox.style.display = 'none'; }, 200); if (branchCodeInput.value) return; const bankCode = bankNameInput.dataset.bankCode || '', query = this.value.trim(); if (!bankCode || query.length < 1) return; try { const data = await fetchJson(`${API_BASE_URL}/banks/${bankCode}/branches/search.json?name=${encodeURIComponent(query)}`); const exactMatch = Array.isArray(data) ? data.find(branch => branch.name === query) : null; if (exactMatch) branchCodeInput.value = exactMatch.code; } catch (err) { console.error('支店の完全一致検索に失敗:', err); } }); }
-                
+
                 // 「次へ」ボタンクリック時の処理
-                const saveAndNextButton = document.getElementById('saveAndNext'); 
-                if (saveAndNextButton) { 
-                    saveAndNextButton.addEventListener('click', function(event) { 
-                        const isGeneralBank = document.querySelector('input[name="bank_type"][value="general"]').checked; 
-                        if (isGeneralBank) { 
-                            const bankCode = document.getElementById('general_bank_code').value.trim(), branchCode = document.getElementById('general_branch_code').value.trim(); 
-                            if (!bankCode || !branchCode) { 
-                                alert('金融機関コードと支店コードの両方を入力してください。\n銀行名・支店名を入力し、候補から選択するか、正確な名称を入力して確定してください。'); 
-                                event.preventDefault(); 
-                                return; 
+                const saveAndNextButton = document.getElementById('saveAndNext');
+                if (saveAndNextButton) {
+                    saveAndNextButton.addEventListener('click', function(event) {
+                        const isGeneralBank = document.querySelector('input[name="bank_type"][value="general"]').checked;
+                        if (isGeneralBank) {
+                            const bankCode = document.getElementById('general_bank_code').value.trim(), branchCode = document.getElementById('general_branch_code').value.trim();
+                            if (!bankCode || !branchCode) {
+                                alert('金融機関コードと支店コードの両方を入力してください。\n銀行名・支店名を入力し、候補から選択するか、正確な名称を入力して確定してください。');
+                                event.preventDefault();
+                                return;
                             }
                         }
-    
+
                         // 家族情報の保存ロジック
                         const familyForms = document.querySelectorAll('#family_entries_container .family-form-container');
                         const familyData = [];
@@ -2138,7 +2258,7 @@ textarea {
                             const newIndex = index + 1;
                             const lastName = form.querySelector(`input[name="family_last_name_${newIndex}"]`)?.value.trim();
                             const firstName = form.querySelector(`input[name="family_first_name_${newIndex}"]`)?.value.trim();
-                            
+
                             if (lastName || firstName) {
                                 familyData.push({
                                     lastName: lastName,
@@ -2155,28 +2275,28 @@ textarea {
                             }
                         });
                         localStorage.setItem('family_data', JSON.stringify(familyData));
-                        
-                        localStorage.setItem('birth_date', document.getElementById('birth_date').value); 
-                        
-                        localStorage.setItem('prefecture', document.getElementById('prefecture').value); 
-                        localStorage.setItem('city', document.getElementById('city').value); 
-                        localStorage.setItem('address_line1', document.getElementById('address_line1').value); 
-                    }); 
+
+                        localStorage.setItem('birth_date', document.getElementById('birth_date').value);
+
+                        localStorage.setItem('prefecture', document.getElementById('prefecture').value);
+                        localStorage.setItem('city', document.getElementById('city').value);
+                        localStorage.setItem('address_line1', document.getElementById('address_line1').value);
+                    });
                 }
                 // --- END: Bank Info ---
-    
+
                 // ▼▼▼ START: 家族状況セクションのUI/UX改善版ロジック（氏名・フリガナ分割対応） ▼▼▼
                 const familyContainer = document.getElementById('family_entries_container');
-    
+
                 const relationshipOptions = ['夫', '妻', '長男', '長女', '次男', '次女', '三男', '三女', '四男', '四女', '五男', '五女', '六男', '六女', '父', '母', '義父', '義母', '祖父', '祖母', '孫', '兄', '姉', '弟', '妹', '義兄', '義姉', '義弟', '義妹', '伯父', '伯母', '叔父', '叔母', '甥', '姪', '里子', '婿', '嫁', '子'];
-    
+
                 function updateFamilyButtons() {
                     const forms = familyContainer.querySelectorAll('.family-form-container');
                     forms.forEach((form, index) => {
                         let buttonCell = form.querySelector('.button-cell');
                         if (!buttonCell) return;
                         buttonCell.innerHTML = '';
-    
+
                         if (forms.length > 1) {
                             const deleteButton = document.createElement('button');
                             deleteButton.type = 'button';
@@ -2184,7 +2304,7 @@ textarea {
                             deleteButton.textContent = 'この家族情報を削除';
                             buttonCell.appendChild(deleteButton);
                         }
-    
+
                         if (index === forms.length - 1) {
                             const addButton = document.createElement('button');
                             addButton.type = 'button';
@@ -2195,7 +2315,7 @@ textarea {
                         }
                     });
                 }
-                
+
                 function renumberFamilyEntries() {
                     familyContainer.querySelectorAll('.family-form-container').forEach((form, index) => {
                         const newIndex = index + 1;
@@ -2204,21 +2324,21 @@ textarea {
                             const oldId = input.id;
                             const baseName = input.name ? input.name.replace(/_\d+$/, '') : '';
                             const baseId = input.id ? input.id.replace(/_\d+$/, '') : '';
-                            
+
                             if (baseName) input.name = `${baseName}_${newIndex}`;
                             if (baseId) input.id = `${baseId}_${newIndex}`;
-                            
+
                             const label = form.querySelector(`label[for="${oldId}"]`);
                             if(label) label.htmlFor = input.id;
                         });
                     });
                 }
-    
+
                 function createFamilyEntry(index) {
                     const container = document.createElement('div');
                     container.className = 'family-form-container';
                     const relationshipSelectHTML = relationshipOptions.map(r => `<option value="${r}">${r}</option>`).join('');
-    
+
                     container.innerHTML = `
                         <div class="dependent-form-container" style="margin-bottom: 0;">
                             <table class="dependent-table" style="margin-bottom: 0;">
@@ -2285,13 +2405,13 @@ textarea {
                         </div>`;
                     return container;
                 }
-    
+
                 function addFamilyEntry() {
                     const newIndex = familyContainer.children.length + 1;
                     familyContainer.appendChild(createFamilyEntry(newIndex));
                     updateFamilyButtons();
                 }
-                
+
                 if(familyContainer) {
                     familyContainer.addEventListener('click', e => {
                         if (e.target.classList.contains('delete-family-btn')) {
@@ -2301,7 +2421,7 @@ textarea {
                         }
                     });
                 }
-    
+
                 addFamilyEntry();
                 // ▲▲▲ END: 家族状況セクションのロジック ▲▲▲
 
@@ -2312,10 +2432,10 @@ textarea {
                     const days = document.getElementById('mock_contract_days').value;
                     const salary = document.getElementById('mock_salary').value;
                     const note = document.getElementById('hourly_wage_note');
-    
+
                     const modal = document.getElementById('employmentContractModal');
                     if (!modal) return;
-    
+
                     // テーブルのセルを更新するヘルパー関数
                     const updateCell = (headerText, value) => {
                         const th = Array.from(modal.querySelectorAll('.contract-details-table th')).find(el => el.textContent.includes(headerText));
@@ -2323,20 +2443,27 @@ textarea {
                             th.nextElementSibling.textContent = value;
                         }
                     };
-                    
+                    const updateCellByRowHeader = (headerText, value) => {
+                        const th = Array.from(modal.querySelectorAll('.contract-details-table th, .contract-details-table td')).find(el => el.textContent.trim() === headerText);
+                         if (th && th.nextElementSibling) {
+                            th.nextElementSibling.textContent = value;
+                        }
+                    };
+
+
                     // 雇用区分を常に更新
-                    updateCell('雇用区分', `${empType}《${empType}》`);
-    
+                    updateCell('雇用区分', `${empType}`);
+
                     if (empType === 'サプラー') {
                         note.style.display = 'block';
                         // サプラーの場合、入力値を契約書に反映
-                        updateCell('契約時間', `${hours} 時間`);
-                        updateCell('契約日数', `${days} 日`);
-                        updateCell('給与(時間給)', `${Number(salary).toLocaleString()} 円`);
+                        updateCellByRowHeader('契約時間', `${hours} 時間`);
+                        updateCellByRowHeader('契約日数', `${days} 日`);
+                        updateCell('給与(時間給or月給)', `${Number(salary).toLocaleString()}円`);
                     } else {
                         note.style.display = 'none';
-                        // サプラー以外の場合、給与は月給として扱うが、契約書の給与欄は「時間給」のため、ここでは更新しない
-                        // (契約書のフォーマットが雇用区分によって変わらないという前提)
+                        // サプラー以外の場合、給与は月給として扱う
+                        updateCell('給与(時間給or月給)', `${Number(salary).toLocaleString()}円`);
                     }
 
                     // モーダルが開いている場合は、保険加入判定を再実行
@@ -2367,7 +2494,7 @@ textarea {
                     });
                 }
                 // ▲▲▲ 追加ここまで ▲▲▲
-    
+
                 // --- START: Devtool buttons ---
                 const devFillFormBtn = document.getElementById('dev_fill_form_btn'), devResetFormBtn = document.getElementById('dev_reset_form_btn'), devClearStorageBtn = document.getElementById('dev_clear_storage_btn');
                 if(devFillFormBtn) { devFillFormBtn.addEventListener('click', () => { document.getElementById('last_name').value = '開発'; document.getElementById('first_name').value = '花子'; document.getElementById('last_name_kana').value = 'カイハツ'; document.getElementById('first_name_kana').value = 'ハナコ'; document.getElementById('gender').value = 'female'; document.getElementById('birth_date').value = '1995-05-15'; document.getElementById('mobile_phone_number').value = '090-9876-5432'; document.getElementById('email').value = 'hanako.dev@example.com'; document.getElementById('postal_code').value = '150-0002'; fetchAddressFromPostalCode('150-0002', '').then(() => { document.getElementById('address_line2').value = 'テストアパート303'; document.getElementById('address_kana').value = 'トウキョウトシブヤクシブヤ'; }); document.getElementById('emergency_last_name').value = '開発'; document.getElementById('emergency_first_name').value = '一郎'; document.getElementById('emergency_relationship').value = 'sibling'; document.querySelector('input[name="bank_type"][value="general"]').click(); document.getElementById('general_bank_name').value = '三菱UFJ銀行'; document.getElementById('general_bank_name').dispatchEvent(new Event('blur')); document.getElementById('general_account_number').value = '1234567'; document.getElementById('general_account_holder_name').value = 'カイハツ ハナコ'; console.log("テストデータがページ1の項目に入力されました。"); }); }
@@ -2379,4 +2506,3 @@ textarea {
         <div id="pdf-render-root" style="position:fixed; inset:0 auto auto 0; width:794px; z-index:-1; opacity:0; pointer-events:none;"></div>
     </body>
 </html>
-
